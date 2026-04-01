@@ -11,6 +11,19 @@ public class Gundam extends Threat{
         this.missileUsed = missileUsed;;
     }
 
+    public int attack() {
 
-    public
+    }
+
+    public int special() {
+        // shoots a missile for big damage
+    }
+
+    public void reloadMissile() {
+
+    }
+
+    public void setMissileUsed(boolean state) {
+
+    }
 }
