@@ -9,7 +9,7 @@ public class MissionRoom {
 
     }
 
-    public Mission createMission(Threat threat, Character null, Character null){
+    public Mission createMission(Threat threat, Character character1, Character character2){
 
     }
     public void selectCrewMembers(Mission mission){
