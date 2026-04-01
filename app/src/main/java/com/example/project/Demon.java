@@ -6,18 +6,28 @@ public class Demon extends Threat{
     private int currentHealth;
     private String name;
     private int exp;
+    private int buffStackCounter;
 
-    public Demon(int maxHealth, int currentHealth, String name, int exp) {
+    public Demon(int maxHealth, int currentHealth, String name, int exp, int buffStackCounter) {
         super(maxHealth, currentHealth, name, exp);
+        this.buffStackCounter = buffStackCounter;
 
     }
     @Override
     public int attack() {
+
     }
 
     @Override
     public int special() {
-        //Shoots laser for AOE
-        int shootLaser;
+        // gains a buff to damage
+    }
+
+    public int getBuffStackCounter() {
+        return buffStackCounter;
+    }
+
+    public void incrementBuffStackCounter() {
+        buffStackCounter++;
     }
 }
