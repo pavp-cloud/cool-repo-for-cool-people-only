@@ -5,7 +5,7 @@ public class MissionRoom {
     private ArrayList<Mission> pastMission;
 
 
-    public Enemy scanForEnemies(){
+    public Threat scanForThreats(){
 
     }
 
