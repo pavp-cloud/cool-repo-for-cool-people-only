@@ -7,6 +7,12 @@ public abstract class Threat {
     private int exp;
 
 
+    public Threat(int maxHealth, int currentHealth, String name, int exp) {
+        this.maxHealth = maxHealth;
+        this.currentHealth = currentHealth;
+        this.name = name;
+        this.exp = exp;
+    }
     public int getMaxHealth() {
         return maxHealth;
     }

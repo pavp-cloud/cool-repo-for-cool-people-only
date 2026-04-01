@@ -7,14 +7,11 @@ public class Pirate extends Threat {
     private int exp;
 
     public Pirate(int maxHealth, int currentHealth, String name, int exp) {
-        this.maxHealth = maxHealth;
-        this.currentHealth = currentHealth;
-        this.name = name;
-        this.exp = exp;
+        super(maxHealth, currentHealth, name, exp);
     }
 
     public int special() {
-
+        // steals exp
     }
 
     public int attack() {
