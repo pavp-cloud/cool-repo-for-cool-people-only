@@ -2,13 +2,8 @@ package com.example.project;
 import java.util.ArrayList;
 public class MissionRoom {
     private ArrayList<Mission> activeMisson;
-
     private ArrayList<Mission> pastMission;
 
-
-    public ArrayList<Mission> getMissions() {
-        return missions;
-    }
 
     public Enemy scanForEnemies(){
 
