@@ -11,7 +11,7 @@ public class PassengerManifest {
     }
 
     public ArrayList<Character> getCharacters() {
-
+        return characters;
     }
 
 
