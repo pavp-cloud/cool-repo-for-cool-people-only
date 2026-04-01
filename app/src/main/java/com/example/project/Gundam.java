@@ -5,6 +5,8 @@ public class Gundam extends Threat{
     private int currentHealth;
     private String name;
     private int exp;
+    private boolean missileUsed;
+
 
     public Gundam(int maxHealth, int currentHealth, String name, int exp, boolean missileUsed) {
         super(maxHealth, currentHealth, name, exp);
