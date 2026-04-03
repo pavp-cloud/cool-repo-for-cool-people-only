@@ -46,4 +46,6 @@ public abstract class Threat {
         this.currentHealth += heal;
     }
 
+    protected void attack(Character character2) {
+    }
 }
