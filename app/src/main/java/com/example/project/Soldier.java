@@ -1,5 +1,7 @@
 package com.example.project;
 
+import static java.lang.Math.round;
+
 public class Soldier extends Character {
     private int maxHealth;
     private int currentHealth;
@@ -35,6 +37,7 @@ public class Soldier extends Character {
     }
 
     public void takeDamage(int attackIntensity) {
-
+        int damageTaken = (int) round(attackIntensity * 1.0);
+        this.currentHealth = currentHealth - damageTaken;
     }
 }

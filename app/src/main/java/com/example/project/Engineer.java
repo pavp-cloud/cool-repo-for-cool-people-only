@@ -1,5 +1,7 @@
 package com.example.project;
 
+import static java.lang.Math.round;
+
 public class Engineer extends Character {
     private int maxHealth;
     private int currentHealth;
@@ -14,9 +16,13 @@ public class Engineer extends Character {
         super(maxHealth, currentHealth, name, exp);
         this.combatArmorEquipped = combatArmorEquipped;
     }
+
+
     public int attack(){
 
     }
+
+
     public int special(){
 
     }
@@ -35,6 +41,12 @@ public class Engineer extends Character {
     }
 
     public void takeDamage(int attackIntensity) {
-
+        if(combatArmorEquipped) {
+            int damageTaken = (int) round(attackIntensity * 0.5);
+            this.currentHealth = currentHealth - damageTaken;
+        } else {
+            int damageTaken = (int) round(attackIntensity * 0.8);
+            this.currentHealth = currentHealth - damageTaken;
+        }
     }
 }
