@@ -30,5 +30,10 @@ public class Demon extends Threat{
     public void incrementBuffStackCounter() {
         buffStackCounter++;
     }
+
+    @Override
+    public void takeDamage(int damage) {
+
+    }
 }
 //hello daddy

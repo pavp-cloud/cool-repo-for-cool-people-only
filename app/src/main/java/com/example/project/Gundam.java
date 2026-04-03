@@ -6,18 +6,19 @@ public class Gundam extends Threat{
     private int currentHealth;
     private String name;
     private int exp;
-    private boolean missileUsed;
+    private boolean missileUsed = false;
 
 
-    public Gundam(int maxHealth, int currentHealth, String name, int exp, boolean missileUsed) {
+    public Gundam(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
-        this.missileUsed = missileUsed;;
     }
 
+    @Override
     public int attack() {
 
     }
 
+    @Override
     public int special() {
         // shoots a missile for big damage
     }
@@ -27,6 +28,11 @@ public class Gundam extends Threat{
     }
 
     public void setMissileUsed(boolean state) {
+
+    }
+
+    @Override
+    public void takeDamage(int damage) {
 
     }
 }

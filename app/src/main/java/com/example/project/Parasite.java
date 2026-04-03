@@ -18,4 +18,9 @@ public class Parasite extends Threat {
     @Override
     public int special() {
     }
+
+    @Override
+    public void takeDamage(int damage) {
+
+    }
 }

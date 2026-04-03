@@ -21,4 +21,11 @@ public class Alien extends Threat {
         //shoots laser that does AOE
     }
 
+    public int shootLaserBeam() {
+
+    }
+    @Override
+    public void takeDamage(int damage) {
+
+    }
 }

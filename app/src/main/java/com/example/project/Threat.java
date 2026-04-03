@@ -1,5 +1,8 @@
 package com.example.project;
 
+import static java.lang.Math.random;
+
+import java.lang.Math;
 public abstract class Threat {
     private int maxHealth;
     private int currentHealth;
@@ -22,7 +25,7 @@ public abstract class Threat {
     }
 
     public void setCurrentHealth(int healthChange) {
-
+        this.currentHealth += healthChange;
     }
 
     public int getExp() {
@@ -37,16 +40,18 @@ public abstract class Threat {
 
     public abstract int special();
 
-    public void takeDamage(int damage) {
-
-    }
+    public abstract void takeDamage(int damage);
 
     public void healHealth(int heal) {
-
+        this.currentHealth += heal;
     }
 
-    public void targeting() {
-
+    public Character targeting(Character character1, Character character2) {
+        if(random() > 0.5) {
+            return character1;
+        } else {
+            return character2;
+        }
     }
 
 }
