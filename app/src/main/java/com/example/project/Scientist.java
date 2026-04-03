@@ -1,5 +1,7 @@
 package com.example.project;
 
+import static java.lang.Math.round;
+
 public class Scientist extends Character {
     private int maxHealth;
     private int currentHealth;
@@ -8,10 +10,10 @@ public class Scientist extends Character {
     private int missionCompleted;
     //representive of final blows, can be added in a different way to uml
     private int finalBlows;
-    private boolean usedExpPotion;
+    private boolean usedExpPotion = false;
 
-    public Scientist(int maxHealth, int currentHealth, String name, int exp, int missionCompleted, int finalBlows, boolean usedExpPotion){
-
+    public Scientist(int maxHealth, int currentHealth, String name, int exp){
+        super(maxHealth, currentHealth, name, exp);
     }
 
     public boolean getExpPotion() {
@@ -21,6 +23,7 @@ public class Scientist extends Character {
     public void setExpPotion(boolean state) {
 
     }
+
     public int attack(){
 
     }
@@ -31,5 +34,9 @@ public class Scientist extends Character {
 
     public void endOfCombatPrep() {
 
+    }
+    public void takeDamage(int attackIntensity) {
+        int damageTaken = (int) round(attackIntensity * 1.2);
+        this.currentHealth = currentHealth - damageTaken;
     }
 }

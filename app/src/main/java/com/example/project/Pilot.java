@@ -1,5 +1,7 @@
 package com.example.project;
 
+import static java.lang.Math.round;
+
 public class Pilot extends Character {
     private int maxHealth;
     private int currentHealth;
@@ -8,10 +10,10 @@ public class Pilot extends Character {
     private int missionCompleted;
     //representive of final blows, can be added in a different way to uml
     private int finalBlows;
-    private boolean droneDeployed;
+    private boolean droneDeployed = false;
 
-    public Pilot(int maxHealth, int currentHealth, String name, int exp, int missionCompleted, int finalBlows, boolean droneDeployed){
-
+    public Pilot(int maxHealth, int currentHealth, String name, int exp){
+        super(maxHealth, currentHealth, name, exp);
     }
 
     public boolean getDroneDeployed() {
@@ -33,5 +35,10 @@ public class Pilot extends Character {
 
     public void endOfCombatPrep() {
 
+    }
+
+    public void takeDamage(int attackIntensity) {
+        int damageTaken = (int) round(attackIntensity * 1.0);
+        this.currentHealth = currentHealth - damageTaken;
     }
 }
