@@ -10,8 +10,8 @@ public class Medic extends Character {
     //representive of final blows, can be added in a different way to uml
     private int finalBlows;
 
-    public Medic(int maxHealth, int currentHealth, String name, int exp, int missionCompleted, int finalBlows){
-
+    public Medic(int maxHealth, int currentHealth, String name, int exp){
+        super(maxHealth, currentHealth, name, exp);
     }
     public int attack(){
 
@@ -20,4 +20,11 @@ public class Medic extends Character {
 
     }
     //Medic will be able to heal other characters
+    public void endOfCombatPrep() {
+
+    }
+
+    public void takeDamage(int attackIntensity) {
+
+    }
 }

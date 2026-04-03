@@ -10,8 +10,9 @@ public class Pilot extends Character {
     private int finalBlows;
     private boolean droneDeployed;
 
-    public Pilot(int maxHealth, int currentHealth, String name, int exp, int missionCompleted, int finalBlows, boolean droneDeployed){
-
+    public Pilot(int maxHealth, int currentHealth, String name, int exp, boolean droneDeployed){
+        super(maxHealth, currentHealth, name, exp);
+        this.droneDeployed = droneDeployed;
     }
 
     public boolean getDroneDeployed() {
@@ -32,6 +33,10 @@ public class Pilot extends Character {
     //deploys drone
 
     public void endOfCombatPrep() {
+
+    }
+
+    public void takeDamage(int attackIntensity) {
 
     }
 }

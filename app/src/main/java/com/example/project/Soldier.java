@@ -10,8 +10,9 @@ public class Soldier extends Character {
     private int finalBlows;
     private boolean usedGrenade;
 
-    public Soldier(int maxHealth, int currentHealth, String name, int exp, int missionCompleted, int finalBlows, boolean usedGrenade){
-
+    public Soldier(int maxHealth, int currentHealth, String name, int exp, boolean usedGrenade){
+        super(maxHealth, currentHealth, name, exp);
+        this.usedGrenade = usedGrenade;
     }
 
     public boolean getUsedGrenade() {
@@ -30,6 +31,10 @@ public class Soldier extends Character {
     //grenade
 
     public void endOfCombatPrep() {
+
+    }
+
+    public void takeDamage(int attackIntensity) {
 
     }
 }

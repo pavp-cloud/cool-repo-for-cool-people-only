@@ -10,8 +10,9 @@ public class Engineer extends Character {
     private int finalBlows;
     private boolean combatArmorEquipped;
 
-    public Engineer(int maxHealth, int currentHealth, String name, int exp, int missionCompleted, int finalBlows, boolean combatArmorEquipped){
-
+    public Engineer(int maxHealth, int currentHealth, String name, int exp, boolean combatArmorEquipped){
+        super(maxHealth, currentHealth, name, exp);
+        this.combatArmorEquipped = combatArmorEquipped;
     }
     public int attack(){
 
@@ -30,6 +31,10 @@ public class Engineer extends Character {
     }
 
     public void setCombatArmor(boolean state) {
+
+    }
+
+    public void takeDamage(int attackIntensity) {
 
     }
 }
