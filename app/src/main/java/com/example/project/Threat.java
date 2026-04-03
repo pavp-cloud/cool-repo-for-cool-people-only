@@ -36,22 +36,14 @@ public abstract class Threat {
         return name;
     }
 
-    public abstract int attack();
+    public abstract int attack(Character character1, Character character2);
 
-    public abstract int special();
+    public abstract int special(Character character1, Character character2);
 
     public abstract void takeDamage(int damage);
 
     public void healHealth(int heal) {
         this.currentHealth += heal;
-    }
-
-    public Character targeting(Character character1, Character character2) {
-        if(random() > 0.5) {
-            return character1;
-        } else {
-            return character2;
-        }
     }
 
 }

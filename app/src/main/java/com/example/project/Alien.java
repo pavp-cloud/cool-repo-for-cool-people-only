@@ -14,6 +14,7 @@ public class Alien extends Threat {
 
     @Override
     public int attack() {
+
     }
 
     @Override
