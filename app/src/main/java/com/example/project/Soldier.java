@@ -10,11 +10,10 @@ public class Soldier extends Character {
     private int missionCompleted;
     //representive of final blows, can be added in a different way to uml
     private int finalBlows;
-    private boolean usedGrenade;
+    private boolean usedGrenade = false;
 
-    public Soldier(int maxHealth, int currentHealth, String name, int exp, boolean usedGrenade){
+    public Soldier(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
-        this.usedGrenade = usedGrenade;
     }
 
     public boolean getUsedGrenade() {

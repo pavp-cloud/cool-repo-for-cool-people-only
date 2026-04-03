@@ -10,11 +10,10 @@ public class Scientist extends Character {
     private int missionCompleted;
     //representive of final blows, can be added in a different way to uml
     private int finalBlows;
-    private boolean usedExpPotion;
+    private boolean usedExpPotion = false;
 
-    public Scientist(int maxHealth, int currentHealth, String name, int exp, boolean usedExpPotion){
+    public Scientist(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
-        this.usedExpPotion = usedExpPotion;
     }
 
     public boolean getExpPotion() {

@@ -10,11 +10,10 @@ public class Pilot extends Character {
     private int missionCompleted;
     //representive of final blows, can be added in a different way to uml
     private int finalBlows;
-    private boolean droneDeployed;
+    private boolean droneDeployed = false;
 
-    public Pilot(int maxHealth, int currentHealth, String name, int exp, boolean droneDeployed){
+    public Pilot(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
-        this.droneDeployed = droneDeployed;
     }
 
     public boolean getDroneDeployed() {

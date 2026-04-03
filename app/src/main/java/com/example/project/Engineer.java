@@ -10,11 +10,10 @@ public class Engineer extends Character {
     private int missionCompleted;
     //representive of final blows, can be added in a different way to uml
     private int finalBlows;
-    private boolean combatArmorEquipped;
+    private boolean combatArmorEquipped = false;
 
-    public Engineer(int maxHealth, int currentHealth, String name, int exp, boolean combatArmorEquipped){
+    public Engineer(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
-        this.combatArmorEquipped = combatArmorEquipped;
     }
 
 
