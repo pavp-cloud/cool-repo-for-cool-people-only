@@ -19,11 +19,14 @@ public class Engineer extends Character {
 
 
     public int attack(){
+        return (int) (2 + (this.getExp() * 0.5));
 
     }
 
 
     public int special(){
+        this.combatArmorEquipped = true;
+        return 0;
 
     }
     //equips combat armor

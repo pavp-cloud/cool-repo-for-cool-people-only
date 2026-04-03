@@ -14,5 +14,4 @@ public class PassengerManifest {
         return characters;
     }
 
-
 }
