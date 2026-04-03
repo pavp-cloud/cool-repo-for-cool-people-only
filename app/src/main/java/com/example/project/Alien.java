@@ -20,8 +20,9 @@ public class Alien extends Threat {
 
     @Override
     public int special(Character character1, Character character2) {
-        this.attack(character1);
-        this.attack(character2);
+        int damage = (int)(2 + (this.getExp() * 0.25));
+        character2.takeDamage(damage);
+        character1.takeDamage(damage);
         //shoots laser that does AOE
     }
 
