@@ -15,6 +15,7 @@ public class Medic extends Character {
 
     public Medic(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
+
     }
 
 
