@@ -10,11 +10,11 @@ public class Pirate extends Threat {
         super(maxHealth, currentHealth, name, exp);
     }
     @Override
-    public int special() {
+    public int special(Character character1, Character character2) {
         // steals exp
     }
     @Override
-    public int attack() {
+    public int attack(Character character1, Character character2) {
 
     }
 

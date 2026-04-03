@@ -14,12 +14,12 @@ public class Demon extends Threat{
 
     }
     @Override
-    public int attack() {
+    public int attack(Character character1, Character character2) {
 
     }
 
     @Override
-    public int special() {
+    public int special(Character character1, Character character2) {
         // gains a buff to damage
     }
 

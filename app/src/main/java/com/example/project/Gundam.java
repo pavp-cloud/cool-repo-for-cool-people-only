@@ -14,21 +14,21 @@ public class Gundam extends Threat{
     }
 
     @Override
-    public int attack() {
+    public int attack(Character character1, Character character2) {
 
     }
 
     @Override
-    public int special() {
+    public int special(Character character1, Character character2) {
         // shoots a missile for big damage
     }
 
     public void reloadMissile() {
-
+        this.missileUsed = false;
     }
 
-    public void setMissileUsed(boolean state) {
-
+    public void missileUsed() {
+        this.missileUsed = true;
     }
 
     @Override
