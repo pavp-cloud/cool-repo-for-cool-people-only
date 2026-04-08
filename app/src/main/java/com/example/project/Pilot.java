@@ -12,29 +12,42 @@ public class Pilot extends Character {
     private int finalBlows;
     private boolean droneDeployed = false;
 
+    //CONSTANTS
+
+    private final int baseAttack = 2;
+    private final int droneAttack = 5;
+    /*not too sure about the "etiquette" of using final,
+    i think one of the presentations said "don't use them too much" but
+    that's how you would define a constant*/
+
     public Pilot(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
     }
 
     public boolean getDroneDeployed() {
-
+        return this.droneDeployed;
     }
 
     public void setDroneDeployed(boolean state) {
-
+        this.droneDeployed = state;
     }
 
     public int attack(){
-
+        if (getDroneDeployed()) {
+            return (int) (baseAttack + droneAttack + (this.getExp() * 0.5));
+        } else {
+            return (int) (baseAttack + (this.getExp() * 0.5));
+        }
     }
 
     public int special(){
-
+        setDroneDeployed(true);
+        return 0;
     }
     //deploys drone
 
     public void endOfCombatPrep() {
-
+        setDroneDeployed(false);
     }
 
     public void takeDamage(int attackIntensity) {

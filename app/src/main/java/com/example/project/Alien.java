@@ -1,12 +1,16 @@
 package com.example.project;
 
+import java.util.Random;
+
 public class Alien extends Threat {
     private int maxHealth;
     private int currentHealth;
     private String name;
     private int exp;
 
+    //CONSTANTS
 
+    private final int baseAttack = 2;
     public Alien(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
 
@@ -14,15 +18,28 @@ public class Alien extends Threat {
 
     @Override
     public int attack(Character character1, Character character2) {
-        return(int)(2 + (this.getExp() * 0.5));
+        //basic base attack logic, can be copied everywhere but with different scaling
+        Random random = new Random();
+        int target = random.nextInt(2); //returns int from 0 to 1 (higher bound is exclusive, so a bound of 2 gives a 1)
+        int damage = (int)(baseAttack + (this.getExp() * 0.5));
 
+        if (target == 0) {
+            character1.takeDamage(damage);
+        }
+        else {
+            character2.takeDamage(damage);
+        }
+        return 0;
     }
 
     @Override
     public int special(Character character1, Character character2) {
-        this.attack(character1);
-        this.attack(character2);
+        int damage = (int)(baseAttack + (this.getExp() * 0.25));
+
+        character2.takeDamage(damage);
+        character1.takeDamage(damage);
         //shoots laser that does AOE
+        return 0;
     }
 
     @Override
