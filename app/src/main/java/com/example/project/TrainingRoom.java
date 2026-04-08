@@ -1,10 +1,13 @@
 package com.example.project;
 
-public class TrainingRoom {
-    private String CharacterTrainee;
+import java.util.ArrayList;
 
-    public TrainingRoom(String CharacterTrainee) {
-        this.CharacterTrainee = CharacterTrainee;
+public class TrainingRoom {
+    private ArrayList<Character>trainee;
+
+
+    public void trainCrewMember(Character crewMember, int difficulty) {
+
     }
 
 }
