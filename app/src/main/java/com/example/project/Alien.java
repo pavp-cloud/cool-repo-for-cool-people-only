@@ -7,15 +7,12 @@ public class Alien extends Threat {
     private int currentHealth;
     private String name;
     private int exp;
-    private int baseAttack = 5;
 
     //CONSTANTS
 
     private final int baseAttack = 2;
     public Alien(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
-        this.baseAttack = baseAttack;
-
     }
 
     @Override
