@@ -9,8 +9,6 @@ public class Gundam extends Threat{
     private String name;
     private int exp;
     private boolean missileUsed = false;
-    private int baseAttack = 6;
-
 
     //CONSTANTS
 
