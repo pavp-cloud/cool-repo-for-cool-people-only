@@ -6,7 +6,7 @@ public class Demon extends Threat{
     private int currentHealth;
     private String name;
     private int exp;
-    private int buffStackCounter;
+    private int buffStackCounter = 1;
 
     public Demon(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
