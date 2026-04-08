@@ -7,9 +7,9 @@ public class Engineer extends Character {
     private int currentHealth;
     private String name;
     private int exp;
-    private int missionCompleted;
+    private int missionCompleted = 0;
     //representive of final blows, can be added in a different way to uml
-    private int finalBlows;
+    private int finalBlows = 0;
     private boolean combatArmorEquipped = false;
 
     //CONSTANTS

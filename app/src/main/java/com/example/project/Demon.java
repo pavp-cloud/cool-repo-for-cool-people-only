@@ -8,7 +8,7 @@ public class Demon extends Threat{
     private int exp;
     private int buffStackCounter;
 
-    public Demon(int maxHealth, int currentHealth, String name, int exp, int buffStackCounter) {
+    public Demon(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
         this.buffStackCounter = buffStackCounter;
 
