@@ -27,8 +27,14 @@ public class CombatView extends SurfaceView implements Runnable {
     private volatile boolean isPlaying;
     private Canvas canvas;
     private Paint paint;
+    private int animationTimer = 0;
+    private boolean showExplosion = false;
+    private float exploisonX, explosionY;
+    private boolean showBasicAttack = false;
+    private float swingX, swingY;
 
-    public GameView(Context context) {
+
+    public CombatView(Context context) {
         super(context);
         this.surfaceHolder = getHolder();
         this.paint = new Paint();
@@ -54,6 +60,9 @@ public class CombatView extends SurfaceView implements Runnable {
             activeCombat = combatState.Players_Turn;
             //sends back to players turn
             }
+        if (activeCombat == combatState.Animating){
+
+        }
         }
     private void perfromEnemyActions(){
         //Enemy AI logic
