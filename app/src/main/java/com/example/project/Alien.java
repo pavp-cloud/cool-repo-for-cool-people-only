@@ -13,7 +13,6 @@ public class Alien extends Threat {
     private final int baseAttack = 2;
     public Alien(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
-
     }
 
     @Override

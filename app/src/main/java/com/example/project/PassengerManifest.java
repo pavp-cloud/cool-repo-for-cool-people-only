@@ -3,15 +3,15 @@ package com.example.project;
 import java.util.ArrayList;
 
 public class PassengerManifest {
-    private ArrayList<Character> characters;
+    private ArrayList<Character> crewManifest = new ArrayList<>();
 
 
-    public void addPassenger(Character character) {
-        characters.add(character);
+    public void addPassenger(Character crewMember) {
+        crewManifest.add(crewMember);
     }
 
-    public ArrayList<Character> getCharacters() {
-        return characters;
+    public ArrayList<Character> getCrewManifest() {
+        return crewManifest;
     }
 
 }

@@ -1,8 +1,5 @@
 package com.example.project;
 
-import static java.lang.Math.random;
-
-import java.lang.Math;
 public abstract class Threat {
     private int maxHealth;
     private int currentHealth;
@@ -46,6 +43,4 @@ public abstract class Threat {
         this.currentHealth += heal;
     }
 
-    protected void attack(Character character2) {
-    }
 }

@@ -8,18 +8,20 @@ public class Demon extends Threat{
     private int currentHealth;
     private String name;
     private int exp;
-    private int buffStackCounter;
+    private int buffStackCounter = 1;
 
     //CONSTANTS
 
     private final int baseAttack = 2;
-    public Demon(int maxHealth, int currentHealth, String name, int exp, int buffStackCounter) {
+
+    public Demon(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
         this.buffStackCounter = buffStackCounter;
 
     }
     @Override
     public int attack(Character character1, Character character2) {
+
         //basic base attack logic, can be copied everywhere but with different scaling
         //this guy gets extra buff scaling
         Random random = new Random();
@@ -39,7 +41,6 @@ public class Demon extends Threat{
     public int special(Character character1, Character character2) {
         incrementBuffStackCounter();
         return 0;
-        // gains a buff to damage
     }
 
     public int getBuffStackCounter() {
@@ -55,3 +56,4 @@ public class Demon extends Threat{
         this.currentHealth += damage;
     }
 }
+//hello daddy
