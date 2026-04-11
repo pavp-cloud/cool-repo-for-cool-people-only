@@ -1,12 +1,14 @@
 package com.example.project;
 
 public class Mission {
-    private Character crewMember1;
-    private Character crewMember2;
+    private Character crewMember1 = null;
+    private Character crewMember2 = null;
     private Threat missionTarget;
 
-
-    public void addCrewMembers () {
+    public Mission(Threat missionTarget) {
+        this.missionTarget = missionTarget;
+    }
+    public void addCrewMembers (Character crewMember1,Character crewMember2) {
 
     }
 

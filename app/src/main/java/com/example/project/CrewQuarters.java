@@ -15,8 +15,8 @@ public class CrewQuarters {
         crewMembers.remove(crewMember);
     }
 
-    public Character getCrewMember(int index) {
-        return crewMembers.get(index);
+    public ArrayList<Character> getCrewMembers() {
+        return crewMembers;
     }
 
     public void restoreHealth(Character crewMember) {

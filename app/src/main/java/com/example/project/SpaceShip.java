@@ -22,6 +22,15 @@ public class SpaceShip {
         }
         return instance;
     }
+
+    public CrewQuarters getCrewQuarters() {
+        return crewQuarters;
+    }
+
+    public PassengerManifest getManifest() {
+        return manifest;
+    }
+
     public void runTrainingRoom() {
         // moves to the training room view
         // todo: implement into UI
