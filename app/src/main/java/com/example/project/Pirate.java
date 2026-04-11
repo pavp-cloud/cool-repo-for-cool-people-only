@@ -73,7 +73,7 @@ public class Pirate extends Threat {
 
     @Override
     public void takeDamage(int damage) {
-        this.currentHealth += damage;
+        this.currentHealth -= damage;
     }
 }
 

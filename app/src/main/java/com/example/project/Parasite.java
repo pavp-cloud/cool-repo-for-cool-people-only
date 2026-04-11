@@ -34,11 +34,34 @@ public class Parasite extends Threat {
     }
 
     @Override
-    public int special(Character character1, Character character2) {
+    public int special(Character character1, Character character2) { //lifesteal
+        Random random = new Random();
+        int target = random.nextInt(2); //returns int from 0 to 1 (higher bound is exclusive, so a bound of 2 gives a 1)
+        int damage = (int)(baseAttack + (this.getExp() * 0.2)); //lower scaling to compensate for healing
+
+        if (target == 0) { //basic targeting
+            character1.takeDamage(damage);
+        }
+        else {
+            character2.takeDamage(damage);
+        }
+
+        healHealth(damage);
+        return 0;
+    }
+
+    public void healHealth(int healing) { //this is the only guy to heal in any capacity so only it will have a heal method
+        int healthTotal = getCurrentHealth()+healing;
+
+        if(healthTotal > getMaxHealth()) {
+            setCurrentHealth(getMaxHealth());
+        } else {
+            setCurrentHealth(healthTotal);
+        }
     }
 
     @Override
     public void takeDamage(int damage) {
-        this.currentHealth += damage;
+        this.currentHealth -= damage;
     }
 }
