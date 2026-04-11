@@ -53,7 +53,7 @@ public class Demon extends Threat{
 
     @Override
     public void takeDamage(int damage) {
-        this.currentHealth += damage;
+        this.currentHealth -= damage;
     }
 }
 //hello daddy
