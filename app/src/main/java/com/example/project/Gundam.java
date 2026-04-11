@@ -18,7 +18,6 @@ public class Gundam extends Threat{
     public Gundam(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
         this.missileUsed = missileUsed;
-        this.baseAttack = baseAttack;
     }
 
     @Override
