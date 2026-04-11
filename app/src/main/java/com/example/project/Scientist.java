@@ -33,10 +33,16 @@ public class Scientist extends Character {
     }
 
     //exp potion
-    //todo: check if its used, if it is, display so on the ui, have it not waste the turn
+    //todo: if we're going for the "reusing a one-time use action reloads it" thing we're gonna have to communicate that on the ui just fyi
     public int special(){
-        setExpPotion(true);
-        return expPotionValue;
+        if(usedExpPotion) {
+            setExpPotion(false);
+            return 0;
+        } else { //gonna have to figure out how we want this to function, exp to itself? the ally? everyone? to the enemy so killing them gives more?
+            setExpPotion(true);
+            exp += expPotionValue;
+            return 0;
+        }
     }
 
     public void endOfCombatPrep() {

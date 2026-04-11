@@ -39,8 +39,9 @@ public abstract class Threat {
 
     public abstract void takeDamage(int damage);
 
-    public void healHealth(int heal) {
-        this.currentHealth += heal;
+    public void healHealth(int heal) { //modified to account for overheal
+        int healthTotal = getCurrentHealth()+heal;
+        setCurrentHealth(Math.min(healthTotal, getMaxHealth()));
     }
 
 }

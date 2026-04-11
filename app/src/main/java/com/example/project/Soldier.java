@@ -35,10 +35,15 @@ public class Soldier extends Character {
     //"throws" the grenade
     //its like attack, but with a higher base value
     //could also be higher scaling but thats details
-    //todo: check if its equipped, if it is, display so on the ui, have it not waste the turn
+    //todo: if we're going for the "reusing a one-time use action reloads it" thing we're gonna have to communicate that on the ui just fyi
     public int special(){
-        setUsedGrenade(true);
-        return (int) (grenadeAttack + (this.getExp() * 0.5));
+        if (usedGrenade) {
+            setUsedGrenade(false);
+            return 0;
+        } else {
+            setUsedGrenade(true);
+            return (int) (grenadeAttack + (this.getExp() * 0.5));
+        }
     }
 
     public void endOfCombatPrep() {

@@ -46,18 +46,8 @@ public class Parasite extends Threat {
             character2.takeDamage(damage);
         }
 
-        healHealth(damage);
+        healHealth(damage); //heals hp equal to the attack's damage (not accounting for resistances)
         return 0;
-    }
-
-    public void healHealth(int healing) { //this is the only guy to heal in any capacity so only it will have a heal method
-        int healthTotal = getCurrentHealth()+healing;
-
-        if(healthTotal > getMaxHealth()) {
-            setCurrentHealth(getMaxHealth());
-        } else {
-            setCurrentHealth(healthTotal);
-        }
     }
 
     @Override
