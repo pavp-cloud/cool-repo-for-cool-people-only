@@ -3,10 +3,10 @@ package com.example.project;
 import static java.lang.Math.round;
 
 public abstract class Character {
-    private int maxHealth;
-    private int currentHealth;
-    private String name;
-    private int exp;
+    protected int maxHealth;
+    protected int currentHealth;
+    protected String name;
+    protected int exp;
     /*
     private int missionsCompleted;
     private int finalBlows;
@@ -15,6 +15,10 @@ public abstract class Character {
      */
 
     public Character(int maxHealth, int currentHealth, String name, int exp) {
+        this.maxHealth = maxHealth;
+        this.currentHealth = currentHealth;
+        this.name = name;
+        this.exp = exp;
     }
 
     public int getMaxHealth() {

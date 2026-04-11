@@ -3,11 +3,6 @@ package com.example.project;
 import java.util.Random;
 
 public class Demon extends Threat{
-
-    private int maxHealth;
-    private int currentHealth;
-    private String name;
-    private int exp;
     private int buffStackCounter = 1;
 
     //CONSTANTS

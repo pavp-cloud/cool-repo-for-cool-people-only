@@ -4,10 +4,6 @@ package com.example.project;
 import java.util.Random;
 
 public class Gundam extends Threat{
-    private int maxHealth;
-    private int currentHealth;
-    private String name;
-    private int exp;
     private boolean missileUsed = false;
 
     //CONSTANTS

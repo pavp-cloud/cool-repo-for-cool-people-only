@@ -1,10 +1,10 @@
 package com.example.project;
 
 public abstract class Threat {
-    private int maxHealth;
-    private int currentHealth;
-    private String name;
-    private int exp;
+    protected int maxHealth;
+    protected int currentHealth;
+    protected String name;
+    protected int exp;
 
 
     public Threat(int maxHealth, int currentHealth, String name, int exp) {

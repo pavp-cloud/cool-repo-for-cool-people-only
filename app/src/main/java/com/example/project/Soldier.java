@@ -3,10 +3,6 @@ package com.example.project;
 import static java.lang.Math.round;
 
 public class Soldier extends Character {
-    private int maxHealth;
-    private int currentHealth;
-    private String name;
-    private int exp;
     private int missionCompleted;
     //representive of final blows, can be added in a different way to uml
     private int finalBlows;
