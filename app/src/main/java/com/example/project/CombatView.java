@@ -4,21 +4,26 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.Random;
+
 public class CombatView extends SurfaceView implements Runnable {
 
-    public enum combatState{
+    public enum combatState {
         Players_Turn,
         Enemys_Turn,
         Animating,
         GameOver,
     }
-    public enum attackState{
+
+    public enum attackState {
         Attack,
         Special_Attack,
     }
+
     private combatState activeCombat = combatState.Players_Turn;
     private attackState selectAttack = null;
     private Thread thread;
@@ -27,111 +32,218 @@ public class CombatView extends SurfaceView implements Runnable {
     private Canvas canvas;
     private Paint paint;
     private int animationTimer = 0;
-    private boolean showSpecialAttack = false;
-    private float exploisonX, explosionY;
-    private boolean showBasicAttack = false;
-    private float shootX, shootY;
+    private float targetX, targetY;
+    private float character1X = 200, character1Y = 400;
+    private float character2X = 200, character2Y = 600;
+    private float enemyX = 800, enemyY = 500;
+    private Character crewMember1;
+    private Character crewMember2;
+    private Threat missionThreat;
+    private Mission activeMission;
+    private Random random = new Random();
 
-
-
-    public CombatView (Context context) {
+    public CombatView(Context context) {
         super(context);
         this.surfaceHolder = getHolder();
         this.paint = new Paint();
+    }
 
+    public void setupCombat(Mission mission) {
+        this.activeMission = mission;
+        this.crewMember1 = mission.getCrewMember1();
+        this.crewMember2 = mission.getCrewMember2();
+        this.missionThreat = mission.getMissionTarget();
     }
 
     @Override
     public void run() {
-        // This is for when the game is running
         while (isPlaying) {
-            update();//controls positioning
-            draw();//control what is on the screen
-            control();//controls frame rate
+            update();
+            draw();
+            control();
         }
     }
-
 
     private void update() {
-        //Function as the logic to move/control the characters and actions by turns
-        if (activeCombat == combatState.Players_Turn) {
-            //wait for input from player
-        } else if (activeCombat == combatState.Enemys_Turn) {
-            perfromEnemyActions();
-            activeCombat = combatState.Players_Turn;
-            //sends back to players turn
+        if (activeCombat == combatState.Enemys_Turn) {
+            performEnemyActions();
         }
+
         if (activeCombat == combatState.Animating) {
             animationTimer++;
-
             if (selectAttack == attackState.Attack) {
-                if (animationTimer > 50) endAnimation();
+                if (animationTimer > 30) endAnimation();
             } else if (selectAttack == attackState.Special_Attack) {
-                if (animationTimer > 80) endAnimation();
+                if (animationTimer > 50) endAnimation();
             }
         }
-    }
-    private void endAnimation(){
-        animationTimer = 0;
-        activeCombat = combatState.Enemys_Turn;
-        selectAttack = null;
-    }
-    private static void perfromEnemyActions(){
-        //Enemy AI logic
+
+        checkGameOver();
     }
 
-    private void draw(){
+    private void checkGameOver() {
+        if (missionThreat != null && missionThreat.getCurrentHealth() <= 0) {
+            activeCombat = combatState.GameOver;
+        } else if (crewMember1 != null && crewMember2 != null &&
+                crewMember1.getCurrentHealth() <= 0 && crewMember2.getCurrentHealth() <= 0) {
+            activeCombat = combatState.GameOver;
+        }
+    }
+
+    private void endAnimation() {
+        animationTimer = 0;
+        if (targetX == enemyX) {
+            activeCombat = combatState.Enemys_Turn;
+        } else {
+            activeCombat = combatState.Players_Turn;
+        }
+        selectAttack = null;
+    }
+
+    public void playerAttack(attackState type) {
+        if (activeCombat == combatState.Players_Turn) {
+            selectAttack = type;
+            targetX = enemyX;
+            targetY = enemyY;
+
+            // Apply logic
+            if (type == attackState.Attack) {
+                missionThreat.takeDamage(crewMember1.attack());
+            } else {
+                missionThreat.takeDamage(crewMember1.special());
+            }
+
+            activeCombat = combatState.Animating;
+        }
+    }
+
+    private void performEnemyActions() {
+        if (activeCombat != combatState.Enemys_Turn || activeMission == null) return;
+
+        // Delegate logic to Mission class
+        int actionIndex = activeMission.enemyTurn();
+        
+        if (actionIndex == 0) {
+            selectAttack = attackState.Attack;
+        } else {
+            selectAttack = attackState.Special_Attack;
+        }
+
+        // For animation purposes, target one of the crew members
+        targetX = character1X; 
+        targetY = character1Y;
+        activeCombat = combatState.Animating;
+    }
+
+    private void draw() {
         if (surfaceHolder.getSurface().isValid()) {
             canvas = surfaceHolder.lockCanvas();
+            if (canvas == null) return;
+            
             canvas.drawColor(Color.BLACK);
 
             paint.setColor(Color.WHITE);
-            paint.setTextSize(35);
+            paint.setTextSize(40);
             canvas.drawText("Turn: " + activeCombat, 50, 50, paint);
+
+            // Draw Characters
+            drawEntity(canvas, crewMember1, character1X, character1Y, Color.BLUE);
+            drawEntity(canvas, crewMember2, character2X, character2Y, Color.CYAN);
+
+            // Draw Enemy
+            drawEntity(canvas, missionThreat, enemyX, enemyY, Color.MAGENTA);
+
+            if (activeCombat == combatState.Animating) {
+                drawAnimation();
+            }
+
+            if (activeCombat == combatState.GameOver) {
+                paint.setColor(Color.YELLOW);
+                paint.setTextSize(100);
+                String msg = missionThreat.getCurrentHealth() <= 0 ? "VICTORY" : "DEFEAT";
+                canvas.drawText(msg, 300, 500, paint);
+            }
 
             surfaceHolder.unlockCanvasAndPost(canvas);
         }
-        if (activeCombat == combatState.Animating){
-            if (selectAttack == attackState.Attack){
-                paint.setColor(Color.RED);
-                float laserX = 300 + (animationTimer % 10) * 40;
-                canvas.drawRect(laserX, 500, laserX + 20, 505, paint);
-
-            }
-            else if (selectAttack == attackState.Special_Attack){
-                int alpha = Math.max(0, 255 - (animationTimer * 255));
-                paint.setAlpha(alpha);
-                paint.setColor(Color.rgb(20,69, 255));
-                canvas.drawCircle(800, 500, animationTimer * 4, paint);
-
-            }
-
-        }
-        surfaceHolder.unlockCanvasAndPost(canvas);
     }
-    private void control(){
+
+    private void drawEntity(Canvas canvas, Object entity, float x, float y, int color) {
+        if (entity == null) return;
+        
+        String name = "";
+        int hp = 0;
+        int maxHp = 0;
+
+        if (entity instanceof Character) {
+            Character c = (Character) entity;
+            name = c.getName();
+            hp = c.getCurrentHealth();
+            maxHp = c.getMaxHealth();
+        } else if (entity instanceof Threat) {
+            Threat t = (Threat) entity;
+            name = t.getName();
+            hp = t.getCurrentHealth();
+            maxHp = t.getMaxHealth();
+        }
+
+        paint.setColor(color);
+        canvas.drawCircle(x, y, 50, paint);
+        
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(30);
+        canvas.drawText(name, x - 50, y - 70, paint);
+        
+        // HP Bar
+        paint.setColor(Color.GRAY);
+        canvas.drawRect(x - 50, y + 60, x + 50, y + 70, paint);
+        paint.setColor(Color.GREEN);
+        if (maxHp > 0) {
+            float hpWidth = 100 * ((float) hp / maxHp);
+            canvas.drawRect(x - 50, y + 60, x - 50 + hpWidth, y + 70, paint);
+        }
+    }
+
+    private void drawAnimation() {
+        if (selectAttack == attackState.Attack) {
+            paint.setColor(Color.RED);
+            float startX = (targetX == enemyX) ? character1X : enemyX;
+            float startY = (targetX == enemyX) ? character1Y : enemyY;
+            float progress = (float) animationTimer / 30;
+            float currentX = startX + (targetX - startX) * progress;
+            float currentY = startY + (targetY - startY) * progress;
+            canvas.drawCircle(currentX, currentY, 15, paint);
+        } else if (selectAttack == attackState.Special_Attack) {
+            paint.setColor(Color.YELLOW);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(5);
+            canvas.drawCircle(targetX, targetY, animationTimer * 5, paint);
+            paint.setStyle(Paint.Style.FILL);
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            performClick();
+            if (activeCombat == combatState.Players_Turn) {
+                // For simplicity, just trigger attack on touch
+                playerAttack(attackState.Attack);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean performClick() {
+        return super.performClick();
+    }
+
+    private void control() {
         try {
-            thread.sleep(17);
+            Thread.sleep(17);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-    public void pause() {
-        isPlaying = true;
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-    public void resume() {
-        isPlaying = false;
-        try{
-            thread = new Thread(this);
-            thread.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }
