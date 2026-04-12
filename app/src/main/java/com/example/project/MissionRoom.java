@@ -37,9 +37,12 @@ public class MissionRoom {
     }
     public void selectCrewMembers(Mission mission){
         ArrayList<Character> activeCharacters = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
-        // choose crew members for mission from crew quarters
+
+        // prelim dummy to test app
+        Character Character1 = activeCharacters.get(0);
+        Character Character2 = activeCharacters.get(1);// choose crew members for mission from crew quarters
         // then add them to the mission
-        mission.addCrewMembers();
+        mission.addCrewMembers(Character1, Character2);
     }
 
     public void runMission (Mission mission){
