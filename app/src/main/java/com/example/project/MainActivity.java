@@ -12,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,11 +85,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*passengerManifestButton.setOnClickListener(new View.OnClickListener() {
+        passengerManifestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.passenger_manifest);
+                showPassengerManifest();
             }
-        }); */
+        });
+        
+    }
+
+    private void showPassengerManifest() {
+        setContentView(R.layout.passenger_manifest);
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_manifest);
+        if (recyclerView != null) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+            // Get data from your existing SpaceShip singleton
+            ArrayList<Character> crew = SpaceShip.getInstance().getManifest().getCrewManifest();
+
+            CharacterAdapter adapter = new CharacterAdapter(crew);
+            recyclerView.setAdapter(adapter);
+        }
+
+        // Return to main menu
+        Button backButton = findViewById(R.id.back_to_menu_button);
+        if (backButton != null) {
+            backButton.setOnClickListener(v -> {
+                setContentView(R.layout.main_menu);
+                setupMainMenuButtons();
+            });
+        }
     }
 }
