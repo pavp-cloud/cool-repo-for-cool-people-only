@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        passengerManifestButton.setOnClickListener(new View.OnClickListener() {
+        /*passengerManifestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.passenger_manifest);
             }
-        });
+        }); */
     }
 }

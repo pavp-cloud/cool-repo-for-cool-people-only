@@ -1,3 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PROJECT</string>
+    <string name="enter_crew_name">Enter Crew Member Name:</string>
+    <string name="crew_name_hint">Name</string>
+    <string name="onboard_new_crew">Onboard New Crew</string>
+    <string name="onboard_button">Onboard</string>
+    <string name="cancel_button">Cancel</string>
 </resources>
