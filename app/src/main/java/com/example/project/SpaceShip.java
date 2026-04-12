@@ -51,10 +51,8 @@ public class SpaceShip {
         // todo: implement into UI
     }
 
-    public void onboardCrewMember() {
-        int selection = 0; // each recruitment choice has a different number that calls the specific constructor
+    public void onboardCrewMember(int selection, String crewMemberName) {
 
-        String crewMemberName = "Bob";
         switch (selection) {
             // crew member stats are subject to changes and addition of scaling
             case 1:

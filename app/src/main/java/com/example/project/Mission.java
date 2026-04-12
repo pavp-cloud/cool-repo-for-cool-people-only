@@ -6,9 +6,6 @@ public class Mission {
     private Character crewMember1 = null;
     private Character crewMember2 = null;
     private Threat missionTarget;
-    private boolean isPlayerTurn = true;
-    private boolean crew1Moved = false;
-    private boolean crew2Moved = false;
 
     public Mission(Threat missionTarget) {
         this.missionTarget = missionTarget;
@@ -22,46 +19,7 @@ public class Mission {
         this.crewMember2 = crewMember2;
     }
 
-    /**
-     * Handles a specific crew member's action.
-     * @param crewIndex 1 for crewMember1, 2 for crewMember2
-     * @param type 0 for basic attack, 1 for special attack
-     */
-    public void playerTurn(int crewIndex, int type) {
-        if (!isPlayerTurn) return;
-
-        // Prevent acting twice or acting if dead
-        if (crewIndex == 1 && (crew1Moved || crewMember1 == null || crewMember1.getCurrentHealth() <= 0)) return;
-        if (crewIndex == 2 && (crew2Moved || crewMember2 == null || crewMember2.getCurrentHealth() <= 0)) return;
-
-        Character activeMember = (crewIndex == 1) ? crewMember1 : crewMember2;
-
-        if (activeMember != null) {
-            if (type == 0) {
-                missionTarget.takeDamage(activeMember.attack());
-            } else if (type == 1) {
-                missionTarget.takeDamage(activeMember.special());
-            }
-        }
-
-        if (crewIndex == 1) crew1Moved = true;
-        else crew2Moved = true;
-
-        // Check if all available crew members have acted
-        if (allCrewMoved()) {
-            isPlayerTurn = false;
-        }
-    }
-
-    private boolean allCrewMoved() {
-        boolean c1Done = (crewMember1 == null || crewMember1.getCurrentHealth() <= 0 || crew1Moved);
-        boolean c2Done = (crewMember2 == null || crewMember2.getCurrentHealth() <= 0 || crew2Moved);
-        return c1Done && c2Done;
-    }
-
     public int enemyTurn() {
-        if (isPlayerTurn) return -1;
-
         Random random = new Random();
         int action = random.nextInt(2);
         if (action == 0) {
@@ -69,19 +27,11 @@ public class Mission {
         } else {
             missionTarget.special(crewMember1, crewMember2);
         }
-        
-        // Reset move flags for next round
-        isPlayerTurn = true; 
-        crew1Moved = false;
-        crew2Moved = false;
-
         return action;
     }
 
-    public boolean isGameOver() {
-        boolean crewDead = (crewMember1 == null || crewMember1.getCurrentHealth() <= 0) &&
-                          (crewMember2 == null || crewMember2.getCurrentHealth() <= 0);
-        boolean targetDead = (missionTarget == null || missionTarget.getCurrentHealth() <= 0);
-        return crewDead || targetDead;
+    public void executeMission() {
+        // This could be where the combat loop starts or UI is triggered
     }
+
 }
