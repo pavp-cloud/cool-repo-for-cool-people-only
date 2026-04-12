@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 View dialogView = inflater.inflate(R.layout.dialog_onboard_crew, null);
                 EditText nameInput = dialogView.findViewById(R.id.edit_text_crew_name);
 
-                new AlertDialog.Builder(MainActivity.this)
+                new AlertDialog.Builder(MainActivity.this, R.style.CustomDialogTheme)
                         .setTitle("Onboard New Crew")
                         .setView(dialogView)
                         .setPositiveButton("Onboard", (dialog, which) -> {

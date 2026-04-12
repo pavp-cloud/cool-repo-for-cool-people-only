@@ -6,4 +6,16 @@
     </style>
 
     <style name="Theme.PROJECT" parent="Base.Theme.PROJECT" />
+    <!-- Custom theme for the onboard popup -->
+    <style name="CustomDialogTheme" parent="Theme.Material3.DayNight.Dialog.Alert">
+        <!-- Background of the entire dialog -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">#5D2929</item>
+
+        <!-- Text color for the title -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+
+        <!-- Color for the buttons (Onboard/Cancel) -->
+        <item name="colorPrimary">#FFFFFF</item>
+    </style>
 </resources>
