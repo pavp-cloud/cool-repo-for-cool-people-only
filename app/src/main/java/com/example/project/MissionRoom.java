@@ -1,8 +1,10 @@
 package com.example.project;
+
 import java.util.ArrayList;
+
 public class MissionRoom {
-    private ArrayList<Mission> activeMission;
-    private ArrayList<Mission> pastMission;
+    private ArrayList<Mission> activeMission = new ArrayList<>();
+    private ArrayList<Mission> pastMission = new ArrayList<>();
 
 
     public Threat scanForThreats(){
@@ -28,21 +30,21 @@ public class MissionRoom {
                 return null;
         }
     }
-    // hi
 
     public Mission createMission(Threat threat){
          Mission mission = new Mission(threat);
          activeMission.add(mission);
          return mission;
     }
+    
     public void selectCrewMembers(Mission mission){
         ArrayList<Character> activeCharacters = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
 
-        // prelim dummy to test app
-        Character Character1 = activeCharacters.get(0);
-        Character Character2 = activeCharacters.get(1);// choose crew members for mission from crew quarters
-        // then add them to the mission
-        mission.addCrewMembers(Character1, Character2);
+        if (activeCharacters.size() >= 2) {
+            Character character1 = activeCharacters.get(0);
+            Character character2 = activeCharacters.get(1);
+            mission.addCrewMembers(character1, character2);
+        }
     }
 
     public void runMission (Mission mission){
