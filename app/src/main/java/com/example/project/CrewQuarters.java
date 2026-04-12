@@ -7,8 +7,10 @@ public class CrewQuarters {
 
 
     public void addCrewMember(Character crewMember) {
-        crewMembers.add(crewMember);
-        restoreHealth(crewMember);
+        if (!crewMembers.contains(crewMember)) {
+            crewMembers.add(crewMember);
+            restoreHealth(crewMember);
+        }
     }
 
     public void removeCrewMember(Character crewMember) {

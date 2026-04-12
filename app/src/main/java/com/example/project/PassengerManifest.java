@@ -5,9 +5,14 @@ import java.util.ArrayList;
 public class PassengerManifest {
     private ArrayList<Character> crewManifest = new ArrayList<>();
 
-
     public void addPassenger(Character crewMember) {
-        crewManifest.add(crewMember);
+        if (!crewManifest.contains(crewMember)) {
+            crewManifest.add(crewMember);
+        }
+    }
+
+    public void recordDeath(Character crewMember) {
+        crewMember.setDead(true);
     }
 
     public ArrayList<Character> getCrewManifest() {

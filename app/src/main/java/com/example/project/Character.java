@@ -7,6 +7,14 @@ public abstract class Character {
     protected int currentHealth;
     protected String name;
     protected int exp;
+    protected boolean isDead = false;
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
     /*
     private int missionsCompleted;
     private int finalBlows;
