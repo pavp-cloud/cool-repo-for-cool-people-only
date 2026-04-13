@@ -23,7 +23,25 @@ public class Mission {
     }
 
     public void executeMission() {
-
+        // new thread is here to help prevent the while loop freezing the screen 
+        new Thread(() -> {
+            while (!isGameOver()) {
+                // if its enemy's turn call the logic
+                if (!isPlayerTurn) {
+                    //delay enemy attack 
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    enemyTurn();
+                }
+                // prevent cpu overusage 
+                try { Thread.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
+            }
+            // once the loop finishes or gameovers, end mission
+            endMission();
+        }).start();
     }
 
     /**
@@ -82,19 +100,24 @@ public class Mission {
         return action;
     }
 
-    public void endOfCombatPrep() {
-
-    }
-
     public void endMission() {
-        CrewQuarters crewQuarters = SpaceShip.getInstance().getCrewQuarters();
-        PassengerManifest manifest = SpaceShip.getInstance().getManifest();
+        SpaceShip ship = SpaceShip.getInstance();
+        
+        // Always increment days when a mission ends
+        ship.incrementDaysOnBoard();
+        
+        // If all crew members are dead, the ship takes damage
+        if (isDefeat()) {
+            ship.damageShip();
+        }
+
+        CrewQuarters crewQuarters = ship.getCrewQuarters();
+        PassengerManifest manifest = ship.getManifest();
 
         //checking for if member is dead to add back to crew quarters
         if (crewMember1 != null){
             if (crewMember1.getCurrentHealth() > 0){
                 crewQuarters.addCrewMember(crewMember1);
-
             } else {
                 manifest.recordDeath(crewMember1);
             }
@@ -107,9 +130,14 @@ public class Mission {
             }
         }
     }
+
+    private boolean isDefeat() {
+        return (crewMember1 == null || crewMember1.getCurrentHealth() <= 0) &&
+               (crewMember2 == null || crewMember2.getCurrentHealth() <= 0);
+    }
+
     public boolean isGameOver() {
-        boolean crewDead = (crewMember1 == null || crewMember1.getCurrentHealth() <= 0) &&
-                (crewMember2 == null || crewMember2.getCurrentHealth() <= 0);
+        boolean crewDead = isDefeat();
         boolean targetDead = (missionTarget == null || missionTarget.getCurrentHealth() <= 0);
         return crewDead || targetDead;
     }
