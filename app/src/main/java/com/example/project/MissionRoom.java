@@ -3,12 +3,11 @@ package com.example.project;
 import java.util.ArrayList;
 
 public class MissionRoom {
-    private ArrayList<Mission> activeMission = new ArrayList<>();
+    private Mission activeMission = null;
     private ArrayList<Mission> pastMission = new ArrayList<>();
 
 
-    public Threat scanForThreats(){
-        int selection = 0;
+    public Threat scanForThreats(int selection){
 
         switch (selection) {
             case 1:
@@ -33,7 +32,7 @@ public class MissionRoom {
 
     public Mission createMission(Threat threat){
          Mission mission = new Mission(threat);
-         activeMission.add(mission);
+         activeMission = mission;
          return mission;
     }
     
@@ -52,7 +51,7 @@ public class MissionRoom {
     }
 
     public void updateMissionStatus(){
-        pastMission.addAll(activeMission);
-        activeMission.clear();
+        pastMission.add(activeMission);
+        activeMission = null;
     }
 }

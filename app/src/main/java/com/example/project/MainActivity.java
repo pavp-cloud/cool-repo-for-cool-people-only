@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setContentView(R.layout.mission_control);
+                setupMissionControlButtons();
             }
         });
 
@@ -94,6 +96,37 @@ public class MainActivity extends AppCompatActivity {
         
     }
 
+    private void setupMissionControlButtons() {
+        Button startMissionButton = findViewById(R.id.start_mission_button);
+        Button scanForThreatsButton = findViewById(R.id.scan_for_threats_button);
+
+        TextView nameText = findViewById(R.id.threat_name);
+        TextView hpText = findViewById(R.id.threat_hp);
+        TextView xpText = findViewById(R.id.threat_xp);
+
+        startMissionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle start mission button click
+            }
+
+        });
+
+        scanForThreatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int randomSelection = (int) (Math.random() * 5) + 1;
+                Threat missionThreat = SpaceShip.getInstance().getMissionRoom().scanForThreats(randomSelection);
+                Mission mission = SpaceShip.getInstance().getMissionRoom().createMission(missionThreat);
+
+                if (missionThreat != null) {
+                    nameText.setText(missionThreat.getName());
+                    hpText.setText(String.valueOf(missionThreat.getCurrentHealth()));
+                    xpText.setText(String.valueOf(missionThreat.getExp()));
+                }
+            }
+        });
+    }
     private void showPassengerManifest() {
         setContentView(R.layout.passenger_manifest);
 

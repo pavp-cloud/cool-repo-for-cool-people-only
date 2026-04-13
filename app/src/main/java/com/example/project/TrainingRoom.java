@@ -3,14 +3,14 @@ package com.example.project;
 import java.util.ArrayList;
 
 public class TrainingRoom {
-    private ArrayList<Character> trainees;
+    private Character trainee = null;
 
     public void addTrainee(Character trainee) {
-        trainees.add(trainee);
+        this.trainee = trainee;
     }
 
-    public ArrayList<Character> getTrainees() {
-        return trainees;
+    public Character getTrainees() {
+        return trainee;
     }
 
     public void trainCrewMember(Character trainee) {

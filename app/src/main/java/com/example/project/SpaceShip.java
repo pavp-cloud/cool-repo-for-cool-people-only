@@ -31,6 +31,14 @@ public class SpaceShip {
         return manifest;
     }
 
+    public MissionRoom getMissionRoom() {
+        return missionRoom;
+    }
+    public TrainingRoom getTrainingRoom() {
+        return trainingRoom;
+    }
+
+
     public void runTrainingRoom() {
         // moves to the training room view
         // todo: implement into UI

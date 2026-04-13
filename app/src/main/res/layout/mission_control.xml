@@ -11,87 +11,112 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/space_background"
-        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/xp_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="XP:"
+            android:layout_marginStart="-70dp"
+            android:layout_marginTop="115dp"
+            android:text="EXP:"
             android:textColor="#FFFBFB"
-            tools:layout_editor_absoluteX="177dp"
-            tools:layout_editor_absoluteY="188dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/threat_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="-100dp"
+            android:layout_marginTop="70dp"
             android:text="threat_name"
             android:textColor="#FFFBFB"
-            tools:layout_editor_absoluteX="213dp"
-            tools:layout_editor_absoluteY="107dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/threat_label"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/threat_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="-70dp"
+            android:layout_marginTop="70dp"
             android:text="Threat:"
             android:textColor="#FFFBFB"
-            tools:layout_editor_absoluteX="154dp"
-            tools:layout_editor_absoluteY="107dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/threat_xp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="-100dp"
+            android:layout_marginTop="115dp"
             android:text="threat_xp"
             android:textColor="#FFFBFB"
-            tools:layout_editor_absoluteX="213dp"
-            tools:layout_editor_absoluteY="188dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/xp_label"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/start_mission_button"
             android:layout_width="245dp"
             android:layout_height="103dp"
+            android:layout_marginBottom="240dp"
             android:text="Start Mission"
-            tools:layout_editor_absoluteX="83dp"
-            tools:layout_editor_absoluteY="385dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/scan_for_threats_button"
             android:layout_width="172dp"
             android:layout_height="100dp"
+            android:layout_marginBottom="100dp"
             android:text="Scan for Threats"
-            tools:layout_editor_absoluteX="119dp"
-            tools:layout_editor_absoluteY="561dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/mission_control_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="145dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="30dp"
             android:text="MIssion Control"
             android:textColor="#FFFBFB"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="68dp" />
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/threat_hp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="-100dp"
+            android:layout_marginTop="95dp"
             android:text="threat_hp"
             android:textColor="#FFFBFB"
-            tools:layout_editor_absoluteX="213dp"
-            tools:layout_editor_absoluteY="145dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/hp_label"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/hp_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="-70dp"
+            android:layout_marginTop="95dp"
             android:text="HP:"
             android:textColor="#FFFBFB"
-            tools:layout_editor_absoluteX="177dp"
-            tools:layout_editor_absoluteY="145dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
