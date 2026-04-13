@@ -9,13 +9,6 @@ public abstract class Character {
     protected int exp;
     protected int missionsCompleted = 0;
     protected boolean isDead = false;
-    public boolean isDead() {
-        return isDead;
-    }
-
-    public void setDead(boolean dead) {
-        isDead = dead;
-    }
     /*
     private int finalBlows;
     private int trainingCompleted;
@@ -31,6 +24,14 @@ public abstract class Character {
 
     public int getMaxHealth() {
         return this.maxHealth;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
     }
 
     public void increaseMaxHealth(int healthIncrease) {
@@ -64,5 +65,5 @@ public abstract class Character {
     public abstract void takeDamage (int attackIntensity);
     public abstract int attack();
     public abstract int special();
-    public abstract void endOfCombatPrep();
+    public abstract void endOfCombatPrep(Threat threat);
 }

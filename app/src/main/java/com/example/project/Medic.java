@@ -4,9 +4,6 @@ package com.example.project;
 import static java.lang.Math.round;
 
 public class Medic extends Character {
-    private int missionCompleted;
-    //representive of final blows, can be added in a different way to uml
-    private int finalBlows;
 
     //CONSTANTS
     private final int baseAttack = 2;
@@ -26,8 +23,10 @@ public class Medic extends Character {
         return healingPower;
     }
 
-    public void endOfCombatPrep() {
-        //empty
+    public void endOfCombatPrep(Threat threat) {
+        exp += threat.getExp();
+        missionsCompleted++;
+        maxHealth += (int) (threat.getExp() * 1.5);
     }
 
     public void takeDamage(int attackIntensity) {

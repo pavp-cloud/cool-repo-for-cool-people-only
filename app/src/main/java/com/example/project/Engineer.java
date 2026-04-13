@@ -3,9 +3,6 @@ package com.example.project;
 import static java.lang.Math.round;
 
 public class Engineer extends Character {
-    private int missionCompleted = 0;
-    //representive of final blows, can be added in a different way to uml
-    private int finalBlows = 0;
     private boolean combatArmorEquipped = false;
 
     //CONSTANTS
@@ -27,7 +24,10 @@ public class Engineer extends Character {
     }
 
     //flag reset
-    public void endOfCombatPrep() {
+    public void endOfCombatPrep(Threat threat) {
+        exp += threat.getExp();
+        missionsCompleted++;
+        maxHealth += (int) (threat.getExp() * 1.5);
         setCombatArmor(false);
     }
 
@@ -37,7 +37,7 @@ public class Engineer extends Character {
 
     /*wondering if we even need a setter or a getter if we only interact with
     the boolean from inside the class;
-    i mean methods instead of direct access might be more appreciated but this just
+    I mean methods instead of direct access might be more appreciated but this just
     feels like clutter honestly*/
     public void setCombatArmor(boolean state) {
         this.combatArmorEquipped = state;

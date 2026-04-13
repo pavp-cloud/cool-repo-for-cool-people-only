@@ -3,9 +3,6 @@ package com.example.project;
 import static java.lang.Math.round;
 
 public class Scientist extends Character {
-    private int missionCompleted;
-    //representive of final blows, can be added in a different way to uml
-    private int finalBlows;
     private boolean usedExpPotion = false;
 
     //CONSTANTS
@@ -41,7 +38,10 @@ public class Scientist extends Character {
         }
     }
 
-    public void endOfCombatPrep() {
+    public void endOfCombatPrep(Threat threat) {
+        exp += threat.getExp();
+        missionsCompleted++;
+        maxHealth += (int) (threat.getExp() * 1.5);
         setExpPotion(false);
     }
 

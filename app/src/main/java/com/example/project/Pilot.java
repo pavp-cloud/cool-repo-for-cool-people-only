@@ -3,9 +3,6 @@ package com.example.project;
 import static java.lang.Math.round;
 
 public class Pilot extends Character {
-    private int missionCompleted;
-    //representive of final blows, can be added in a different way to uml
-    private int finalBlows;
     private boolean droneDeployed = false;
 
     //CONSTANTS
@@ -42,7 +39,10 @@ public class Pilot extends Character {
     }
     //deploys drone
 
-    public void endOfCombatPrep() {
+    public void endOfCombatPrep(Threat threat) {
+        exp += threat.getExp();
+        maxHealth += (int) (threat.getExp() * 1.5);
+        missionsCompleted++;
         setDroneDeployed(false);
     }
 
