@@ -6,6 +6,7 @@ public class SpaceShip {
     private CrewQuarters crewQuarters;
     private PassengerManifest manifest;
     private TrainingRoom trainingRoom;
+    private background_check securityCheck;
     private static int daysOnBoard = 1;
     private static int shipHealth = 100;
 
@@ -38,7 +39,7 @@ public class SpaceShip {
         return trainingRoom;
     }
 
-
+    /*
     public void runTrainingRoom() {
         // moves to the training room view
         // todo: implement into UI
@@ -58,41 +59,13 @@ public class SpaceShip {
         // moves to the crew quarter view
         // todo: implement into UI
     }
+    */
 
     public void onboardCrewMember(int selection, String crewMemberName) {
+        Character character = securityCheck.newCrewMember(selection, crewMemberName, daysOnBoard);
+        crewQuarters.addCrewMember(character);
+        manifest.addPassenger(character);
 
-        switch (selection) {
-            // crew member stats are subject to changes and addition of scaling
-            case 1:
-                Medic medic = new Medic(100, 100, crewMemberName, getDaysOnBoard());
-                crewQuarters.addCrewMember(medic);
-                manifest.addPassenger(medic);
-                break;
-
-            case 2:
-                Soldier soldier = new Soldier(100, 100, crewMemberName, getDaysOnBoard());
-                crewQuarters.addCrewMember(soldier);
-                manifest.addPassenger(soldier);
-                break;
-
-            case 3:
-                Scientist scientist = new Scientist(100, 100, crewMemberName, getDaysOnBoard());
-                crewQuarters.addCrewMember(scientist);
-                manifest.addPassenger(scientist);
-                break;
-
-            case 4:
-                Pilot pilot = new Pilot(100, 100, crewMemberName, getDaysOnBoard());
-                crewQuarters.addCrewMember(pilot);
-                manifest.addPassenger(pilot);
-                break;
-
-            case 5:
-                Engineer engineer = new Engineer(100, 100, crewMemberName, getDaysOnBoard());
-                crewQuarters.addCrewMember(engineer);
-                manifest.addPassenger(engineer);
-                break;
-        }
     }
 
     public int getDaysOnBoard() {
