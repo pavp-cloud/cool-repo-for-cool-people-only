@@ -23,7 +23,20 @@ public class Mission {
     }
 
     public void executeMission() {
-
+        new Thread(() -> {
+            while (!isGameOver()){
+                if (isPlayerTurn) {
+                    try{
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    enemyTurn();
+                }
+                try{ Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+            }
+            endMission();
+        }).start();
     }
 
     /**
