@@ -115,16 +115,16 @@ public class Mission {
         //checking for if member is dead to add back to crew quarters
         if (crewMember1 != null){
             if (crewMember1.getCurrentHealth() > 0){
-                crewQuarters.addCrewMember(crewMember1);
                 crewMember1.endOfCombatPrep(missionTarget);
+                crewQuarters.addCrewMember(crewMember1);
             } else {
                 manifest.recordDeath(crewMember1);
             }
         }
         if (crewMember2 != null){
             if (crewMember2.getCurrentHealth() > 0){
-                crewQuarters.addCrewMember(crewMember2);
                 crewMember2.endOfCombatPrep(missionTarget);
+                crewQuarters.addCrewMember(crewMember2);
             } else {
                 manifest.recordDeath(crewMember2);
             }

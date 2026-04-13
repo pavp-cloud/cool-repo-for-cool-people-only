@@ -16,6 +16,7 @@ public class SpaceShip {
         crewQuarters = new CrewQuarters();
         manifest = new PassengerManifest();
         trainingRoom = new TrainingRoom();
+        securityCheck = new background_check();
     }
     public static SpaceShip getInstance() {
         if(instance == null) {
@@ -62,10 +63,11 @@ public class SpaceShip {
     */
 
     public void onboardCrewMember(int selection, String crewMemberName) {
-        Character character = securityCheck.newCrewMember(selection, crewMemberName, daysOnBoard);
-        crewQuarters.addCrewMember(character);
-        manifest.addPassenger(character);
-
+        Character character = securityCheck.newCrewMember(selection, crewMemberName, getDaysOnBoard());
+        if(character != null) {
+            crewQuarters.addCrewMember(character);
+            manifest.addPassenger(character);
+        }
     }
 
     public int getDaysOnBoard() {
