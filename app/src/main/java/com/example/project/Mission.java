@@ -116,6 +116,7 @@ public class Mission {
         if (crewMember1 != null){
             if (crewMember1.getCurrentHealth() > 0){
                 crewQuarters.addCrewMember(crewMember1);
+                crewMember1.endOfCombatPrep(missionTarget);
             } else {
                 manifest.recordDeath(crewMember1);
             }
@@ -123,15 +124,10 @@ public class Mission {
         if (crewMember2 != null){
             if (crewMember2.getCurrentHealth() > 0){
                 crewQuarters.addCrewMember(crewMember2);
+                crewMember2.endOfCombatPrep(missionTarget);
             } else {
                 manifest.recordDeath(crewMember2);
             }
-        }
-        if (crewMember1 != null) {
-            crewMember1.endOfCombatPrep(missionTarget);
-        }
-        if (crewMember2 != null) {
-            crewMember2.endOfCombatPrep(missionTarget);
         }
     }
     public boolean isGameOver() {
