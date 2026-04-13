@@ -10,9 +10,22 @@ import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
     private List<Character> characterList;
+    private OnCharacterClickListener listener;
 
+    // Interface to handle character selection clicks
+    public interface OnCharacterClickListener {
+        void onCharacterClick(Character character);
+    }
+
+    // Default constructor
     public CharacterAdapter(List<Character> characterList) {
         this.characterList = characterList;
+    }
+
+    // Constructor with listener for selection screens
+    public CharacterAdapter(List<Character> characterList, OnCharacterClickListener listener) {
+        this.characterList = characterList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -25,9 +38,18 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
         Character character = characterList.get(position);
+        
+        // Display character info
         holder.nameText.setText(String.format("%s \nStatus: %s", character.getName(), character.getStatus()));
         holder.statsText.setText(String.format("Health: %d | Class: %s | Exp: %d \nMissions Completed: %d",
                 character.getMaxHealth(), character.getClass().getSimpleName(), character.getExp(), character.getMissionsCompleted()));
+
+        // Trigger the listener when the item is clicked
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onCharacterClick(character);
+            }
+        });
     }
 
     @Override

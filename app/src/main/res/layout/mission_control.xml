@@ -10,110 +10,150 @@
         android:id="@+id/mission_control"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/space_background"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:background="@drawable/space_background">
 
         <TextView
-            android:id="@+id/xp_label"
+            android:id="@+id/mission_control_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-70dp"
-            android:layout_marginTop="115dp"
-            android:text="EXP:"
+            android:layout_marginTop="30dp"
+            android:text="Mission Control"
             android:textColor="#FFFBFB"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/threat_name"
+        <!-- Threat Info Section -->
+        <LinearLayout
+            android:id="@+id/threat_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-100dp"
-            android:layout_marginTop="70dp"
-            android:text="threat_name"
-            android:textColor="#FFFBFB"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/threat_label"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/threat_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-70dp"
-            android:layout_marginTop="70dp"
-            android:text="Threat:"
-            android:textColor="#FFFBFB"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/mission_control_label">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/threat_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Threat: "
+                    android:textColor="#FFFBFB" />
+
+                <TextView
+                    android:id="@+id/threat_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="None"
+                    android:textColor="#FFFBFB" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/hp_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HP: "
+                    android:textColor="#FFFBFB" />
+
+                <TextView
+                    android:id="@+id/threat_hp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#FFFBFB" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/xp_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EXP: "
+                    android:textColor="#FFFBFB" />
+
+                <TextView
+                    android:id="@+id/threat_xp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#FFFBFB" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- New Section for Crew Selection -->
         <TextView
-            android:id="@+id/threat_xp"
+            android:id="@+id/selected_crew_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-100dp"
-            android:layout_marginTop="115dp"
-            android:text="threat_xp"
-            android:textColor="#FFFBFB"
+            android:layout_marginTop="24dp"
+            android:text="Selected Crew: None"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/xp_label"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/threat_container" />
 
+        <Button
+            android:id="@+id/choose_crew_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Choose Crew"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selected_crew_text" />
+
+        <!-- Existing Mission Controls -->
         <Button
             android:id="@+id/start_mission_button"
             android:layout_width="245dp"
-            android:layout_height="103dp"
-            android:layout_marginBottom="240dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="24dp"
+            android:enabled="false"
             android:text="Start Mission"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choose_crew_button" />
 
         <Button
             android:id="@+id/scan_for_threats_button"
             android:layout_width="172dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="100dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
             android:text="Scan for Threats"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/mission_control_label"
-            android:layout_width="145dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="30dp"
-            android:text="MIssion Control"
-            android:textColor="#FFFBFB"
-            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/start_mission_button" />
 
-        <TextView
-            android:id="@+id/threat_hp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-100dp"
-            android:layout_marginTop="95dp"
-            android:text="threat_hp"
-            android:textColor="#FFFBFB"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/hp_label"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/hp_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-70dp"
-            android:layout_marginTop="95dp"
-            android:text="HP:"
-            android:textColor="#FFFBFB"
+        <!-- Overlay RecyclerView for choosing crew -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_crew_select"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:background="#DD000000"
+            android:padding="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

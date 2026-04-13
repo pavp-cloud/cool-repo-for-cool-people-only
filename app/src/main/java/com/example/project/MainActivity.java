@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Temporarily holds the selected crew for the mission before it starts
+    private ArrayList<Character> selectedMissionCrew = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,21 +102,80 @@ public class MainActivity extends AppCompatActivity {
     private void setupMissionControlButtons() {
         Button startMissionButton = findViewById(R.id.start_mission_button);
         Button scanForThreatsButton = findViewById(R.id.scan_for_threats_button);
+        Button chooseCrewButton = findViewById(R.id.choose_crew_button);
 
         TextView nameText = findViewById(R.id.threat_name);
         TextView hpText = findViewById(R.id.threat_hp);
         TextView xpText = findViewById(R.id.threat_xp);
+        TextView selectedCrewLabel = findViewById(R.id.selected_crew_text);
+
+        RecyclerView selectionRecycler = findViewById(R.id.recycler_view_crew_select);
+
+        // Update the label and button state immediately
+        updateMissionUI(selectedCrewLabel, startMissionButton);
+
+        chooseCrewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* Rule: Choosing again returns currently "pulled" characters back to CrewQuarters 
+                   so the pool remains accurate. */
+                for (Character c : selectedMissionCrew) {
+                    SpaceShip.getInstance().getCrewQuarters().addCrewMember(c);
+                }
+                selectedMissionCrew.clear();
+                updateMissionUI(selectedCrewLabel, startMissionButton);
+
+                // Open selection overlay
+                selectionRecycler.setVisibility(View.VISIBLE);
+                selectionRecycler.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+                // Get people sitting in CrewQuarters
+                ArrayList<Character> available = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
+
+                // Build adapter with custom listener for the selection logic
+                CharacterAdapter adapter = new CharacterAdapter(available, new CharacterAdapter.OnCharacterClickListener() {
+                    @Override
+                    public void onCharacterClick(Character character) {
+                        // 1. Add to the pending mission list
+                        selectedMissionCrew.add(character);
+                        
+                        // 2. Remove from the global ship pool so they can't be picked again
+                        SpaceShip.getInstance().getCrewQuarters().removeCrewMember(character);
+
+                        // 3. Logic: If we need more characters, refresh; otherwise, close list
+                        if (selectedMissionCrew.size() < 2 && SpaceShip.getInstance().getCrewQuarters().getCrewMembers().size() > 0) {
+                            ((CharacterAdapter)selectionRecycler.getAdapter()).refreshData(
+                                    SpaceShip.getInstance().getCrewQuarters().getCrewMembers());
+                        } else {
+                            selectionRecycler.setVisibility(View.GONE);
+                            updateMissionUI(selectedCrewLabel, startMissionButton);
+                        }
+                    }
+                });
+                selectionRecycler.setAdapter(adapter);
+            }
+        });
 
         startMissionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (SpaceShip.getInstance().getMissionRoom().getActiveMission() != null) {
-                    // select crew members
+                Mission mission = SpaceShip.getInstance().getMissionRoom().getActiveMission();
+                if (mission != null && selectedMissionCrew.size() == 2) {
+                    // LINK: Pass our 2 characters into the Mission object
+                    mission.addCrewMembers(selectedMissionCrew.get(0), selectedMissionCrew.get(1));
+                    
+                    // Clear the selection list (they are now active in the Mission class)
+                    selectedMissionCrew.clear();
 
-                    // run the mission
+                    // EXECUTE: Switch to the CombatView (SurfaceView)
+                    CombatView combatView = new CombatView(MainActivity.this);
+                    combatView.setupCombat(mission);
+                    setContentView(combatView);
+                    
+                    // Start mission logic
+                    SpaceShip.getInstance().getMissionRoom().runMission(mission);
                 }
             }
-
         });
 
         scanForThreatsButton.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int randomSelection = (int) (Math.random() * 5) + 1;
                 Threat missionThreat = SpaceShip.getInstance().getMissionRoom().scanForThreats(randomSelection);
-                Mission mission = SpaceShip.getInstance().getMissionRoom().createMission(missionThreat);
+                SpaceShip.getInstance().getMissionRoom().createMission(missionThreat);
 
                 if (missionThreat != null) {
                     nameText.setText(missionThreat.getName());
@@ -131,6 +193,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    // Helper to keep the "Selected Crew" label and "Start" button button in sync
+    private void updateMissionUI(TextView label, Button startBtn) {
+        if (selectedMissionCrew.isEmpty()) {
+            label.setText("Selected Crew: None");
+            startBtn.setEnabled(false);
+        } else {
+            StringBuilder names = new StringBuilder("Selected Crew: ");
+            for (int i = 0; i < selectedMissionCrew.size(); i++) {
+                names.append(selectedMissionCrew.get(i).getName());
+                if (i < selectedMissionCrew.size() - 1) names.append(", ");
+            }
+            label.setText(names.toString());
+            // Only allow starting if exactly 2 people are ready
+            startBtn.setEnabled(selectedMissionCrew.size() == 2);
+        }
+    }
+
     private void showPassengerManifest() {
         setContentView(R.layout.passenger_manifest);
 
@@ -141,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
             // Get data from your existing SpaceShip singleton
             ArrayList<Character> crew = SpaceShip.getInstance().getManifest().getCrewManifest();
 
-            CharacterAdapter adapter = new CharacterAdapter(crew);
+            CharacterAdapter adapter = new CharacterAdapter(crew, null);
             recyclerView.setAdapter(adapter);
         }
 

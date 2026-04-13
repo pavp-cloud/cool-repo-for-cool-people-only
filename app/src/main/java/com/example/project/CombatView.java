@@ -8,9 +8,11 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import androidx.annotation.NonNull;
+
 import java.util.Random;
 
-public class CombatView extends SurfaceView implements Runnable {
+public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.Callback {
 
     public enum combatState {
         Players_Turn,
@@ -45,6 +47,7 @@ public class CombatView extends SurfaceView implements Runnable {
     public CombatView(Context context) {
         super(context);
         this.surfaceHolder = getHolder();
+        this.surfaceHolder.addCallback(this); // Register the callback to handle surface lifecycle
         this.paint = new Paint();
     }
 
@@ -84,8 +87,8 @@ public class CombatView extends SurfaceView implements Runnable {
     private void checkGameOver() {
         if (missionThreat != null && missionThreat.getCurrentHealth() <= 0) {
             activeCombat = combatState.GameOver;
-        } else if (crewMember1 != null && crewMember2 != null &&
-                crewMember1.getCurrentHealth() <= 0 && crewMember2.getCurrentHealth() <= 0) {
+        } else if (crewMember1 != null && (crewMember1.getCurrentHealth() <= 0) &&
+                (crewMember2 == null || crewMember2.getCurrentHealth() <= 0)) {
             activeCombat = combatState.GameOver;
         }
     }
@@ -160,7 +163,7 @@ public class CombatView extends SurfaceView implements Runnable {
             if (activeCombat == combatState.GameOver) {
                 paint.setColor(Color.YELLOW);
                 paint.setTextSize(100);
-                String msg = missionThreat.getCurrentHealth() <= 0 ? "VICTORY" : "DEFEAT";
+                String msg = (missionThreat != null && missionThreat.getCurrentHealth() <= 0) ? "VICTORY" : "DEFEAT";
                 canvas.drawText(msg, 300, 500, paint);
             }
 
@@ -242,6 +245,26 @@ public class CombatView extends SurfaceView implements Runnable {
     private void control() {
         try {
             Thread.sleep(17);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void surfaceCreated(@NonNull SurfaceHolder holder) {
+        isPlaying = true;
+        thread = new Thread(this);
+        thread.start();
+    }
+
+    @Override
+    public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {}
+
+    @Override
+    public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
+        isPlaying = false;
+        try {
+            thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
