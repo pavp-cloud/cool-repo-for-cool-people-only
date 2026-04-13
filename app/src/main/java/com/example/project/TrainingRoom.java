@@ -9,38 +9,47 @@ public class TrainingRoom {
         this.trainee = trainee;
     }
 
+    public Character removeTrainee() {
+        Character temp = trainee;
+        trainee = null;
+        return temp;
+    }
+
     public Character getTrainees() {
         return trainee;
     }
 
-    public void trainCrewMember(Character trainee) {
-        int selection = 0; // selection for 1 of 3 difficulties to train on
+    public int trainCrewMember(int selection) {
 
         switch (selection) {
 
             case 1:
                 // level 1 training cannot fail
                 trainee.gainExp(5);
-                break;
+                return 0;
+
 
             case 2:
                 if (Math.random() < 0.6) {
                     trainee.gainExp(10);
+                    return 0;
                 } else {
                     // training fails
-                    return;
+                    return 1;
                 }
-                break;
 
             case 3:
                 if (Math.random() < 0.3) {
                     trainee.gainExp(15);
+                    return 0;
                 } else {
                     // training fails
-                    return;
+                    return 1;
                 }
-                break;
 
+            default:
+                // training fails for whatever reason(out of bounds int, no crew memeber as trainee, ect...)
+                return 1;
         }
     }
 }
