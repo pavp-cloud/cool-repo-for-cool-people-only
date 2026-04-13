@@ -25,7 +25,7 @@ public class Mission {
     public void executeMission() {
         new Thread(() -> {
             while (!isGameOver()){
-                if (isPlayerTurn) {
+                if (!isPlayerTurn) {
                     try{
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -95,19 +95,33 @@ public class Mission {
         return action;
     }
 
-    public void endOfCombatPrep() {
-
-    }
-
     public void endMission() {
-        CrewQuarters crewQuarters = SpaceShip.getInstance().getCrewQuarters();
-        PassengerManifest manifest = SpaceShip.getInstance().getManifest();
+        if (crewMember1 != null) {
+            crewMember1.endOfCombatPrep(missionTarget);
+        }
+        if (crewMember2 != null) {
+            crewMember2.endOfCombatPrep(missionTarget);
+        }
+
+        SpaceShip ship = SpaceShip.getInstance();
+        
+        // Always increment days when a mission ends
+        ship.incrementDaysOnBoard();
+        
+        // If all crew members are dead (GameOver), damage the ship
+        boolean crewDead = (crewMember1 == null || crewMember1.getCurrentHealth() <= 0) &&
+                          (crewMember2 == null || crewMember2.getCurrentHealth() <= 0);
+        if (crewDead) {
+            ship.damageShip();
+        }
+
+        CrewQuarters crewQuarters = ship.getCrewQuarters();
+        PassengerManifest manifest = ship.getManifest();
 
         //checking for if member is dead to add back to crew quarters
         if (crewMember1 != null){
             if (crewMember1.getCurrentHealth() > 0){
                 crewQuarters.addCrewMember(crewMember1);
-
             } else {
                 manifest.recordDeath(crewMember1);
             }
