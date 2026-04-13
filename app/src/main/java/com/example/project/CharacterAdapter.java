@@ -25,10 +25,9 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
         Character character = characterList.get(position);
-        holder.nameText.setText(character.getName());
-        holder.statsText.setText(String.format("Health: %d | Class: %s | Exp: %d",
-                character.getMaxHealth(),
-                character.getClass().getSimpleName(), character.getExp()));
+        holder.nameText.setText(String.format("%s \nStatus: %s", character.getName(), character.getStatus()));
+        holder.statsText.setText(String.format("Health: %d | Class: %s | Exp: %d \nMissions Completed: %d",
+                character.getMaxHealth(), character.getClass().getSimpleName(), character.getExp(), character.getMissionsCompleted()));
     }
 
     @Override
