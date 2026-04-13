@@ -1,29 +1,42 @@
 package com.example.project;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
 
 public class MissionRoom {
     private Mission activeMission = null;
     private ArrayList<Mission> pastMission = new ArrayList<>();
+    private ArrayList<String> threatNames = new ArrayList<>(Arrays.asList(
+            "Bob", "Karen", "Terry", "Becky", "RxR 808", "Anvaron the Exhalted",
+            "Fungus", "Worm", "Matthew Money Bags", "Pavel Pavlov's Dog", "Heikki got a Heinikeen",
+            "Vargmoth", "Kar the Blighted Sword", "Lil Reggie", "Monotone Noise",
+            "Hans", "Only says, I'll be your end"
+    ));
 
 
-    public Threat scanForThreats(int selection){
+    public Threat scanForThreats(){
+        Random random = new Random();
+        int selection = random.nextInt(5) + 1;
+        Collections.shuffle(threatNames);
+        String name = threatNames.get(0);
 
         switch (selection) {
             case 1:
-                Pirate pirate = new Pirate(100, 100, "Bob", 3 + SpaceShip.getInstance().getDaysOnBoard());
+                Pirate pirate = new Pirate(100, 100, name , 3 + SpaceShip.getInstance().getDaysOnBoard());
                 return pirate;
             case 2:
-                Parasite parasite = new Parasite(100, 100, "Clyde", 3 + SpaceShip.getInstance().getDaysOnBoard());
+                Parasite parasite = new Parasite(100, 100, name , 3 + SpaceShip.getInstance().getDaysOnBoard());
                 return parasite;
             case 3:
-                Gundam gundam = new Gundam(100, 100, "Steve", 3 + SpaceShip.getInstance().getDaysOnBoard());
+                Gundam gundam = new Gundam(100, 100, name , 3 + SpaceShip.getInstance().getDaysOnBoard());
                 return gundam;
             case 4:
-                Alien alien = new Alien(100, 100, "Ron", 3 + SpaceShip.getInstance().getDaysOnBoard());
+                Alien alien = new Alien(100, 100, name , 3 + SpaceShip.getInstance().getDaysOnBoard());
                 return alien;
             case 5:
-                Demon demon = new Demon(100, 100, "Asmodeus", 3 + SpaceShip.getInstance().getDaysOnBoard());
+                Demon demon = new Demon(100, 100, name , 3 + SpaceShip.getInstance().getDaysOnBoard());
                 return demon;
             default:
                 return null;
