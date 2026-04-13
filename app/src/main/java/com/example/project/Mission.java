@@ -96,12 +96,6 @@ public class Mission {
     }
 
     public void endMission() {
-        if (crewMember1 != null) {
-            crewMember1.endOfCombatPrep(missionTarget);
-        }
-        if (crewMember2 != null) {
-            crewMember2.endOfCombatPrep(missionTarget);
-        }
 
         SpaceShip ship = SpaceShip.getInstance();
         
@@ -132,6 +126,12 @@ public class Mission {
             } else {
                 manifest.recordDeath(crewMember2);
             }
+        }
+        if (crewMember1 != null) {
+            crewMember1.endOfCombatPrep(missionTarget);
+        }
+        if (crewMember2 != null) {
+            crewMember2.endOfCombatPrep(missionTarget);
         }
     }
     public boolean isGameOver() {
