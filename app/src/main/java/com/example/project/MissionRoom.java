@@ -50,6 +50,10 @@ public class MissionRoom {
         mission.executeMission();
     }
 
+    public Mission getActiveMission(){
+        return activeMission;
+    }
+
     public void updateMissionStatus(){
         pastMission.add(activeMission);
         activeMission = null;

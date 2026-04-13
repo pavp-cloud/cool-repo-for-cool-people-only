@@ -107,7 +107,11 @@ public class MainActivity extends AppCompatActivity {
         startMissionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle start mission button click
+                if (SpaceShip.getInstance().getMissionRoom().getActiveMission() != null) {
+                    // select crew members
+
+                    // run the mission
+                }
             }
 
         });
