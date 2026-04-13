@@ -7,6 +7,7 @@ public abstract class Character {
     protected int currentHealth;
     protected String name;
     protected int exp;
+    protected int missionsCompleted = 0;
     protected boolean isDead = false;
     public boolean isDead() {
         return isDead;
@@ -16,7 +17,6 @@ public abstract class Character {
         isDead = dead;
     }
     /*
-    private int missionsCompleted;
     private int finalBlows;
     private int trainingCompleted;
     //statistics variables, implementation to be done
