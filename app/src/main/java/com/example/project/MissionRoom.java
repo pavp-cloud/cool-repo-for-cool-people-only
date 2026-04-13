@@ -17,7 +17,6 @@ public class MissionRoom {
 
 
     public Threat scanForThreats(int selection){
-        Random random = new Random();
         Collections.shuffle(threatNames);
         String name = threatNames.get(0);
 
