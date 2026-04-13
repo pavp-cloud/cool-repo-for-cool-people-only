@@ -54,6 +54,16 @@ public abstract class Character {
         return this.exp;
     }
 
+    public String getStatus() {
+        if(isDead) {
+            return "Dead";
+        } else {
+            return "Alive";
+        }
+    }
+
+    public int getMissionsCompleted() { return this.missionsCompleted; }
+
     public void gainExp(int expChange) {
         this.exp += expChange;
     }
