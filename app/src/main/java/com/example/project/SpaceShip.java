@@ -6,7 +6,7 @@ public class SpaceShip {
     private CrewQuarters crewQuarters;
     private PassengerManifest manifest;
     private TrainingRoom trainingRoom;
-    private background_check securityCheck;
+    private backgroundCheck securityCheck;
     private static int daysOnBoard = 1;
     private static int shipHealth = 100;
 
@@ -16,7 +16,7 @@ public class SpaceShip {
         crewQuarters = new CrewQuarters();
         manifest = new PassengerManifest();
         trainingRoom = new TrainingRoom();
-        securityCheck = new background_check();
+        securityCheck = new backgroundCheck();
     }
     public static SpaceShip getInstance() {
         if(instance == null) {
