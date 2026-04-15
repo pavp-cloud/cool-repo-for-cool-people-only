@@ -100,7 +100,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
     private void endAnimation() {
         animationTimer = 0;
-        if (targetX == enemyX) {
+        if (targetX == enemyX) { // Player finished attack
             if (activeMission.isGameOver()) {
                 activeCombat = combatState.GameOver;
             } else if (!activeMission.isPlayerTurn()) {
@@ -108,7 +108,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             } else {
                 activeCombat = combatState.Players_Turn;
             }
-        } else {
+        } else { // Enemy finished attack
             activeCombat = combatState.Players_Turn;
         }
         selectAttack = null;
@@ -116,6 +116,10 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
     public void playerAttack(int crewIndex, attackState type) {
         if (activeCombat == combatState.Players_Turn) {
+            // Ensure character exists and is alive
+            Character member = (crewIndex == 1) ? crewMember1 : crewMember2;
+            if (member == null || member.getCurrentHealth() <= 0) return;
+
             // Check if this specific character has already moved in the Mission logic
             if (crewIndex == 1 && activeMission.isCrew1Moved()) return;
             if (crewIndex == 2 && activeMission.isCrew2Moved()) return;
@@ -137,8 +141,19 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         if (actionIndex == -1) return;
         
         selectAttack = (actionIndex == 0) ? attackState.Attack : attackState.Special_Attack;
-        targetX = character1X; 
-        targetY = character1Y;
+        
+        // Pick a visual target that is alive for the animation
+        if (crewMember1 != null && crewMember1.getCurrentHealth() > 0 && crewMember2 != null && crewMember2.getCurrentHealth() > 0) {
+            targetX = random.nextBoolean() ? character1X : character2X;
+            targetY = (targetX == character1X) ? character1Y : character2Y;
+        } else if (crewMember1 != null && crewMember1.getCurrentHealth() > 0) {
+            targetX = character1X;
+            targetY = character1Y;
+        } else {
+            targetX = character2X;
+            targetY = character2Y;
+        }
+        
         activeCombat = combatState.Animating;
     }
 
@@ -158,9 +173,9 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             drawEntity(canvas, missionThreat, enemyX, enemyY, Color.MAGENTA);
 
             if (activeCombat == combatState.Players_Turn) {
-                // Gray out buttons for crew members who have already moved
-                int c1Color = activeMission.isCrew1Moved() ? Color.GRAY : Color.DKGRAY;
-                int c2Color = activeMission.isCrew2Moved() ? Color.GRAY : Color.DKGRAY;
+                // Gray out buttons for crew members who have already moved or are dead
+                int c1Color = (activeMission.isCrew1Moved() || crewMember1 == null || crewMember1.getCurrentHealth() <= 0) ? Color.GRAY : Color.DKGRAY;
+                int c2Color = (activeMission.isCrew2Moved() || crewMember2 == null || crewMember2.getCurrentHealth() <= 0) ? Color.GRAY : Color.DKGRAY;
 
                 drawButton(canvas, c1AttackBtn, "C1 Attack", c1Color);
                 drawButton(canvas, c1SpecialBtn, "C1 Special", c1Color);
