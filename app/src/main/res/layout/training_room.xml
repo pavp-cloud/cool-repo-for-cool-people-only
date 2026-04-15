@@ -7,12 +7,24 @@
     android:background="@drawable/training_room">
 
     <Button
+        android:id="@+id/back_to_menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Back"
+        android:backgroundTint="#77000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/begin_training_button"
         android:layout_width="148dp"
         android:layout_height="79dp"
         android:layout_marginBottom="30dp"
         android:backgroundTint="#B74E4848"
         android:text="Begin Training"
+        android:enabled="false"
         app:layout_constraintBottom_toTopOf="@+id/select_trainee_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -52,23 +64,39 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/current_trainee_text"
-        android:layout_width="112dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Current Trainee"
-        android:textColor="#FDFDFD"
+        android:id="@+id/trainee_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="None"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/training_room_text" />
 
     <TextView
-        android:id="@+id/trainee_name_text"
+        android:id="@+id/difficulty_label_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="placeholder name"
+        android:layout_marginTop="8dp"
+        android:text="Difficulty: Not Selected"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_trainee_text" />
+        app:layout_constraintTop_toBottomOf="@+id/trainee_name_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_training_select"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:background="#DD000000"
+        android:padding="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

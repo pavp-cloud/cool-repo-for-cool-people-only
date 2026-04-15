@@ -58,7 +58,9 @@ public class MissionRoom {
     }
 
     public void runMission (Mission mission){
+
         mission.executeMission();
+        updateMissionStatus();
     }
 
     public Mission getActiveMission(){
