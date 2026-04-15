@@ -32,6 +32,10 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         Special_Attack,
     }
 
+    public interface OnCombatEndedListener {
+        void onCombatEnded();
+    }
+
     private combatState activeCombat = combatState.Players_Turn;
     private attackState selectAttack = null;
     private int actingCrewIndex = 1;
@@ -53,6 +57,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private RectF c1SpecialBtn = new RectF(270, 700, 470, 780);
     private RectF c2AttackBtn = new RectF(50, 800, 250, 880);
     private RectF c2SpecialBtn = new RectF(270, 800, 470, 880);
+    private RectF continueBtn = new RectF(400, 600, 700, 700);
 
     private Character crewMember1;
     private Character crewMember2;
@@ -64,6 +69,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private Map<Class<?>, Bitmap> spriteMap = new HashMap<>();
     private Bitmap defaultSprite;
     private Bitmap backgroundSprite;
+    private OnCombatEndedListener combatEndedListener;
 
     public CombatView(Context context) {
         super(context);
@@ -71,6 +77,10 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         this.surfaceHolder.addCallback(this);
         this.paint = new Paint();
         loadSprites(context);
+    }
+
+    public void setOnCombatEndedListener(OnCombatEndedListener listener) {
+        this.combatEndedListener = listener;
     }
 
     private void loadSprites(Context context) {
@@ -230,6 +240,9 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
                 paint.setTextSize(100);
                 String msg = (missionThreat != null && missionThreat.getCurrentHealth() <= 0) ? "VICTORY" : "DEFEAT";
                 canvas.drawText(msg, 200, 500, paint);
+
+                // Draw Continue Button
+                drawButton(canvas, continueBtn, "CONTINUE", Color.DKGRAY);
             }
 
             surfaceHolder.unlockCanvasAndPost(canvas);
@@ -328,6 +341,12 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
                 else if (c1SpecialBtn.contains(x, y)) playerAttack(1, attackState.Special_Attack);
                 else if (c2AttackBtn.contains(x, y)) playerAttack(2, attackState.Attack);
                 else if (c2SpecialBtn.contains(x, y)) playerAttack(2, attackState.Special_Attack);
+            } else if (activeCombat == combatState.GameOver) {
+                if (continueBtn.contains(x, y)) {
+                    if (combatEndedListener != null) {
+                        combatEndedListener.onCombatEnded();
+                    }
+                }
             }
         }
         return true;
