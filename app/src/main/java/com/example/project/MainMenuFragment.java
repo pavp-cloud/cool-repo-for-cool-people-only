@@ -42,7 +42,10 @@ public class MainMenuFragment extends Fragment {
         });
 
         trainingRoomButton.setOnClickListener(v -> {
-            // Placeholder for Training Room navigation
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new TrainingRoomFragment())
+                    .addToBackStack(null)
+                    .commit();
         });
 
         passengerManifestButton.setOnClickListener(v -> {
