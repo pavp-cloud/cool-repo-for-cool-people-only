@@ -54,8 +54,6 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private Threat missionThreat;
     private Mission activeMission;
     private Random random = new Random();
-    private boolean isPlayerTurn = true;
-
 
     public CombatView(Context context) {
         super(context);
@@ -118,6 +116,10 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
     public void playerAttack(int crewIndex, attackState type) {
         if (activeCombat == combatState.Players_Turn) {
+            // Check if this specific character has already moved in the Mission logic
+            if (crewIndex == 1 && activeMission.isCrew1Moved()) return;
+            if (crewIndex == 2 && activeMission.isCrew2Moved()) return;
+
             actingCrewIndex = crewIndex;
             selectAttack = type;
             targetX = enemyX;
@@ -149,17 +151,21 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
             paint.setColor(Color.WHITE);
             paint.setTextSize(40);
-            canvas.drawText("Turn: " + activeCombat, 50, 50, paint);
+            canvas.drawText("Turn State: " + activeCombat, 50, 50, paint);
 
             drawEntity(canvas, crewMember1, character1X, character1Y, Color.BLUE);
             drawEntity(canvas, crewMember2, character2X, character2Y, Color.CYAN);
             drawEntity(canvas, missionThreat, enemyX, enemyY, Color.MAGENTA);
 
             if (activeCombat == combatState.Players_Turn) {
-                drawButton(canvas, c1AttackBtn, "C1 Attack", Color.DKGRAY);
-                drawButton(canvas, c1SpecialBtn, "C1 Special", Color.DKGRAY);
-                drawButton(canvas, c2AttackBtn, "C2 Attack", Color.DKGRAY);
-                drawButton(canvas, c2SpecialBtn, "C2 Special", Color.DKGRAY);
+                // Gray out buttons for crew members who have already moved
+                int c1Color = activeMission.isCrew1Moved() ? Color.GRAY : Color.DKGRAY;
+                int c2Color = activeMission.isCrew2Moved() ? Color.GRAY : Color.DKGRAY;
+
+                drawButton(canvas, c1AttackBtn, "C1 Attack", c1Color);
+                drawButton(canvas, c1SpecialBtn, "C1 Special", c1Color);
+                drawButton(canvas, c2AttackBtn, "C2 Attack", c2Color);
+                drawButton(canvas, c2SpecialBtn, "C2 Special", c2Color);
             }
 
             if (activeCombat == combatState.Animating) {

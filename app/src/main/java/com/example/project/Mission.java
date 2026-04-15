@@ -11,6 +11,9 @@ public class Mission {
     private boolean crew2Moved = false;
 
     public boolean isPlayerTurn() {return isPlayerTurn;}
+    public boolean isCrew1Moved() {return crew1Moved;}
+    public boolean isCrew2Moved() {return crew2Moved;}
+
     public Mission(Threat missionTarget) {
         this.missionTarget = missionTarget;
     }
@@ -32,7 +35,9 @@ public class Mission {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    enemyTurn();
+                    // The CombatView will call enemyTurn() to sync animations, 
+                    // so we just wait here if we're using CombatView.
+                    // If running headless, we'd call it here.
                 }
                 try{ Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
             }
@@ -71,7 +76,7 @@ public class Mission {
         }
     }
 
-    private boolean allCrewMoved() {
+    public boolean allCrewMoved() {
         boolean c1Done = (crewMember1 == null || crewMember1.getCurrentHealth() <= 0 || crew1Moved);
         boolean c2Done = (crewMember2 == null || crewMember2.getCurrentHealth() <= 0 || crew2Moved);
         return c1Done && c2Done;
