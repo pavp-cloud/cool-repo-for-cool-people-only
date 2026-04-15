@@ -89,6 +89,8 @@ public class TrainingRoomFragment extends Fragment {
         int result = SpaceShip.getInstance().getTrainingRoom().trainCrewMember(selectedTrainingDifficulty);
         String message = (result == 0) ? "Training Successful!" : "Training Failed.";
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        Character finishedTrainee = SpaceShip.getInstance().getTrainingRoom().removeTrainee();
+        SpaceShip.getInstance().getCrewQuarters().addCrewMember(finishedTrainee);
         updateTrainingUI(nameText, diffText, beginBtn);
     }
 

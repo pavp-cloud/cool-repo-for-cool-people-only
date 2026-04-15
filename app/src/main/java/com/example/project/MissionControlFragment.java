@@ -90,18 +90,14 @@ public class MissionControlFragment extends Fragment {
                     // Clear the selection list (they are now active in the Mission class)
                     selectedMissionCrew.clear();
 
-                    // EXECUTE: Switch to the CombatView (SurfaceView)
-                    CombatView combatView = new CombatView(requireActivity());
-                    combatView.setupCombat(mission);
-                    requireActivity().setContentView(combatView);
+                    // FIX: Swap to CombatViewFragment instead of using setContentView
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new CombatViewFragment())
+                            .addToBackStack(null)
+                            .commit();
 
                     // Start mission logic
                     SpaceShip.getInstance().getMissionRoom().runMission(mission);
-
-                    getParentFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_container, new MainMenuFragment())
-                            .addToBackStack(null)
-                            .commit();
                 }
             }
         });
