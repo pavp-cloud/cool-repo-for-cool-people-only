@@ -40,13 +40,25 @@ public class MainActivity extends AppCompatActivity {
         newGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.main_menu);
+                // 1. Hide the start menu UI (buttons and text)
+                findViewById(R.id.new_game_button).setVisibility(View.GONE);
+                findViewById(R.id.load_save_button).setVisibility(View.GONE);
+                findViewById(R.id.game_name_text).setVisibility(View.GONE);
 
-                setupMainMenuButtons();
+                // 2. Make the fragment container visible
+                View container = findViewById(R.id.fragment_container);
+                if (container != null) {
+                    container.setVisibility(View.VISIBLE);
+
+                    // 3. Load the MainMenuFragment into the container
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new MainMenuFragment())
+                            .commit();
+                }
             }
         });
     }
-
+/* temp disable while testing fragments
     private void setupMainMenuButtons() {
         Button missionControlButton = findViewById(R.id.mission_control_button);
         Button onboardCrewButton = findViewById(R.id.onboard_crew_button);
@@ -74,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("Onboard", (dialog, which) -> {
                             String name = nameInput.getText().toString();
                             if (name.isEmpty()) name = "Imposter";
-                            
+
                             int randomSelection = (int) (Math.random() * 5) + 1;
                             SpaceShip.getInstance().onboardCrewMember(randomSelection, name);
                         })
@@ -96,8 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 showPassengerManifest();
             }
         });
-        
+
     }
+*/
 
     private void setupMissionControlButtons() {
         Button startMissionButton = findViewById(R.id.start_mission_button);
@@ -194,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Helper to keep the "Selected Crew" label and "Start" button button in sync
+    // Helper to keep the "Selected Crew" label and "Start" button in sync
     private void updateMissionUI(TextView label, Button startBtn) {
         if (selectedMissionCrew.isEmpty()) {
             label.setText("Selected Crew: None");
@@ -230,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
         if (backButton != null) {
             backButton.setOnClickListener(v -> {
                 setContentView(R.layout.main_menu);
-                setupMainMenuButtons();
+                // setupMainMenuButtons();
             });
         }
     }

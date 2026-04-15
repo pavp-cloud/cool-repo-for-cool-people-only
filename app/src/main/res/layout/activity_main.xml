@@ -8,18 +8,12 @@
     android:background="@drawable/space_background"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/load_save_button"
-        android:layout_width="162dp"
-        android:layout_height="94dp"
-        android:layout_marginBottom="80dp"
-        android:backgroundTint="#78000000"
-        android:text="Load Save"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_game_button" />
+    <!-- Fragment Container (hidden by default) -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/game_name_text"
@@ -45,4 +39,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/load_save_button"
+        android:layout_width="162dp"
+        android:layout_height="94dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="#78000000"
+        android:text="Load Save"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_game_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
