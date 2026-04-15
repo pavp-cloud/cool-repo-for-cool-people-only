@@ -1,9 +1,12 @@
 package com.example.project;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -11,6 +14,8 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.Callback {
@@ -55,11 +60,38 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private Mission activeMission;
     private Random random = new Random();
 
+    // Sprite Map
+    private Map<Class<?>, Bitmap> spriteMap = new HashMap<>();
+    private Bitmap defaultSprite;
+    private Bitmap backgroundSprite;
+
     public CombatView(Context context) {
         super(context);
         this.surfaceHolder = getHolder();
         this.surfaceHolder.addCallback(this);
         this.paint = new Paint();
+        loadSprites(context);
+    }
+
+    private void loadSprites(Context context) {
+        // Character Sprites
+        spriteMap.put(Medic.class, BitmapFactory.decodeResource(getResources(), R.drawable.medic_sprite)); // Replace with actual medic sprite
+        spriteMap.put(Soldier.class, BitmapFactory.decodeResource(getResources(), R.drawable.solider_sprite)); // Replace with actual soldier sprite
+        spriteMap.put(Scientist.class, BitmapFactory.decodeResource(getResources(), R.drawable.scientist_sprite)); // Replace with actual scientist sprite
+        spriteMap.put(Pilot.class, BitmapFactory.decodeResource(getResources(), R.drawable.pilot_sprite)); // Replace with actual pilot sprite
+        spriteMap.put(Engineer.class, BitmapFactory.decodeResource(getResources(), R.drawable.engineer_sprite)); // Replace with actual engineer sprite
+
+        // Threat Sprites
+        spriteMap.put(Pirate.class, BitmapFactory.decodeResource(getResources(), R.drawable.pirate_sprite)); // Replace with actual pirate sprite
+        spriteMap.put(Parasite.class, BitmapFactory.decodeResource(getResources(), R.drawable.parasite_sprite)); // Replace with actual parasite sprite
+        spriteMap.put(Gundam.class, BitmapFactory.decodeResource(getResources(), R.drawable.gundam_sprite)); // Replace with actual gundam sprite
+        spriteMap.put(Alien.class, BitmapFactory.decodeResource(getResources(), R.drawable.alien_sprite)); // Replace with actual alien sprite
+        spriteMap.put(Demon.class, BitmapFactory.decodeResource(getResources(), R.drawable.demon_sprite)); // Replace with actual demon sprite
+
+        defaultSprite = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        
+        // Load Background Sprite
+        backgroundSprite = BitmapFactory.decodeResource(getResources(), R.drawable.combat_background);
     }
 
     public void setupCombat(Mission mission) {
@@ -162,15 +194,21 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             canvas = surfaceHolder.lockCanvas();
             if (canvas == null) return;
             
-            canvas.drawColor(Color.BLACK);
+            // Draw Background
+            if (backgroundSprite != null) {
+                Rect destRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
+                canvas.drawBitmap(backgroundSprite, null, destRect, null);
+            } else {
+                canvas.drawColor(Color.BLACK);
+            }
 
             paint.setColor(Color.WHITE);
             paint.setTextSize(40);
             canvas.drawText("Turn State: " + activeCombat, 50, 50, paint);
 
-            drawEntity(canvas, crewMember1, character1X, character1Y, Color.BLUE);
-            drawEntity(canvas, crewMember2, character2X, character2Y, Color.CYAN);
-            drawEntity(canvas, missionThreat, enemyX, enemyY, Color.MAGENTA);
+            drawEntity(canvas, crewMember1, character1X, character1Y);
+            drawEntity(canvas, crewMember2, character2X, character2Y);
+            drawEntity(canvas, missionThreat, enemyX, enemyY);
 
             if (activeCombat == combatState.Players_Turn) {
                 // Gray out buttons for crew members who have already moved or are dead
@@ -207,27 +245,39 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         canvas.drawText(text, bounds.centerX() - textWidth / 2, bounds.centerY() + 10, paint);
     }
 
-    private void drawEntity(Canvas canvas, Object entity, float x, float y, int color) {
+    private void drawEntity(Canvas canvas, Object entity, float x, float y) {
         if (entity == null) return;
         
         String name = "";
         int hp = 0, maxHp = 0;
+        Bitmap sprite = defaultSprite;
 
         if (entity instanceof Character) {
             Character c = (Character) entity;
             name = c.getName();
             hp = c.getCurrentHealth();
             maxHp = c.getMaxHealth();
-            if (hp <= 0) color = Color.RED;
+            sprite = spriteMap.getOrDefault(c.getClass(), defaultSprite);
         } else if (entity instanceof Threat) {
             Threat t = (Threat) entity;
             name = t.getName();
             hp = t.getCurrentHealth();
             maxHp = t.getMaxHealth();
+            sprite = spriteMap.getOrDefault(t.getClass(), defaultSprite);
         }
 
-        paint.setColor(color);
-        canvas.drawCircle(x, y, 50, paint);
+        // Draw Sprite
+        if (sprite != null) {
+            Rect dest = new Rect((int)x - 60, (int)y - 60, (int)x + 60, (int)y + 60);
+            if (hp <= 0) {
+                paint.setAlpha(128); // Ghostly look if dead
+            } else {
+                paint.setAlpha(255);
+            }
+            canvas.drawBitmap(sprite, null, dest, paint);
+            paint.setAlpha(255);
+        }
+
         paint.setColor(Color.WHITE);
         paint.setTextSize(30);
         canvas.drawText(name, x - 50, y - 70, paint);
