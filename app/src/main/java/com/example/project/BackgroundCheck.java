@@ -1,6 +1,6 @@
 package com.example.project;
 
-public class backgroundCheck {
+public class BackgroundCheck {
 
 
     public Character newCrewMember(int selection, String crewMemberName, int daysOnBoard) {
