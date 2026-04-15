@@ -97,6 +97,11 @@ public class MissionControlFragment extends Fragment {
 
                     // Start mission logic
                     SpaceShip.getInstance().getMissionRoom().runMission(mission);
+
+                    getParentFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, new MainMenuFragment())
+                            .addToBackStack(null)
+                            .commit();
                 }
             }
         });
