@@ -10,6 +10,7 @@ public class Mission {
     private boolean crew1Moved = false;
     private boolean crew2Moved = false;
 
+    public boolean isPlayerTurn() {return isPlayerTurn;}
     public Mission(Threat missionTarget) {
         this.missionTarget = missionTarget;
     }
