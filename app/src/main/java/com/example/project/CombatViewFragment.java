@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 public class CombatViewFragment extends Fragment {
 
     public CombatViewFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -32,10 +31,14 @@ public class CombatViewFragment extends Fragment {
                         // 1. Run the mission cleanup logic (survivors return, XP gain, etc.)
                         mission.endMission();
 
-                        // 2. Clear the active mission status in MissionRoom
+                        //Reset the mission room for new threat
                         SpaceShip.getInstance().getMissionRoom().updateMissionStatus();
 
-                        // 3. Return to the Main Menu Fragment
+                        //Reset the training room back to 3
+                        SpaceShip.getInstance().getTrainingRoom().resetDailyUsages();
+
+
+                        //Return to the Main Menu
                         getParentFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_container, new MainMenuFragment())
                                 .commit();

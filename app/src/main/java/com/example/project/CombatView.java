@@ -52,7 +52,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private float character2X, character2Y;
     private float enemyX, enemyY;
 
-    // Button Bounds (Relative)
+    // Button Bounds
     private RectF c1AttackBtn = new RectF();
     private RectF c1SpecialBtn = new RectF();
     private RectF c2AttackBtn = new RectF();
@@ -102,6 +102,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         backgroundSprite = BitmapFactory.decodeResource(getResources(), R.drawable.combat_background2);
     }
 
+    //Set up Mission with 2 charaters and 1 threat
     public void setupCombat(Mission mission) {
         this.activeMission = mission;
         this.crewMember1 = mission.getCrewMember1();
@@ -109,6 +110,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         this.missionThreat = mission.getMissionTarget();
     }
 
+    // update override, draw override, and control overrride
     @Override
     public void run() {
         while (isPlaying) {
