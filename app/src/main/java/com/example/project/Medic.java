@@ -25,9 +25,9 @@ public class Medic extends Character {
     }
 
     public void endOfCombatPrep(Threat threat) {
-        exp += threat.getExp();
+        gainExp(threat.getExp());
         missionsCompleted++;
-        maxHealth += (int) (threat.getExp() * 1.5);
+        increaseMaxHealth(threat.getExp());
     }
 
     public void takeDamage(int attackIntensity) {

@@ -40,9 +40,9 @@ public class Pilot extends Character {
     //deploys drone
 
     public void endOfCombatPrep(Threat threat) {
-        exp += threat.getExp();
-        maxHealth += (int) (threat.getExp() * 1.5);
+        gainExp(threat.getExp());
         missionsCompleted++;
+        increaseMaxHealth(threat.getExp());
         setDroneDeployed(false);
     }
 
