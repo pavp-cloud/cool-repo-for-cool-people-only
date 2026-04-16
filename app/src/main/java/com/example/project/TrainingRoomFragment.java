@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TrainingRoomFragment extends Fragment {
+    private TextView dailyUsagesNumber;
 
     private int selectedTrainingDifficulty = -1;
 
@@ -35,6 +36,10 @@ public class TrainingRoomFragment extends Fragment {
         TextView diffLabelText = view.findViewById(R.id.difficulty_label_text);
         RecyclerView selectionRecycler = view.findViewById(R.id.recycler_view_training_select);
         Button backBtn = view.findViewById(R.id.back_to_menu_button);
+
+        dailyUsagesNumber = view.findViewById(R.id.remaining_usages_number);
+
+        updateUses();
 
         updateTrainingUI(traineeNameText, diffLabelText, beginBtn);
 
@@ -87,6 +92,7 @@ public class TrainingRoomFragment extends Fragment {
 
     private void onBeginTrainingClicked(TextView nameText, TextView diffText, Button beginBtn) {
         int result = SpaceShip.getInstance().getTrainingRoom().trainCrewMember(selectedTrainingDifficulty);
+        updateUses();
         String message = (result == 0) ? "Training Successful!" : "Training Failed.";
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
         Character finishedTrainee = SpaceShip.getInstance().getTrainingRoom().removeTrainee();
@@ -106,5 +112,11 @@ public class TrainingRoomFragment extends Fragment {
         }
 
         beginBtn.setEnabled(trainee != null && selectedTrainingDifficulty != -1);
+    }
+
+    private void updateUses() {
+        if (dailyUsagesNumber != null) {
+            dailyUsagesNumber.setText(String.valueOf(SpaceShip.getInstance().getTrainingRoom().getDailyUsages()));
+        }
     }
 }
