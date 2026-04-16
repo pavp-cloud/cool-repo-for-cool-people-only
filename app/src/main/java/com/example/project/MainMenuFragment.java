@@ -6,10 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import org.w3c.dom.Text;
+
 public class MainMenuFragment extends Fragment {
+    private TextView daysAdriftNumber;
+    private TextView currentCrewCountNumber;
 
     public MainMenuFragment() {
 
@@ -25,6 +31,11 @@ public class MainMenuFragment extends Fragment {
         Button onboardCrewButton = view.findViewById(R.id.onboard_crew_button);
         Button trainingRoomButton = view.findViewById(R.id.training_room_button);
         Button passengerManifestButton = view.findViewById(R.id.passenger_manifest_button);
+
+        daysAdriftNumber = view.findViewById(R.id.days_adrift_number);
+        currentCrewCountNumber = view.findViewById(R.id.current_crew_count_number_text);
+
+        updateStats();
 
         // 3. Set up the Listeners
 
@@ -74,8 +85,17 @@ public class MainMenuFragment extends Fragment {
 
                     int randomSelection = (int) (Math.random() * 5) + 1;
                     SpaceShip.getInstance().onboardCrewMember(randomSelection, name);
+
+                    updateStats();
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
+    }
+
+    private void updateStats() {
+        if (daysAdriftNumber != null && currentCrewCountNumber != null) {
+            daysAdriftNumber.setText(String.valueOf(SpaceShip.getInstance().getDaysOnBoard()));
+            currentCrewCountNumber.setText(String.valueOf(SpaceShip.getInstance().getCrewQuarters().getCrewMembers().size()));
+        }
     }
 }
