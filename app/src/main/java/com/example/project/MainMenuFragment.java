@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 public class MainMenuFragment extends Fragment {
 
     public MainMenuFragment() {
-        // Required empty public constructor
+
     }
 
     @Override

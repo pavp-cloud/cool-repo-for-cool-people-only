@@ -18,9 +18,10 @@ public class Medic extends Character {
         return (int) (baseAttack + (this.getExp() * 0.5));
     }
 
-    //Medic will be able to heal other characters
+    //Medic will be able to heal itself
     public int special(){
-        return healingPower;
+        healHealth((int) (healingPower + (this.getExp() * 0.2)));
+        return 0;
     }
 
     public void endOfCombatPrep(Threat threat) {

@@ -9,19 +9,18 @@ import android.view.ViewGroup;
 public class CombatViewFragment extends Fragment {
 
     public CombatViewFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Get the active mission from the MissionRoom
+        // acquires what the currently active mission is
         Mission mission = SpaceShip.getInstance().getMissionRoom().getActiveMission();
         
-        // Create the custom SurfaceView
+        // starts the combat view for the mission
         CombatView combatView = new CombatView(requireContext());
         combatView.setupCombat(mission);
-        
-        // Return the SurfaceView as the Fragment's view
+
         return combatView;
     }
 }

@@ -25,9 +25,9 @@ public class Engineer extends Character {
 
     //flag reset
     public void endOfCombatPrep(Threat threat) {
-        exp += threat.getExp();
+        gainExp(threat.getExp());
         missionsCompleted++;
-        maxHealth += (int) (threat.getExp() * 1.5);
+        increaseMaxHealth(threat.getExp());
         setCombatArmor(false);
     }
 

@@ -22,6 +22,6 @@ public class CrewQuarters {
     }
 
     public void restoreHealth(Character crewMember) {
-        crewMember.setCurrentHealth(crewMember.getMaxHealth());
+        crewMember.resetCurrentHealth(crewMember.getMaxHealth());
     }
 }

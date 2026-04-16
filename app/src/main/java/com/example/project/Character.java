@@ -35,15 +35,23 @@ public abstract class Character {
     }
 
     public void increaseMaxHealth(int healthIncrease) {
-        this.maxHealth += round(healthIncrease * 1.5);
+        this.maxHealth += (int) round(healthIncrease * 1.5);
     }
 
     public int getCurrentHealth() {
         return this.currentHealth;
     }
 
-    public void setCurrentHealth(int healthChange) {
+    public void resetCurrentHealth(int maxHealth) {
+        this.currentHealth = maxHealth;
+    }
+
+    public void changeCurrentHealth(int healthChange) {
         this.currentHealth += healthChange;
+        if (this.currentHealth <= 0) {
+            this.currentHealth = 0;
+            this.isDead = true;
+        }
     }
 
     public String getName() {
