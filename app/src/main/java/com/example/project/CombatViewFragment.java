@@ -9,18 +9,42 @@ import android.view.ViewGroup;
 public class CombatViewFragment extends Fragment {
 
     public CombatViewFragment() {
-
+        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // acquires what the currently active mission is
+        // Get the active mission from the MissionRoom
         Mission mission = SpaceShip.getInstance().getMissionRoom().getActiveMission();
         
-        // starts the combat view for the mission
+        // Create the custom SurfaceView
         CombatView combatView = new CombatView(requireContext());
         combatView.setupCombat(mission);
+        
+        // Return the SurfaceView as the Fragment's view
+        // Set the listener for when the Continue button is clicked
+        combatView.setOnCombatEndedListener(new CombatView.OnCombatEndedListener() {
+            @Override
+            public void onCombatEnded() {
+                // Return to main thread to perform UI changes
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> {
+                        // 1. Run the mission cleanup logic (survivors return, XP gain, etc.)
+                        mission.endMission();
 
+                        // 2. Clear the active mission status in MissionRoom
+                        SpaceShip.getInstance().getMissionRoom().updateMissionStatus();
+
+                        // 3. Return to the Main Menu Fragment
+                        getParentFragmentManager().beginTransaction()
+                                .replace(R.id.fragment_container, new MainMenuFragment())
+                                .commit();
+                    });
+                }
+            }
+        });
+
+        // Return the SurfaceView as the Fragment's view
         return combatView;
     }
 }

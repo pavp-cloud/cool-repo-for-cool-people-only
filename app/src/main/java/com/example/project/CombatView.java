@@ -48,16 +48,16 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private int animationTimer = 0;
     
     private float targetX, targetY;
-    private float character1X = 200, character1Y = 300;
-    private float character2X = 200, character2Y = 500;
-    private float enemyX = 800, enemyY = 400;
+    private float character1X = 300, character1Y = 300;
+    private float character2X = 300, character2Y = 600;
+    private float enemyX = 900, enemyY = 450;
 
     // Button Bounds
-    private RectF c1AttackBtn = new RectF(50, 700, 250, 780);
-    private RectF c1SpecialBtn = new RectF(270, 700, 470, 780);
-    private RectF c2AttackBtn = new RectF(50, 800, 250, 880);
-    private RectF c2SpecialBtn = new RectF(270, 800, 470, 880);
-    private RectF continueBtn = new RectF(400, 600, 700, 700);
+    private RectF c1AttackBtn = new RectF(50, 850, 250, 930);
+    private RectF c1SpecialBtn = new RectF(270, 850, 470, 930);
+    private RectF c2AttackBtn = new RectF(500, 850, 700, 930);
+    private RectF c2SpecialBtn = new RectF(720, 850, 920, 930);
+    private RectF continueBtn = new RectF(400, 700, 800, 800);
 
     private Character crewMember1;
     private Character crewMember2;
@@ -85,22 +85,20 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
     private void loadSprites(Context context) {
         // Character Sprites
-        spriteMap.put(Medic.class, BitmapFactory.decodeResource(getResources(), R.drawable.medic_sprite)); // Replace with actual medic sprite
-        spriteMap.put(Soldier.class, BitmapFactory.decodeResource(getResources(), R.drawable.solider_sprite)); // Replace with actual soldier sprite
-        spriteMap.put(Scientist.class, BitmapFactory.decodeResource(getResources(), R.drawable.scientist_sprite)); // Replace with actual scientist sprite
-        spriteMap.put(Pilot.class, BitmapFactory.decodeResource(getResources(), R.drawable.pilot_sprite)); // Replace with actual pilot sprite
-        spriteMap.put(Engineer.class, BitmapFactory.decodeResource(getResources(), R.drawable.engineer_sprite)); // Replace with actual engineer sprite
+        spriteMap.put(Medic.class, BitmapFactory.decodeResource(getResources(), R.drawable.medic_sprite));
+        spriteMap.put(Soldier.class, BitmapFactory.decodeResource(getResources(), R.drawable.solider_sprite));
+        spriteMap.put(Scientist.class, BitmapFactory.decodeResource(getResources(), R.drawable.scientist_sprite));
+        spriteMap.put(Pilot.class, BitmapFactory.decodeResource(getResources(), R.drawable.pilot_sprite));
+        spriteMap.put(Engineer.class, BitmapFactory.decodeResource(getResources(), R.drawable.engineer_sprite));
 
         // Threat Sprites
-        spriteMap.put(Pirate.class, BitmapFactory.decodeResource(getResources(), R.drawable.pirate_sprite)); // Replace with actual pirate sprite
-        spriteMap.put(Parasite.class, BitmapFactory.decodeResource(getResources(), R.drawable.parasite_sprite)); // Replace with actual parasite sprite
-        spriteMap.put(Gundam.class, BitmapFactory.decodeResource(getResources(), R.drawable.gundam_sprite)); // Replace with actual gundam sprite
-        spriteMap.put(Alien.class, BitmapFactory.decodeResource(getResources(), R.drawable.alien_sprite)); // Replace with actual alien sprite
-        spriteMap.put(Demon.class, BitmapFactory.decodeResource(getResources(), R.drawable.demon_sprite)); // Replace with actual demon sprite
-
-        defaultSprite = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        spriteMap.put(Pirate.class, BitmapFactory.decodeResource(getResources(), R.drawable.pirate_sprite));
+        spriteMap.put(Parasite.class, BitmapFactory.decodeResource(getResources(), R.drawable.parasite_sprite));
+        spriteMap.put(Gundam.class, BitmapFactory.decodeResource(getResources(), R.drawable.gundam_sprite));
+        spriteMap.put(Alien.class, BitmapFactory.decodeResource(getResources(), R.drawable.alien_sprite));
+        spriteMap.put(Demon.class, BitmapFactory.decodeResource(getResources(), R.drawable.demon_sprite));
         
-        // Load Background Sprite
+        defaultSprite = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         backgroundSprite = BitmapFactory.decodeResource(getResources(), R.drawable.combat_background);
     }
 
@@ -239,10 +237,9 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
                 paint.setColor(Color.YELLOW);
                 paint.setTextSize(100);
                 String msg = (missionThreat != null && missionThreat.getCurrentHealth() <= 0) ? "VICTORY" : "DEFEAT";
-                canvas.drawText(msg, 200, 500, paint);
+                canvas.drawText(msg, 300, 500, paint);
 
-                // Draw Continue Button
-                drawButton(canvas, continueBtn, "CONTINUE", Color.DKGRAY);
+                drawButton(canvas, continueBtn, "CONTINUE TO SHIP", Color.GREEN);
             }
 
             surfaceHolder.unlockCanvasAndPost(canvas);
@@ -253,9 +250,9 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         paint.setColor(color);
         canvas.drawRoundRect(bounds, 15, 15, paint);
         paint.setColor(Color.WHITE);
-        paint.setTextSize(30);
+        paint.setTextSize(40);
         float textWidth = paint.measureText(text);
-        canvas.drawText(text, bounds.centerX() - textWidth / 2, bounds.centerY() + 10, paint);
+        canvas.drawText(text, bounds.centerX() - textWidth / 2, bounds.centerY() + 15, paint);
     }
 
     private void drawEntity(Canvas canvas, Object entity, float x, float y) {
@@ -281,9 +278,10 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
         // Draw Sprite
         if (sprite != null) {
-            Rect dest = new Rect((int)x - 60, (int)y - 60, (int)x + 60, (int)y + 60);
+            // DOUBLED SIZE: from 60 to 120 offset
+            Rect dest = new Rect((int)x - 120, (int)y - 120, (int)x + 120, (int)y + 120);
             if (hp <= 0) {
-                paint.setAlpha(128); // Ghostly look if dead
+                paint.setAlpha(128);
             } else {
                 paint.setAlpha(255);
             }
@@ -293,14 +291,14 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
         paint.setColor(Color.WHITE);
         paint.setTextSize(30);
-        canvas.drawText(name, x - 50, y - 70, paint);
+        canvas.drawText(name, x - 50, y - 130, paint);
         
         paint.setColor(Color.GRAY);
-        canvas.drawRect(x - 50, y + 60, x + 50, y + 70, paint);
+        canvas.drawRect(x - 50, y + 130, x + 50, y + 140, paint);
         paint.setColor(Color.GREEN);
         if (maxHp > 0) {
             float hpWidth = 100 * (Math.max(0, (float) hp / maxHp));
-            canvas.drawRect(x - 50, y + 60, x - 50 + hpWidth, y + 70, paint);
+            canvas.drawRect(x - 50, y + 130, x - 50 + hpWidth, y + 140, paint);
         }
     }
 
@@ -324,7 +322,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             paint.setColor(Color.YELLOW);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(5);
-            canvas.drawCircle(targetX, targetY, animationTimer * 5, paint);
+            canvas.drawCircle(targetX, targetY, animationTimer * 10, paint);
             paint.setStyle(Paint.Style.FILL);
         }
     }
