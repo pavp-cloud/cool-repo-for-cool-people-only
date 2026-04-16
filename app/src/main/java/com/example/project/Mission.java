@@ -102,21 +102,19 @@ public class Mission {
     }
 
     public void endMission() {
-
-        SpaceShip ship = SpaceShip.getInstance();
         
         // Always increment days when a mission ends
-        ship.incrementDaysOnBoard();
+        SpaceShip.getInstance().incrementDaysOnBoard();
         
         // If all crew members are dead (GameOver), damage the ship
         boolean crewDead = (crewMember1 == null || crewMember1.getCurrentHealth() <= 0) &&
                           (crewMember2 == null || crewMember2.getCurrentHealth() <= 0);
         if (crewDead) {
-            ship.damageShip();
+            SpaceShip.getInstance().damageShip();
         }
 
-        CrewQuarters crewQuarters = ship.getCrewQuarters();
-        PassengerManifest manifest = ship.getManifest();
+        CrewQuarters crewQuarters = SpaceShip.getInstance().getCrewQuarters();
+        PassengerManifest manifest = SpaceShip.getInstance().getManifest();
 
         //checking for if member is dead to add back to crew quarters
         if (crewMember1 != null){
