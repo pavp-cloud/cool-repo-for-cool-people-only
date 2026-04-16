@@ -48,16 +48,16 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private int animationTimer = 0;
     
     private float targetX, targetY;
-    private float character1X = 300, character1Y = 300;
-    private float character2X = 300, character2Y = 600;
-    private float enemyX = 900, enemyY = 450;
+    private float character1X, character1Y;
+    private float character2X, character2Y;
+    private float enemyX, enemyY;
 
-    // Button Bounds
-    private RectF c1AttackBtn = new RectF(50, 850, 250, 930);
-    private RectF c1SpecialBtn = new RectF(270, 850, 470, 930);
-    private RectF c2AttackBtn = new RectF(500, 850, 700, 930);
-    private RectF c2SpecialBtn = new RectF(720, 850, 920, 930);
-    private RectF continueBtn = new RectF(400, 700, 800, 800);
+    // Button Bounds (Relative)
+    private RectF c1AttackBtn = new RectF();
+    private RectF c1SpecialBtn = new RectF();
+    private RectF c2AttackBtn = new RectF();
+    private RectF c2SpecialBtn = new RectF();
+    private RectF continueBtn = new RectF();
 
     private Character crewMember1;
     private Character crewMember2;
@@ -156,11 +156,9 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
     public void playerAttack(int crewIndex, attackState type) {
         if (activeCombat == combatState.Players_Turn) {
-            // Ensure character exists and is alive
             Character member = (crewIndex == 1) ? crewMember1 : crewMember2;
             if (member == null || member.getCurrentHealth() <= 0) return;
 
-            // Check if this specific character has already moved in the Mission logic
             if (crewIndex == 1 && activeMission.isCrew1Moved()) return;
             if (crewIndex == 2 && activeMission.isCrew2Moved()) return;
 
@@ -182,7 +180,6 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         
         selectAttack = (actionIndex == 0) ? attackState.Attack : attackState.Special_Attack;
         
-        // Pick a visual target that is alive for the animation
         if (crewMember1 != null && crewMember1.getCurrentHealth() > 0 && crewMember2 != null && crewMember2.getCurrentHealth() > 0) {
             targetX = random.nextBoolean() ? character1X : character2X;
             targetY = (targetX == character1X) ? character1Y : character2Y;
@@ -202,16 +199,42 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             canvas = surfaceHolder.lockCanvas();
             if (canvas == null) return;
             
+            int width = canvas.getWidth();
+            int height = canvas.getHeight();
+            
+            // CENTER EVERYTHING: Recalculate positions based on screen size
+            character1X = width * 0.25f;
+            character1Y = height * 0.40f;
+            character2X = width * 0.25f;
+            character2Y = height * 0.60f;
+            enemyX = width * 0.75f;
+            enemyY = height * 0.50f;
+
+            // CENTER BUTTONS: Position them neatly at the bottom
+            float btnY = height * 0.85f;
+            float btnHeight = height * 0.07f;
+            float btnWidth = width * 0.20f;
+            float spacing = width * 0.03f;
+            float totalWidth = (btnWidth * 4) + (spacing * 3);
+            float startX = (width - totalWidth) / 2;
+
+            c1AttackBtn.set(startX, btnY, startX + btnWidth, btnY + btnHeight);
+            c1SpecialBtn.set(startX + btnWidth + spacing, btnY, startX + btnWidth*2 + spacing, btnY + btnHeight);
+            c2AttackBtn.set(startX + btnWidth*2 + spacing*2, btnY, startX + btnWidth*3 + spacing*2, btnY + btnHeight);
+            c2SpecialBtn.set(startX + btnWidth*3 + spacing*3, btnY, startX + btnWidth*4 + spacing*3, btnY + btnHeight);
+            
+            // CONTINUE BUTTON AT LOWER PART:
+            continueBtn.set(width * 0.25f, height * 0.72f, width * 0.75f, height * 0.82f);
+
             // Draw Background
             if (backgroundSprite != null) {
-                Rect destRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
-                canvas.drawBitmap(backgroundSprite, null, destRect, null);
+                canvas.drawBitmap(backgroundSprite, null, new Rect(0, 0, width, height), null);
             } else {
                 canvas.drawColor(Color.BLACK);
             }
 
             paint.setColor(Color.WHITE);
-            paint.setTextSize(40);
+            paint.setTextSize(width * 0.04f);
             canvas.drawText("Turn State: " + activeCombat, 50, 50, paint);
 
             drawEntity(canvas, crewMember1, character1X, character1Y);
@@ -219,14 +242,13 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             drawEntity(canvas, missionThreat, enemyX, enemyY);
 
             if (activeCombat == combatState.Players_Turn) {
-                // Gray out buttons for crew members who have already moved or are dead
                 int c1Color = (activeMission.isCrew1Moved() || crewMember1 == null || crewMember1.getCurrentHealth() <= 0) ? Color.GRAY : Color.DKGRAY;
                 int c2Color = (activeMission.isCrew2Moved() || crewMember2 == null || crewMember2.getCurrentHealth() <= 0) ? Color.GRAY : Color.DKGRAY;
 
-                drawButton(canvas, c1AttackBtn, "C1 Attack", c1Color);
-                drawButton(canvas, c1SpecialBtn, "C1 Special", c1Color);
-                drawButton(canvas, c2AttackBtn, "C2 Attack", c2Color);
-                drawButton(canvas, c2SpecialBtn, "C2 Special", c2Color);
+                drawButton(canvas, c1AttackBtn, "C1 ATK", c1Color);
+                drawButton(canvas, c1SpecialBtn, "C1 SPEC", c1Color);
+                drawButton(canvas, c2AttackBtn, "C2 ATK", c2Color);
+                drawButton(canvas, c2SpecialBtn, "C2 SPEC", c2Color);
             }
 
             if (activeCombat == combatState.Animating) {
@@ -235,9 +257,11 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
             if (activeCombat == combatState.GameOver) {
                 paint.setColor(Color.YELLOW);
-                paint.setTextSize(100);
+                paint.setTextSize(width * 0.12f);
                 String msg = (missionThreat != null && missionThreat.getCurrentHealth() <= 0) ? "VICTORY" : "DEFEAT";
-                canvas.drawText(msg, 300, 500, paint);
+                float textWidth = paint.measureText(msg);
+                // Move VICTORY/DEFEAT to the top of the screen
+                canvas.drawText(msg, width/2 - textWidth/2, height * 0.20f, paint);
 
                 drawButton(canvas, continueBtn, "CONTINUE TO SHIP", Color.GREEN);
             }
@@ -250,14 +274,15 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         paint.setColor(color);
         canvas.drawRoundRect(bounds, 15, 15, paint);
         paint.setColor(Color.WHITE);
-        paint.setTextSize(40);
+        paint.setTextSize(canvas.getWidth() * 0.035f);
         float textWidth = paint.measureText(text);
-        canvas.drawText(text, bounds.centerX() - textWidth / 2, bounds.centerY() + 15, paint);
+        canvas.drawText(text, bounds.centerX() - textWidth / 2, bounds.centerY() + paint.getTextSize()/3, paint);
     }
 
     private void drawEntity(Canvas canvas, Object entity, float x, float y) {
         if (entity == null) return;
         
+        int width = canvas.getWidth();
         String name = "";
         int hp = 0, maxHp = 0;
         Bitmap sprite = defaultSprite;
@@ -276,10 +301,10 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             sprite = spriteMap.getOrDefault(t.getClass(), defaultSprite);
         }
 
-        // Draw Sprite
+        // Draw Doubled Sprite
         if (sprite != null) {
-            // DOUBLED SIZE: from 60 to 120 offset
-            Rect dest = new Rect((int)x - 120, (int)y - 120, (int)x + 120, (int)y + 120);
+            float size = width * 0.15f;
+            Rect dest = new Rect((int)(x - size), (int)(y - size), (int)(x + size), (int)(y + size));
             if (hp <= 0) {
                 paint.setAlpha(128);
             } else {
@@ -290,15 +315,15 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         }
 
         paint.setColor(Color.WHITE);
-        paint.setTextSize(30);
-        canvas.drawText(name, x - 50, y - 130, paint);
+        paint.setTextSize(width * 0.03f);
+        canvas.drawText(name, x - 50, y - width * 0.16f, paint);
         
         paint.setColor(Color.GRAY);
-        canvas.drawRect(x - 50, y + 130, x + 50, y + 140, paint);
+        canvas.drawRect(x - 50, y + width * 0.16f, x + 50, y + width * 0.17f, paint);
         paint.setColor(Color.GREEN);
         if (maxHp > 0) {
             float hpWidth = 100 * (Math.max(0, (float) hp / maxHp));
-            canvas.drawRect(x - 50, y + 130, x - 50 + hpWidth, y + 140, paint);
+            canvas.drawRect(x - 50, y + width * 0.16f, x - 50 + hpWidth, y + width * 0.17f, paint);
         }
     }
 
