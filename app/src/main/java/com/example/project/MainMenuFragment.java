@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 public class MainMenuFragment extends Fragment {
     private TextView daysAdriftNumber;
     private TextView currentCrewCountNumber;
+    private TextView shipHealthNumber;
 
     public MainMenuFragment() {
 
@@ -34,13 +35,13 @@ public class MainMenuFragment extends Fragment {
 
         daysAdriftNumber = view.findViewById(R.id.days_adrift_number);
         currentCrewCountNumber = view.findViewById(R.id.current_crew_count_number_text);
+        shipHealthNumber = view.findViewById(R.id.ship_health_number_text);
 
         updateStats();
 
-        // 3. Set up the Listeners
+        // sets up listeners for each button on the main menu
 
         missionControlButton.setOnClickListener(v -> {
-            // Navigation logic to swap to the Mission Control Fragment
             getParentFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new MissionControlFragment())
                     .addToBackStack(null)
@@ -48,7 +49,6 @@ public class MainMenuFragment extends Fragment {
         });
 
         onboardCrewButton.setOnClickListener(v -> {
-            // We can still use our existing Popup logic!
             showOnboardPopup();
         });
 
@@ -96,6 +96,7 @@ public class MainMenuFragment extends Fragment {
         if (daysAdriftNumber != null && currentCrewCountNumber != null) {
             daysAdriftNumber.setText(String.valueOf(SpaceShip.getInstance().getDaysOnBoard()));
             currentCrewCountNumber.setText(String.valueOf(SpaceShip.getInstance().getCrewQuarters().getCrewMembers().size()));
+            shipHealthNumber.setText(String.valueOf(SpaceShip.getInstance().getShipHealth()));
         }
     }
 }

@@ -40,28 +40,6 @@ public class SpaceShip {
         return trainingRoom;
     }
 
-    /*
-    public void runTrainingRoom() {
-        // moves to the training room view
-        // todo: implement into UI
-    }
-
-    public void runMissionRoom() {
-        // moves to the mission room view
-        // todo: implement into UI
-    }
-
-    public void checkManifest() {
-        // moves to the manifest view
-        // todo: implement into UI
-    }
-
-    public void checkCrewQuarters() {
-        // moves to the crew quarter view
-        // todo: implement into UI
-    }
-    */
-
     public void onboardCrewMember(int selection, String crewMemberName) {
         Character character = securityCheck.newCrewMember(selection, crewMemberName, getDaysOnBoard());
         if(character != null) {
@@ -75,6 +53,9 @@ public class SpaceShip {
     }
     public void incrementDaysOnBoard() {
         daysOnBoard++;
+    }
+    public int getShipHealth() {
+        return shipHealth;
     }
 
     public void incrementShipHealth(int healthIncrease) {
