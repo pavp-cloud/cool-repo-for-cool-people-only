@@ -1,5 +1,6 @@
 package com.example.project;
 
+import java.util.Random;
 public class SpaceShip {
     private static SpaceShip instance;
     private MissionRoom missionRoom;
@@ -63,6 +64,8 @@ public class SpaceShip {
     }
 
     public void damageShip() {
-        shipHealth -= daysOnBoard;
+        Random random = new Random();
+        int damage = random.nextInt(6);
+        shipHealth -= daysOnBoard * damage;
     }
 }
