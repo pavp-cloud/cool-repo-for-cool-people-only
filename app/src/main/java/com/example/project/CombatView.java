@@ -99,7 +99,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         spriteMap.put(Demon.class, BitmapFactory.decodeResource(getResources(), R.drawable.demon_sprite));
         
         defaultSprite = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        backgroundSprite = BitmapFactory.decodeResource(getResources(), R.drawable.combat_background);
+        backgroundSprite = BitmapFactory.decodeResource(getResources(), R.drawable.combat_background2);
     }
 
     public void setupCombat(Mission mission) {
