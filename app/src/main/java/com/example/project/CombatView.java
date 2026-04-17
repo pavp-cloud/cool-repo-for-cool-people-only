@@ -265,7 +265,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
                 // Move VICTORY/DEFEAT to the top of the screen
                 canvas.drawText(msg, width/2 - textWidth/2, height * 0.20f, paint);
 
-                drawButton(canvas, continueBtn, "CONTINUE TO SHIP", Color.GREEN);
+                drawButton(canvas, continueBtn, "CONTINUE TO SHIP", Color.BLUE);
             }
 
             surfaceHolder.unlockCanvasAndPost(canvas);
