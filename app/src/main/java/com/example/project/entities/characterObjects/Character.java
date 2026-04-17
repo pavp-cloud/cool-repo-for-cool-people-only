@@ -36,6 +36,7 @@ public abstract class Character {
     public void setDead(boolean dead) {
         isDead = dead;
     }
+    public void setHealth(int health) { this.currentHealth = health; }
 
     public void increaseMaxHealth(int healthIncrease) {
         this.maxHealth += (int) round(healthIncrease * maxHealthScaling);

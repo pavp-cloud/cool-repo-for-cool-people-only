@@ -28,7 +28,9 @@ public class Medic extends Character implements CombatActor, CombatCharacterSpec
 
     //Medic will be able to heal itself
     public int special(){
-        healHealth((int) (healingPower + (this.getExp() * specialScaling)));
+        int healing = (int) (healingPower + (this.getExp() * specialScaling));
+
+        setHealth(Math.min(getMaxHealth(), getCurrentHealth()+healing));
         return 0;
     }
 
