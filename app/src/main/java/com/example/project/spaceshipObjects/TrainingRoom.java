@@ -4,14 +4,14 @@ import com.example.project.entities.characterObjects.Character;
 
 public class TrainingRoom {
     private int dailyUsages = 3;
-    private com.example.project.entities.characterObjects.Character trainee = null;
+    private Character trainee = null;
 
-    public void addTrainee(com.example.project.entities.characterObjects.Character trainee) {
+    public void addTrainee(Character trainee) {
         this.trainee = trainee;
     }
 
-    public com.example.project.entities.characterObjects.Character removeTrainee() {
-        com.example.project.entities.characterObjects.Character temp = trainee;
+    public Character removeTrainee() {
+        Character temp = trainee;
         trainee = null;
         return temp;
     }

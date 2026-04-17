@@ -1,9 +1,17 @@
-package com.example.project;
+package com.example.project.spaceshipObjects;
+
+import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.threatObjects.Threat;
+import com.example.project.entities.threatObjects.specializations.Alien;
+import com.example.project.entities.threatObjects.specializations.Demon;
+import com.example.project.entities.threatObjects.specializations.Gundam;
+import com.example.project.entities.threatObjects.specializations.Parasite;
+import com.example.project.entities.threatObjects.specializations.Pirate;
+import com.example.project.mission.Mission;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Random;
 
 public class MissionRoom {
     private Mission activeMission = null;
@@ -22,19 +30,19 @@ public class MissionRoom {
 
         switch (selection) {
             case 1:
-                Pirate pirate = new Pirate(100, 100, name , 2 * SpaceShip.getInstance().getDaysOnBoard());
+                Pirate pirate = new Pirate(100, 100, name , 200 * SpaceShip.getInstance().getDaysOnBoard());
                 return pirate;
             case 2:
-                Parasite parasite = new Parasite(100, 100, name , 5 * SpaceShip.getInstance().getDaysOnBoard());
+                Parasite parasite = new Parasite(100, 100, name , 500 * SpaceShip.getInstance().getDaysOnBoard());
                 return parasite;
             case 3:
-                Gundam gundam = new Gundam(100, 100, name , 10 * SpaceShip.getInstance().getDaysOnBoard());
+                Gundam gundam = new Gundam(100, 100, name , 1000 * SpaceShip.getInstance().getDaysOnBoard());
                 return gundam;
             case 4:
-                Alien alien = new Alien(100, 100, name , 3 * SpaceShip.getInstance().getDaysOnBoard());
+                Alien alien = new Alien(100, 100, name , 300 * SpaceShip.getInstance().getDaysOnBoard());
                 return alien;
             case 5:
-                Demon demon = new Demon(100, 100, name , 8 * SpaceShip.getInstance().getDaysOnBoard());
+                Demon demon = new Demon(100, 100, name , 800 * SpaceShip.getInstance().getDaysOnBoard());
                 return demon;
             default:
                 return null;
@@ -48,10 +56,10 @@ public class MissionRoom {
     }
     
     public void selectCrewMembers(Mission mission){
-        ArrayList<Character> activeCharacters = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
+        ArrayList<com.example.project.entities.characterObjects.Character> activeCharacters = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
 
         if (activeCharacters.size() >= 2) {
-            Character character1 = activeCharacters.get(0);
+            com.example.project.entities.characterObjects.Character character1 = activeCharacters.get(0);
             Character character2 = activeCharacters.get(1);
             mission.addCrewMembers(character1, character2);
         }

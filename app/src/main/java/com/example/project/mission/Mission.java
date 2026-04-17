@@ -9,8 +9,8 @@ import com.example.project.entities.threatObjects.Threat;
 import java.util.Random;
 
 public class Mission {
-    private com.example.project.entities.characterObjects.Character crewMember1 = null;
-    private com.example.project.entities.characterObjects.Character crewMember2 = null;
+    private Character crewMember1 = null;
+    private Character crewMember2 = null;
     private Threat missionTarget;
     private boolean isPlayerTurn = true;
     private boolean crew1Moved = false;

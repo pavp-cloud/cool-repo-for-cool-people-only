@@ -74,8 +74,8 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private RectF c2SpecialBtn = new RectF();
     private RectF continueBtn = new RectF();
 
-    private com.example.project.entities.characterObjects.Character crewMember1;
-    private com.example.project.entities.characterObjects.Character crewMember2;
+    private Character crewMember1;
+    private Character crewMember2;
     private Threat missionThreat;
     private Mission activeMission;
     private Random random = new Random();
@@ -170,7 +170,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
     public void playerAttack(int crewIndex, attackState type) {
         if (activeCombat == combatState.Players_Turn) {
-            com.example.project.entities.characterObjects.Character member = (crewIndex == 1) ? crewMember1 : crewMember2;
+            Character member = (crewIndex == 1) ? crewMember1 : crewMember2;
             if (member == null || member.getCurrentHealth() <= 0) return;
 
             if (crewIndex == 1 && activeMission.isCrew1Moved()) return;
@@ -294,8 +294,8 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         int hp = 0, maxHp = 0;
         Bitmap sprite = defaultSprite;
 
-        if (entity instanceof com.example.project.entities.characterObjects.Character) {
-            com.example.project.entities.characterObjects.Character c = (Character) entity;
+        if (entity instanceof Character) {
+            Character c = (Character) entity;
             name = c.getName();
             hp = c.getCurrentHealth();
             maxHp = c.getMaxHealth();

@@ -72,7 +72,7 @@ public class TrainingRoomFragment extends Fragment {
 
         recycler.setVisibility(View.VISIBLE);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        ArrayList<com.example.project.entities.characterObjects.Character> available = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
+        ArrayList<Character> available = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
 
         recycler.setAdapter(new CharacterAdapter(available, character -> {
             SpaceShip.getInstance().getTrainingRoom().addTrainee(character);
@@ -101,7 +101,7 @@ public class TrainingRoomFragment extends Fragment {
         updateUses();
         String message = (result == 0) ? "Training Successful!" : "Training Failed.";
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-        com.example.project.entities.characterObjects.Character finishedTrainee = SpaceShip.getInstance().getTrainingRoom().removeTrainee();
+        Character finishedTrainee = SpaceShip.getInstance().getTrainingRoom().removeTrainee();
         SpaceShip.getInstance().getCrewQuarters().addCrewMember(finishedTrainee);
         updateTrainingUI(nameText, diffText, beginBtn);
     }

@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.fragments;
 
 import android.os.Bundle;
 
@@ -12,6 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.project.mission.Mission;
+import com.example.project.R;
+import com.example.project.spaceshipObjects.SpaceShip;
+import com.example.project.adapters.CharacterAdapter;
+import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.threatObjects.Threat;
+
 import java.util.ArrayList;
 
 public class MissionControlFragment extends Fragment {
@@ -19,7 +26,7 @@ public class MissionControlFragment extends Fragment {
     public MissionControlFragment() {
         // Required empty public constructor
     }
-    private ArrayList<Character> selectedMissionCrew = new ArrayList<>();
+    private ArrayList<com.example.project.entities.characterObjects.Character> selectedMissionCrew = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +50,7 @@ public class MissionControlFragment extends Fragment {
             public void onClick(View v) {
                 /* Rule: Choosing again returns currently "pulled" characters back to CrewQuarters
                    so the pool remains accurate. */
-                for (Character c : selectedMissionCrew) {
+                for (com.example.project.entities.characterObjects.Character c : selectedMissionCrew) {
                     SpaceShip.getInstance().getCrewQuarters().addCrewMember(c);
                 }
                 selectedMissionCrew.clear();
@@ -54,7 +61,7 @@ public class MissionControlFragment extends Fragment {
                 selectionRecycler.setLayoutManager(new LinearLayoutManager(requireContext()));
 
                 // Get people sitting in CrewQuarters
-                ArrayList<Character> available = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
+                ArrayList<com.example.project.entities.characterObjects.Character> available = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
 
                 // Build adapter with custom listener for the selection logic
                 CharacterAdapter adapter = new CharacterAdapter(available, new CharacterAdapter.OnCharacterClickListener() {

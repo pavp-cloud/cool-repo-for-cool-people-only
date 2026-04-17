@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.fragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,7 +12,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import org.w3c.dom.Text;
+import com.example.project.R;
+import com.example.project.spaceshipObjects.SpaceShip;
 
 public class MainMenuFragment extends Fragment {
     private TextView daysAdriftNumber;
