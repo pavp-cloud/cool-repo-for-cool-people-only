@@ -35,7 +35,7 @@ public class Demon extends Threat implements CombatActor, CombatThreatSpecial {
         else {
             character2.takeDamage(damage);
         }
-        return 0;
+        return damage;
     }
 
 

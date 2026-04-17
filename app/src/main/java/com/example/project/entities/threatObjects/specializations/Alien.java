@@ -31,7 +31,7 @@ public class Alien extends Threat implements CombatActor, CombatThreatSpecial {
         else {
             character2.takeDamage(damage);
         }
-        return 0;
+        return damage;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Alien extends Threat implements CombatActor, CombatThreatSpecial {
         character2.takeDamage(damage);
         character1.takeDamage(damage);
         //shoots laser that does AOE
-        return 0;
+        return damage;
     }
 
     @Override

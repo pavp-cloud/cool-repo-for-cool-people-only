@@ -11,6 +11,7 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -181,6 +182,11 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             targetX = enemyX;
             targetY = enemyY;
 
+            int damage = (type == attackState.Attack ? member.attack() : member.special());
+            String attackName = (type == attackState.Attack ? "Attacked" : "used a Special Attack");
+            showCombatToast(member.getName() + " " + attackName + " for " + damage + " damage!");
+
+
             activeMission.playerTurn(crewIndex, (type == attackState.Attack ? 0 : 1));
             activeCombat = combatState.Animating;
         }
@@ -193,6 +199,10 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         if (actionIndex == -1) return;
         
         selectAttack = (actionIndex == 0) ? attackState.Attack : attackState.Special_Attack;
+
+        String actionName = (actionIndex == 0) ? "Attacked" : "used a Special Attack";
+        showCombatToast(missionThreat.getName() + " " + actionName + "!");
+
         
         if (crewMember1 != null && crewMember1.getCurrentHealth() > 0 && crewMember2 != null && crewMember2.getCurrentHealth() > 0) {
             targetX = random.nextBoolean() ? character1X : character2X;
@@ -208,17 +218,22 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         activeCombat = combatState.Animating;
     }
 
+
+
+    private void showCombatToast(final String message) {
+        post(() -> Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show());
+    }
     private void draw() {
         if (surfaceHolder.getSurface().isValid()) {
             canvas = surfaceHolder.lockCanvas();
             if (canvas == null) return;
-            
+            //character and enemy positions on the screen
             int width = canvas.getWidth();
             int height = canvas.getHeight();
             character1X = width * 0.25f;
             character1Y = height * 0.40f;
             character2X = width * 0.25f;
-            character2Y = height * 0.60f;
+            character2Y = height * 0.65f;
             enemyX = width * 0.75f;
             enemyY = height * 0.50f;
             float btnY = height * 0.85f;
@@ -308,7 +323,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             sprite = spriteMap.getOrDefault(t.getClass(), defaultSprite);
         }
 
-        // Draw Doubled Sprite
+
         if (sprite != null) {
             float size = width * 0.15f;
             Rect dest = new Rect((int)(x - size), (int)(y - size), (int)(x + size), (int)(y + size));
@@ -322,15 +337,29 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         }
 
         paint.setColor(Color.WHITE);
-        paint.setTextSize(width * 0.03f);
-        canvas.drawText(name, x - 50, y - width * 0.16f, paint);
+        paint.setTextSize(width * 0.035f);
+        float nameWidth = paint.measureText(name);
+        canvas.drawText(name, x - nameWidth/2, y - width * 0.18f, paint);
         
+        // HP bar
+        float barWidth = width * 0.25f;
+        float barHeight = width * 0.04f;
+        float barTop = y + width * 0.18f;
+
         paint.setColor(Color.GRAY);
-        canvas.drawRect(x - 50, y + width * 0.16f, x + 50, y + width * 0.17f, paint);
-        paint.setColor(Color.GREEN);
+        canvas.drawRect(x - barWidth/2, barTop, x + barWidth/2, barTop + barHeight, paint);
+        
         if (maxHp > 0) {
-            float hpWidth = 100 * (Math.max(0, (float) hp / maxHp));
-            canvas.drawRect(x - 50, y + width * 0.16f, x - 50 + hpWidth, y + width * 0.17f, paint);
+            paint.setColor(Color.GREEN);
+            float hpRatio = (float) Math.max(0, hp) / maxHp;
+            canvas.drawRect(x - barWidth/2, barTop, x - barWidth/2 + (barWidth * hpRatio), barTop + barHeight, paint);
+            
+            //HP Text
+            paint.setColor(Color.WHITE);
+            paint.setTextSize(width * 0.045f);
+            String hpText = hp + " / " + maxHp;
+            float textWidth = paint.measureText(hpText);
+            canvas.drawText(hpText, x - textWidth/2, barTop + barHeight + paint.getTextSize() + 5, paint);
         }
     }
 

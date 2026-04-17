@@ -35,7 +35,7 @@ public class Gundam extends Threat implements CombatActor, CombatThreatSpecial {
         else {
             character2.takeDamage(damage);
         }
-        return 0;
+        return damage;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Gundam extends Threat implements CombatActor, CombatThreatSpecial {
             missileUsed();
         }
 
-        return 0;
+        return damage;
     }
 
     public void reloadMissile() {

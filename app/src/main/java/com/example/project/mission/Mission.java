@@ -91,12 +91,18 @@ public class Mission {
     public int enemyTurn() {
         if (isPlayerTurn) return -1;
 
+        // Determine valid targets (not dead)
+        Character target1 = (crewMember1 != null && crewMember1.getCurrentHealth() > 0) ? crewMember1 : null;
+        Character target2 = (crewMember2 != null && crewMember2.getCurrentHealth() > 0) ? crewMember2 : null;
+
         Random random = new Random();
         int action = random.nextInt(2);
+        int damage = 0;
+        // Pass only living targets to the threat logic
         if (action == 0) {
-            missionTarget.attack(crewMember1, crewMember2);
+            missionTarget.attack(target1, target2);
         } else {
-            missionTarget.special(crewMember1, crewMember2);
+            missionTarget.special(target1, target2);
         }
 
         // Reset move flags for next round
@@ -105,6 +111,7 @@ public class Mission {
         crew2Moved = false;
 
         return action;
+
     }
 
     public void endMission() {
