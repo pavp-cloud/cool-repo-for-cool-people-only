@@ -23,6 +23,7 @@ import java.util.Arrays;
 
 public class TrainingRoomFragment extends Fragment {
     private TextView dailyUsagesNumber;
+    private TextView remainingUsagesText;
 
     private int selectedTrainingDifficulty = -1;
 
@@ -44,6 +45,8 @@ public class TrainingRoomFragment extends Fragment {
         Button backBtn = view.findViewById(R.id.back_to_menu_button);
 
         dailyUsagesNumber = view.findViewById(R.id.remaining_usages_number);
+        remainingUsagesText = view.findViewById(R.id.daily_usages_text);
+
 
         updateUses();
 
@@ -71,19 +74,29 @@ public class TrainingRoomFragment extends Fragment {
         updateTrainingUI(nameText, diffText, beginBtn);
 
         recycler.setVisibility(View.VISIBLE);
+        dailyUsagesNumber.setVisibility(View.GONE);
+        remainingUsagesText.setVisibility(View.GONE);
+
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         ArrayList<Character> available = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
 
         recycler.setAdapter(new CharacterAdapter(available, character -> {
             SpaceShip.getInstance().getTrainingRoom().addTrainee(character);
             SpaceShip.getInstance().getCrewQuarters().removeCrewMember(character);
+
             recycler.setVisibility(View.GONE);
+            dailyUsagesNumber.setVisibility(View.VISIBLE);
+            remainingUsagesText.setVisibility(View.VISIBLE);
+
             updateTrainingUI(nameText, diffText, beginBtn);
         }));
     }
 
     private void onSelectDifficultyClicked(TextView nameText, TextView diffText, Button beginBtn, RecyclerView recycler) {
         recycler.setVisibility(View.VISIBLE);
+        dailyUsagesNumber.setVisibility(View.GONE);
+        remainingUsagesText.setVisibility(View.GONE);
+
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         ArrayList<String> difficulties = new ArrayList<>(Arrays.asList(
@@ -91,7 +104,11 @@ public class TrainingRoomFragment extends Fragment {
 
         recycler.setAdapter(new StringAdapter(difficulties, (item, position) -> {
             selectedTrainingDifficulty = position + 1;
+
             recycler.setVisibility(View.GONE);
+            dailyUsagesNumber.setVisibility(View.VISIBLE);
+            remainingUsagesText.setVisibility(View.VISIBLE);
+
             updateTrainingUI(nameText, diffText, beginBtn);
         }));
     }

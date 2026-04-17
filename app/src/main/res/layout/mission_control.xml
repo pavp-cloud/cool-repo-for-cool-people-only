@@ -10,7 +10,9 @@
         android:id="@+id/mission_control"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/space_background">
+        android:background="@drawable/space_background"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/mission_control_label"
@@ -59,8 +61,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="4dp">
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/hp_label"
@@ -80,8 +82,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="4dp">
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/xp_label"
@@ -100,11 +102,14 @@
         </LinearLayout>
 
         <!-- New Section for Crew Selection -->
+
+        <!-- Existing Mission Controls -->
+
         <TextView
             android:id="@+id/selected_crew_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="68dp"
             android:text="Selected Crew: None"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
@@ -116,13 +121,12 @@
             android:id="@+id/choose_crew_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="96dp"
             android:text="Choose Crew"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selected_crew_text" />
 
-        <!-- Existing Mission Controls -->
         <Button
             android:id="@+id/start_mission_button"
             android:layout_width="245dp"
@@ -155,6 +159,17 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="74dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="29dp"
+            android:text="Back"
+            android:textSize="8sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -37,6 +37,7 @@ public class MissionControlFragment extends Fragment {
         Button startMissionButton = view.findViewById(R.id.start_mission_button);
         Button scanForThreatsButton = view.findViewById(R.id.scan_for_threats_button);
         Button chooseCrewButton = view.findViewById(R.id.choose_crew_button);
+        Button backButton = view.findViewById(R.id.back_button);
 
         TextView nameText = view.findViewById(R.id.threat_name);
         TextView hpText = view.findViewById(R.id.threat_hp);
@@ -124,6 +125,14 @@ public class MissionControlFragment extends Fragment {
                 }
             }
         });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getParentFragmentManager().popBackStack();
+            }
+        });
+
 
         return view;
     }
