@@ -31,7 +31,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         Attack,
         Special_Attack,
     }
-
+    //interfacinging to ensure combat has started to initate combatview
     public interface OnCombatEndedListener {
         void onCombatEnded();
     }
@@ -46,7 +46,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private Canvas canvas;
     private Paint paint;
     private int animationTimer = 0;
-    
+    //Positioning
     private float targetX, targetY;
     private float character1X, character1Y;
     private float character2X, character2Y;
@@ -78,20 +78,17 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         this.paint = new Paint();
         loadSprites(context);
     }
-
+    //checking for end of combat to then be linked to the continue button to initate endofcombat prep.
     public void setOnCombatEndedListener(OnCombatEndedListener listener) {
         this.combatEndedListener = listener;
     }
 
     private void loadSprites(Context context) {
-        // Character Sprites
         spriteMap.put(Medic.class, BitmapFactory.decodeResource(getResources(), R.drawable.medic_sprite));
         spriteMap.put(Soldier.class, BitmapFactory.decodeResource(getResources(), R.drawable.solider_sprite));
         spriteMap.put(Scientist.class, BitmapFactory.decodeResource(getResources(), R.drawable.scientist_sprite));
         spriteMap.put(Pilot.class, BitmapFactory.decodeResource(getResources(), R.drawable.pilot_sprite));
         spriteMap.put(Engineer.class, BitmapFactory.decodeResource(getResources(), R.drawable.engineer_sprite));
-
-        // Threat Sprites
         spriteMap.put(Pirate.class, BitmapFactory.decodeResource(getResources(), R.drawable.pirate_sprite));
         spriteMap.put(Parasite.class, BitmapFactory.decodeResource(getResources(), R.drawable.parasite_sprite));
         spriteMap.put(Gundam.class, BitmapFactory.decodeResource(getResources(), R.drawable.gundam_sprite));
@@ -119,7 +116,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             control();
         }
     }
-
+        //drawing in buttons, sprites, and victory/defeat
     private void update() {
         if (activeCombat == combatState.Enemys_Turn) {
             performEnemyActions();
@@ -203,16 +200,12 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             
             int width = canvas.getWidth();
             int height = canvas.getHeight();
-            
-            // CENTER EVERYTHING: Recalculate positions based on screen size
             character1X = width * 0.25f;
             character1Y = height * 0.40f;
             character2X = width * 0.25f;
             character2Y = height * 0.60f;
             enemyX = width * 0.75f;
             enemyY = height * 0.50f;
-
-            // CENTER BUTTONS: Position them neatly at the bottom
             float btnY = height * 0.85f;
             float btnHeight = height * 0.07f;
             float btnWidth = width * 0.20f;
@@ -224,8 +217,6 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             c1SpecialBtn.set(startX + btnWidth + spacing, btnY, startX + btnWidth*2 + spacing, btnY + btnHeight);
             c2AttackBtn.set(startX + btnWidth*2 + spacing*2, btnY, startX + btnWidth*3 + spacing*2, btnY + btnHeight);
             c2SpecialBtn.set(startX + btnWidth*3 + spacing*3, btnY, startX + btnWidth*4 + spacing*3, btnY + btnHeight);
-            
-            // CONTINUE BUTTON AT LOWER PART:
             continueBtn.set(width * 0.25f, height * 0.72f, width * 0.75f, height * 0.82f);
 
             // Draw Background
@@ -262,7 +253,6 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
                 paint.setTextSize(width * 0.12f);
                 String msg = (missionThreat != null && missionThreat.getCurrentHealth() <= 0) ? "VICTORY" : "DEFEAT";
                 float textWidth = paint.measureText(msg);
-                // Move VICTORY/DEFEAT to the top of the screen
                 canvas.drawText(msg, width/2 - textWidth/2, height * 0.20f, paint);
 
                 drawButton(canvas, continueBtn, "CONTINUE TO SHIP", Color.BLUE);
