@@ -11,6 +11,7 @@ public abstract class Character {
     protected int exp;
     protected int missionsCompleted = 0;
     protected boolean isDead = false;
+    private final double maxHealthScaling = 1.5;
     /*
     private int finalBlows;
     private int trainingCompleted;
@@ -37,7 +38,7 @@ public abstract class Character {
     }
 
     public void increaseMaxHealth(int healthIncrease) {
-        this.maxHealth += (int) round(healthIncrease * 1.5);
+        this.maxHealth += (int) round(healthIncrease * maxHealthScaling);
     }
 
     public int getCurrentHealth() {

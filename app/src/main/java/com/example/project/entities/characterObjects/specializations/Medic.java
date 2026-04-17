@@ -13,6 +13,9 @@ public class Medic extends Character implements CombatActor, CombatCharacterSpec
     //CONSTANTS
     private final int baseAttack = 2;
     private final int healingPower = 10;
+    private final double attackScaling = 0.5;
+    private final double specialScaling = 0.2;
+    private final double damageVulnerability = 1.5;
 
     public Medic(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
@@ -20,12 +23,12 @@ public class Medic extends Character implements CombatActor, CombatCharacterSpec
 
 
     public int attack(){
-        return (int) (baseAttack + (this.getExp() * 0.5));
+        return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 
     //Medic will be able to heal itself
     public int special(){
-        healHealth((int) (healingPower + (this.getExp() * 0.2)));
+        healHealth((int) (healingPower + (this.getExp() * specialScaling)));
         return 0;
     }
 
@@ -36,7 +39,7 @@ public class Medic extends Character implements CombatActor, CombatCharacterSpec
     }
 
     public void takeDamage(int attackIntensity) {
-        int damageTaken = (int) round(attackIntensity * 1.5);
+        int damageTaken = (int) round(attackIntensity * damageVulnerability);
         this.currentHealth = currentHealth - damageTaken;
     }
 }

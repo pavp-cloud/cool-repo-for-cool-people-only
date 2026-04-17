@@ -13,6 +13,9 @@ public class Soldier extends Character implements CombatActor, CombatCharacterSp
     //CONSTANTS
     private final int baseAttack = 2;
     private final int grenadeAttack = 10;
+    private final double attackScaling = 0.5;
+    private final double specialScaling = 0.5;
+    private final double damageVulnerability = 1.0;
 
     public Soldier(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
@@ -27,7 +30,7 @@ public class Soldier extends Character implements CombatActor, CombatCharacterSp
     }
 
     public int attack(){
-        return (int) (baseAttack + (this.getExp() * 0.5));
+        return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 
     //"throws" the grenade
@@ -40,7 +43,7 @@ public class Soldier extends Character implements CombatActor, CombatCharacterSp
             return 0;
         } else {
             setUsedGrenade(true);
-            return (int) (grenadeAttack + (this.getExp() * 0.5));
+            return (int) (grenadeAttack + (this.getExp() * specialScaling));
         }
     }
 
@@ -52,7 +55,7 @@ public class Soldier extends Character implements CombatActor, CombatCharacterSp
     }
 
     public void takeDamage(int attackIntensity) {
-        int damageTaken = (int) round(attackIntensity * 1.0);
+        int damageTaken = (int) round(attackIntensity * damageVulnerability);
         this.currentHealth = currentHealth - damageTaken;
     }
 }

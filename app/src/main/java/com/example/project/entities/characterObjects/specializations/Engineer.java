@@ -12,13 +12,16 @@ public class Engineer extends Character implements CombatActor, CombatCharacterS
 
     //CONSTANTS
     private final int baseAttack = 2;
+    private final double attackScaling = 0.5;
+    private final double damageVulnerability = 0.8;
+    private final double damageVulnerabilityArmored = 0.5;
 
     public Engineer(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
     }
 
     public int attack() {
-        return (int) (baseAttack + (this.getExp() * 0.5));
+        return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 
     //todo: check if its equipped, if it is, display so on the ui, have it not waste the turn
@@ -50,10 +53,10 @@ public class Engineer extends Character implements CombatActor, CombatCharacterS
 
     public void takeDamage(int attackIntensity) {
         if(combatArmorEquipped) {
-            int damageTaken = (int) round(attackIntensity * 0.5);
+            int damageTaken = (int) round(attackIntensity * damageVulnerabilityArmored);
             this.currentHealth = currentHealth - damageTaken;
         } else {
-            int damageTaken = (int) round(attackIntensity * 0.8);
+            int damageTaken = (int) round(attackIntensity * damageVulnerability);
             this.currentHealth = currentHealth - damageTaken;
         }
     }
