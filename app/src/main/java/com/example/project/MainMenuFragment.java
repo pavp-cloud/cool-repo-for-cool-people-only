@@ -1,5 +1,6 @@
 package com.example.project;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,8 @@ public class MainMenuFragment extends Fragment {
         shipHealthNumber = view.findViewById(R.id.ship_health_number_text);
 
         updateStats();
+        checkGameOver();
+
 
         // sets up listeners for each button on the main menu
 
@@ -68,6 +71,23 @@ public class MainMenuFragment extends Fragment {
         });
 
         return view;
+    }
+    //Displays game over if ship health is 0.
+    private void checkGameOver() {
+        if (SpaceShip.getInstance().getShipHealth() <= 0) {
+            new AlertDialog.Builder(requireActivity(), R.style.CustomDialogTheme)
+                    .setTitle("GAME OVER")
+                    .setMessage("Your ship has been destroyed. And no one will now hear your screams.")
+                    .setCancelable(false)
+                    .setPositiveButton("Restart", (dialog, which) -> {
+                        SpaceShip.getInstance().resetGame();
+                        updateStats();
+                    })
+                    .setNegativeButton("Can you survive longer in the void of space?", (dialog, which) -> {
+                        requireActivity().finish();
+                    })
+                    .show();
+        }
     }
 
     private void showOnboardPopup() {

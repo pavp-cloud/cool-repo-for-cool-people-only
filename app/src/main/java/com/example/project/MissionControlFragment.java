@@ -26,6 +26,7 @@ public class MissionControlFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.mission_control, container, false);
 
+
         Button startMissionButton = view.findViewById(R.id.start_mission_button);
         Button scanForThreatsButton = view.findViewById(R.id.scan_for_threats_button);
         Button chooseCrewButton = view.findViewById(R.id.choose_crew_button);

@@ -9,7 +9,7 @@ public class SpaceShip {
     private TrainingRoom trainingRoom;
     private BackgroundCheck securityCheck;
     private static int daysOnBoard = 1;
-    private static int shipHealth = 100;
+    private static int shipHealth = 1;
 
 
     private SpaceShip() {
@@ -24,6 +24,22 @@ public class SpaceShip {
             instance = new SpaceShip();
         }
         return instance;
+    }
+
+    public void resetGame() {
+        shipHealth = 100;
+        daysOnBoard = 100;
+
+        // Clear out all crewmembers
+        while (!crewQuarters.getCrewMembers().isEmpty()) {
+            crewQuarters.removeCrewMember(crewQuarters.getCrewMembers().get(0));
+        }
+
+        // Re-initialize modules to ensure a fresh state
+        missionRoom = new MissionRoom();
+        manifest = new PassengerManifest();
+        trainingRoom = new TrainingRoom();
+        securityCheck = new BackgroundCheck();
     }
 
     public CrewQuarters getCrewQuarters() {
