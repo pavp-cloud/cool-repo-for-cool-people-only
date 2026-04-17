@@ -1,10 +1,13 @@
 package com.example.project;
 
 import android.os.Bundle;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 
 public class CombatViewFragment extends Fragment {
 
@@ -16,9 +19,17 @@ public class CombatViewFragment extends Fragment {
         // Get the active mission from the MissionRoom
         Mission mission = SpaceShip.getInstance().getMissionRoom().getActiveMission();
         
-        // Create the custom SurfaceView
+        // Creates our custom SurfaceView
         CombatView combatView = new CombatView(requireContext());
         combatView.setupCombat(mission);
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // this is used to disable the back swiping feature of the fragment to
+                // not exit combat early
+            }
+        };
         
         // Return the SurfaceView as the Fragment's view
         // Set the listener for when the Continue button is clicked
@@ -47,6 +58,7 @@ public class CombatViewFragment extends Fragment {
             }
         });
 
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
         // Return the SurfaceView as the Fragment's view
         return combatView;
     }
