@@ -247,7 +247,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             c1SpecialBtn.set(startX + btnWidth + spacing, btnY, startX + btnWidth*2 + spacing, btnY + btnHeight);
             c2AttackBtn.set(startX + btnWidth*2 + spacing*2, btnY, startX + btnWidth*3 + spacing*2, btnY + btnHeight);
             c2SpecialBtn.set(startX + btnWidth*3 + spacing*3, btnY, startX + btnWidth*4 + spacing*3, btnY + btnHeight);
-            continueBtn.set(width * 0.25f, height * 0.72f, width * 0.75f, height * 0.82f);
+            continueBtn.set(width * 0.25f, height * 0.82f, width * 0.75f, height * 0.92f);
 
             // Draw Background
             if (backgroundSprite != null) {
