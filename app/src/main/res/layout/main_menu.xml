@@ -33,32 +33,34 @@
 
     <Button
         android:id="@+id/onboard_crew_button"
-        android:layout_width="133dp"
-        android:layout_height="77dp"
+        android:layout_width="165dp"
+        android:layout_height="104dp"
         android:layout_marginEnd="200dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="200dp"
         android:backgroundTint="#77000000"
         android:text="Onboard New Crew Member"
-        app:layout_constraintBottom_toTopOf="@+id/passenger_manifest_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/training_room_button"
-        android:layout_width="133dp"
-        android:layout_height="77dp"
+        android:layout_width="165dp"
+        android:layout_height="104dp"
         android:layout_marginStart="200dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="200dp"
         android:backgroundTint="#78000000"
         android:text="Training Room"
-        app:layout_constraintBottom_toTopOf="@+id/passenger_manifest_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.652"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/passenger_manifest_button"
-        android:layout_width="133dp"
-        android:layout_height="77dp"
+        android:layout_width="165dp"
+        android:layout_height="104dp"
         android:layout_marginBottom="85dp"
         android:backgroundTint="#77000000"
         android:text="View Manifest"
@@ -70,12 +72,14 @@
         android:id="@+id/mission_control_button"
         android:layout_width="165dp"
         android:layout_height="104dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#78000000"
         android:text="Mission Control"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.598" />
 
     <TextView
         android:id="@+id/days_on_board_text"
@@ -122,5 +126,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/big_pixel_rocket" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
