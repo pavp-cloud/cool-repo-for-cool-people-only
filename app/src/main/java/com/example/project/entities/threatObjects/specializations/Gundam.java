@@ -1,0 +1,71 @@
+package com.example.project.entities.threatObjects.specializations;
+
+
+import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.threatObjects.Threat;
+
+import java.util.Random;
+
+public class Gundam extends Threat {
+    private boolean missileUsed = false;
+
+    //CONSTANTS
+
+    private final int baseAttack = 2;
+
+
+    public Gundam(int maxHealth, int currentHealth, String name, int exp) {
+        super(maxHealth, currentHealth, name, exp);
+        this.missileUsed = missileUsed;
+    }
+
+    @Override
+    public int attack(Character character1, Character character2) {
+        //basic base attack logic, can be copied everywhere but with different scaling
+        Random random = new Random();
+        int target = random.nextInt(2); //returns int from 0 to 1 (higher bound is exclusive, so a bound of 2 gives a 1)
+        int damage = (int)(baseAttack + (this.getExp() * 0.5));
+
+        if (target == 0) {
+            character1.takeDamage(damage);
+        }
+        else {
+            character2.takeDamage(damage);
+        }
+        return 0;
+    }
+
+    @Override
+    public int special(Character character1, Character character2) {
+        //shoots a missile for big damage
+        Random random = new Random();
+        int target = random.nextInt(2); //returns int from 0 to 1 (higher bound is exclusive, so a bound of 2 gives a 1)
+        int damage = (int)(baseAttack + (this.getExp() * 2)); //The Big Damage
+
+        if (missileUsed) { //if used, reload
+            reloadMissile();
+        } else {          //if not, do the Big Damage
+            if (target == 0) {
+                character1.takeDamage(damage);
+            } else {
+                character2.takeDamage(damage);
+            }
+            missileUsed();
+        }
+
+        return 0;
+    }
+
+    public void reloadMissile() {
+        this.missileUsed = false;
+    }
+
+    public void missileUsed() {
+        this.missileUsed = true;
+    }
+
+    @Override
+    public void takeDamage(int damage) {
+        this.currentHealth -= damage;
+    }
+}

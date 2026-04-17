@@ -1,4 +1,6 @@
-package com.example.project;
+package com.example.project.entities.threatObjects;
+
+import com.example.project.entities.characterObjects.Character;
 
 public abstract class Threat {
     protected int maxHealth;

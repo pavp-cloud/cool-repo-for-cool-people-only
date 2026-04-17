@@ -1,4 +1,11 @@
-package com.example.project;
+package com.example.project.backgroundChecks;
+
+import com.example.project.entities.characterObjects.specializations.Engineer;
+import com.example.project.entities.characterObjects.specializations.Medic;
+import com.example.project.entities.characterObjects.specializations.Pilot;
+import com.example.project.entities.characterObjects.specializations.Scientist;
+import com.example.project.entities.characterObjects.specializations.Soldier;
+import com.example.project.entities.characterObjects.Character;
 
 public class BackgroundCheck {
 

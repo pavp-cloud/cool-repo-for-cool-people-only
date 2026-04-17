@@ -1,15 +1,17 @@
-package com.example.project;
+package com.example.project.spaceshipObjects;
+
+import com.example.project.entities.characterObjects.Character;
 
 public class TrainingRoom {
     private int dailyUsages = 3;
-    private Character trainee = null;
+    private com.example.project.entities.characterObjects.Character trainee = null;
 
-    public void addTrainee(Character trainee) {
+    public void addTrainee(com.example.project.entities.characterObjects.Character trainee) {
         this.trainee = trainee;
     }
 
-    public Character removeTrainee() {
-        Character temp = trainee;
+    public com.example.project.entities.characterObjects.Character removeTrainee() {
+        com.example.project.entities.characterObjects.Character temp = trainee;
         trainee = null;
         return temp;
     }

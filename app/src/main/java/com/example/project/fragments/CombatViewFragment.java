@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.project.mission.Mission;
+import com.example.project.R;
+import com.example.project.spaceshipObjects.SpaceShip;
+import com.example.project.views.CombatView;
 
 
 public class CombatViewFragment extends Fragment {

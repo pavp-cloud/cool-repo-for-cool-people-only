@@ -1,6 +1,9 @@
-package com.example.project;
+package com.example.project.entities.characterObjects.specializations;
 
 import static java.lang.Math.round;
+
+import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.threatObjects.Threat;
 
 public class Scientist extends Character {
     private boolean usedExpPotion = false;

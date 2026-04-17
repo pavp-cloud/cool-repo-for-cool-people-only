@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.fragments;
 
 import android.os.Bundle;
 
@@ -10,6 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.project.R;
+import com.example.project.spaceshipObjects.SpaceShip;
+import com.example.project.adapters.CharacterAdapter;
+import com.example.project.entities.characterObjects.Character;
 
 import java.util.ArrayList;
 
