@@ -14,6 +14,8 @@ public class Pilot extends Character implements CombatActor, CombatCharacterSpec
 
     private final int baseAttack = 2;
     private final int droneAttack = 5;
+    private final double attackScaling = 0.5;
+    private final double damageVulnerability = 1.0;
     /*not too sure about the "etiquette" of using final,
     i think one of the presentations said "don't use them too much" but
     that's how you would define a constant*/
@@ -32,9 +34,9 @@ public class Pilot extends Character implements CombatActor, CombatCharacterSpec
 
     public int attack(){
         if (getDroneDeployed()) {
-            return (int) (baseAttack + droneAttack + (this.getExp() * 0.5));
+            return (int) (baseAttack + droneAttack + (this.getExp() * attackScaling));
         } else {
-            return (int) (baseAttack + (this.getExp() * 0.5));
+            return (int) (baseAttack + (this.getExp() * attackScaling));
         }
     }
 
@@ -52,7 +54,7 @@ public class Pilot extends Character implements CombatActor, CombatCharacterSpec
     }
 
     public void takeDamage(int attackIntensity) {
-        int damageTaken = (int) round(attackIntensity * 1.0);
+        int damageTaken = (int) round(attackIntensity * damageVulnerability);
         this.currentHealth = currentHealth - damageTaken;
     }
 }

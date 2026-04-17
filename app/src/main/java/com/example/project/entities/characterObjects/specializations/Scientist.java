@@ -13,6 +13,8 @@ public class Scientist extends Character implements CombatActor, CombatCharacter
     //CONSTANTS
     private final int baseAttack = 2;
     private final int expPotionValue = 5;
+    private final double attackScaling = 0.5;
+    private final double damageVulnerability = 1.2;
 
     public Scientist(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
@@ -27,7 +29,7 @@ public class Scientist extends Character implements CombatActor, CombatCharacter
     }
 
     public int attack(){
-        return (int) (baseAttack + (this.getExp() * 0.5));
+        return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 
     //exp potion
@@ -51,7 +53,7 @@ public class Scientist extends Character implements CombatActor, CombatCharacter
     }
 
     public void takeDamage(int attackIntensity) {
-        int damageTaken = (int) round(attackIntensity * 1.2);
+        int damageTaken = (int) round(attackIntensity * damageVulnerability);
         this.currentHealth = currentHealth - damageTaken;
     }
 }
