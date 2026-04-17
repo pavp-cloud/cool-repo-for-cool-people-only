@@ -19,9 +19,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Temporarily holds the selected crew for the mission before it starts
-    private ArrayList<Character> selectedMissionCrew = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.new_game_button).setVisibility(View.GONE);
                 findViewById(R.id.load_save_button).setVisibility(View.GONE);
                 findViewById(R.id.game_name_text).setVisibility(View.GONE);
+                findViewById(R.id.imageView).setVisibility(View.GONE);
+
 
                 // 2. Make the fragment container visible
                 View container = findViewById(R.id.fragment_container);
