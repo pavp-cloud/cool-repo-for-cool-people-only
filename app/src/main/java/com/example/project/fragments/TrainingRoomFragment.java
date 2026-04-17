@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,12 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project.R;
+import com.example.project.spaceshipObjects.SpaceShip;
+import com.example.project.adapters.CharacterAdapter;
+import com.example.project.adapters.StringAdapter;
+import com.example.project.entities.characterObjects.Character;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +64,7 @@ public class TrainingRoomFragment extends Fragment {
 
     private void onSelectTraineeClicked(TextView nameText, TextView diffText, Button beginBtn, RecyclerView recycler) {
         // Return current trainee to pool if switching
-        Character current = SpaceShip.getInstance().getTrainingRoom().getTrainees();
+        com.example.project.entities.characterObjects.Character current = SpaceShip.getInstance().getTrainingRoom().getTrainees();
         if (current != null) {
             SpaceShip.getInstance().getCrewQuarters().addCrewMember(SpaceShip.getInstance().getTrainingRoom().removeTrainee());
         }
@@ -66,7 +72,7 @@ public class TrainingRoomFragment extends Fragment {
 
         recycler.setVisibility(View.VISIBLE);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        ArrayList<Character> available = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
+        ArrayList<com.example.project.entities.characterObjects.Character> available = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
 
         recycler.setAdapter(new CharacterAdapter(available, character -> {
             SpaceShip.getInstance().getTrainingRoom().addTrainee(character);
@@ -95,7 +101,7 @@ public class TrainingRoomFragment extends Fragment {
         updateUses();
         String message = (result == 0) ? "Training Successful!" : "Training Failed.";
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-        Character finishedTrainee = SpaceShip.getInstance().getTrainingRoom().removeTrainee();
+        com.example.project.entities.characterObjects.Character finishedTrainee = SpaceShip.getInstance().getTrainingRoom().removeTrainee();
         SpaceShip.getInstance().getCrewQuarters().addCrewMember(finishedTrainee);
         updateTrainingUI(nameText, diffText, beginBtn);
     }

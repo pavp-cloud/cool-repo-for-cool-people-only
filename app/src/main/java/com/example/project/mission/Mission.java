@@ -1,10 +1,16 @@
-package com.example.project;
+package com.example.project.mission;
+
+import com.example.project.spaceshipObjects.CrewQuarters;
+import com.example.project.spaceshipObjects.PassengerManifest;
+import com.example.project.spaceshipObjects.SpaceShip;
+import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.threatObjects.Threat;
 
 import java.util.Random;
 
 public class Mission {
-    private Character crewMember1 = null;
-    private Character crewMember2 = null;
+    private com.example.project.entities.characterObjects.Character crewMember1 = null;
+    private com.example.project.entities.characterObjects.Character crewMember2 = null;
     private Threat missionTarget;
     private boolean isPlayerTurn = true;
     private boolean crew1Moved = false;

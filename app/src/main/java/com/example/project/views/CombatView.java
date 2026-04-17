@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +13,21 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
+
+import com.example.project.entities.threatObjects.specializations.Demon;
+import com.example.project.entities.characterObjects.specializations.Engineer;
+import com.example.project.entities.threatObjects.specializations.Gundam;
+import com.example.project.entities.characterObjects.specializations.Medic;
+import com.example.project.mission.Mission;
+import com.example.project.entities.threatObjects.specializations.Parasite;
+import com.example.project.entities.characterObjects.specializations.Pilot;
+import com.example.project.entities.threatObjects.specializations.Pirate;
+import com.example.project.R;
+import com.example.project.entities.characterObjects.specializations.Scientist;
+import com.example.project.entities.characterObjects.specializations.Soldier;
+import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.threatObjects.Threat;
+import com.example.project.entities.threatObjects.specializations.Alien;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,8 +74,8 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private RectF c2SpecialBtn = new RectF();
     private RectF continueBtn = new RectF();
 
-    private Character crewMember1;
-    private Character crewMember2;
+    private com.example.project.entities.characterObjects.Character crewMember1;
+    private com.example.project.entities.characterObjects.Character crewMember2;
     private Threat missionThreat;
     private Mission activeMission;
     private Random random = new Random();
@@ -155,7 +170,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
     public void playerAttack(int crewIndex, attackState type) {
         if (activeCombat == combatState.Players_Turn) {
-            Character member = (crewIndex == 1) ? crewMember1 : crewMember2;
+            com.example.project.entities.characterObjects.Character member = (crewIndex == 1) ? crewMember1 : crewMember2;
             if (member == null || member.getCurrentHealth() <= 0) return;
 
             if (crewIndex == 1 && activeMission.isCrew1Moved()) return;
@@ -279,8 +294,8 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         int hp = 0, maxHp = 0;
         Bitmap sprite = defaultSprite;
 
-        if (entity instanceof Character) {
-            Character c = (Character) entity;
+        if (entity instanceof com.example.project.entities.characterObjects.Character) {
+            com.example.project.entities.characterObjects.Character c = (Character) entity;
             name = c.getName();
             hp = c.getCurrentHealth();
             maxHp = c.getMaxHealth();

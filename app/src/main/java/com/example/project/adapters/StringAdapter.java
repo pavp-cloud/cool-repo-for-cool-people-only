@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.adapters;
 
 import android.graphics.Color;
 import android.view.ViewGroup;

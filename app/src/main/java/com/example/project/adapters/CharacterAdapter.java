@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project.R;
+import com.example.project.entities.characterObjects.Character;
+
 import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
@@ -37,7 +41,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
-        Character character = characterList.get(position);
+        com.example.project.entities.characterObjects.Character character = characterList.get(position);
         
         // Display character info
         holder.nameText.setText(String.format("%s \nStatus: %s", character.getName(), character.getStatus()));

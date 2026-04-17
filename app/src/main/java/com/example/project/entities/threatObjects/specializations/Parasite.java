@@ -1,19 +1,19 @@
-package com.example.project;
+package com.example.project.entities.threatObjects.specializations;
 
+import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.threatObjects.Threat;
 
 import java.util.Random;
 
-public class Gundam extends Threat{
-    private boolean missileUsed = false;
+public class Parasite extends Threat {
 
     //CONSTANTS
 
     private final int baseAttack = 2;
 
-
-    public Gundam(int maxHealth, int currentHealth, String name, int exp) {
+    public Parasite(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
-        this.missileUsed = missileUsed;
+
     }
 
     @Override
@@ -33,32 +33,20 @@ public class Gundam extends Threat{
     }
 
     @Override
-    public int special(Character character1, Character character2) {
-        //shoots a missile for big damage
+    public int special(Character character1, Character character2) { //lifesteal
         Random random = new Random();
         int target = random.nextInt(2); //returns int from 0 to 1 (higher bound is exclusive, so a bound of 2 gives a 1)
-        int damage = (int)(baseAttack + (this.getExp() * 2)); //The Big Damage
+        int damage = (int)(baseAttack + (this.getExp() * 0.2)); //lower scaling to compensate for healing
 
-        if (missileUsed) { //if used, reload
-            reloadMissile();
-        } else {          //if not, do the Big Damage
-            if (target == 0) {
-                character1.takeDamage(damage);
-            } else {
-                character2.takeDamage(damage);
-            }
-            missileUsed();
+        if (target == 0) { //basic targeting
+            character1.takeDamage(damage);
+        }
+        else {
+            character2.takeDamage(damage);
         }
 
+        healHealth(damage); //heals hp equal to the attack's damage (not accounting for resistances)
         return 0;
-    }
-
-    public void reloadMissile() {
-        this.missileUsed = false;
-    }
-
-    public void missileUsed() {
-        this.missileUsed = true;
     }
 
     @Override

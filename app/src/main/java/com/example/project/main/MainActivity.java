@@ -1,20 +1,19 @@
-package com.example.project;
+package com.example.project.main;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.project.fragments.MainMenuFragment;
+import com.example.project.R;
+import com.example.project.spaceshipObjects.SpaceShip;
+import com.example.project.entities.characterObjects.Character;
 
 import java.util.ArrayList;
 

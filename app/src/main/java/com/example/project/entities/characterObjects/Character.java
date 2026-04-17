@@ -1,6 +1,8 @@
-package com.example.project;
+package com.example.project.entities.characterObjects;
 
 import static java.lang.Math.round;
+
+import com.example.project.entities.threatObjects.Threat;
 
 public abstract class Character {
     protected int maxHealth;

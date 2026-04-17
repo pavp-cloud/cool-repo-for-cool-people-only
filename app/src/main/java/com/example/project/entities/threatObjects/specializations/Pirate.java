@@ -1,4 +1,7 @@
-package com.example.project;
+package com.example.project.entities.threatObjects.specializations;
+
+import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.threatObjects.Threat;
 
 import java.util.Random;
 
