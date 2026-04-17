@@ -33,7 +33,7 @@ public class Parasite extends Threat implements CombatActor, CombatThreatSpecial
         else {
             character2.takeDamage(damage);
         }
-        return 0;
+        return damage;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class Parasite extends Threat implements CombatActor, CombatThreatSpecial
         }
 
         healHealth(damage); //heals hp equal to the attack's damage (not accounting for resistances)
-        return 0;
+        return damage;
     }
 
     @Override

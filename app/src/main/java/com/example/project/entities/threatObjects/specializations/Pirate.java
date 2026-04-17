@@ -66,7 +66,7 @@ public class Pirate extends Threat implements CombatActor, CombatThreatSpecial {
         else {
             character2.takeDamage(damage);
         }
-        return 0; //also returning ints feels like a remnant, we're already interacting with character HP through a takeDamage method within attack method
+        return damage; //also returning ints feels like a remnant, we're already interacting with character HP through a takeDamage method within attack method
     }
 
     public void setExp(int value) {

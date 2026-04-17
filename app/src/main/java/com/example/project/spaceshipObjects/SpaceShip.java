@@ -11,8 +11,8 @@ public class SpaceShip {
     private PassengerManifest manifest;
     private TrainingRoom trainingRoom;
     private BackgroundCheck securityCheck;
-    private static int daysOnBoard = 1;
-    private static int shipHealth = 1;
+    private static int daysOnBoard = 0;
+    private static int shipHealth = 100;
 
 
     private SpaceShip() {
@@ -31,7 +31,7 @@ public class SpaceShip {
 
     public void resetGame() {
         shipHealth = 100;
-        daysOnBoard = 100;
+        daysOnBoard = 0;
 
         // Clear out all crewmembers
         while (!crewQuarters.getCrewMembers().isEmpty()) {
