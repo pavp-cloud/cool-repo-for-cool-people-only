@@ -4,9 +4,11 @@ package com.example.project.entities.characterObjects.specializations;
 import static java.lang.Math.round;
 
 import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.entityInterfaces.CombatActor;
+import com.example.project.entities.entityInterfaces.CombatCharacterSpecial;
 import com.example.project.entities.threatObjects.Threat;
 
-public class Medic extends Character {
+public class Medic extends Character implements CombatActor, CombatCharacterSpecial {
 
     //CONSTANTS
     private final int baseAttack = 2;
