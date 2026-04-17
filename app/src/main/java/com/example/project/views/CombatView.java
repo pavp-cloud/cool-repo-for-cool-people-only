@@ -98,7 +98,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     public void setOnCombatEndedListener(OnCombatEndedListener listener) {
         this.combatEndedListener = listener;
     }
-
+    // all the sprites from the spirte map being called and loaded
     private void loadSprites(Context context) {
         spriteMap.put(Medic.class, BitmapFactory.decodeResource(getResources(), R.drawable.medic_sprite));
         spriteMap.put(Soldier.class, BitmapFactory.decodeResource(getResources(), R.drawable.solider_sprite));
@@ -146,13 +146,13 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
         checkGameOver();
     }
-
+    //check for game over and initate gameover if flagged
     private void checkGameOver() {
         if (activeMission != null && activeMission.isGameOver()) {
             activeCombat = combatState.GameOver;
         }
     }
-
+    //Game over animation
     private void endAnimation() {
         animationTimer = 0;
         if (targetX == enemyX) { // Player finished attack
