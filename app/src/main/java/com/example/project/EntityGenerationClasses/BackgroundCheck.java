@@ -22,9 +22,13 @@ public class BackgroundCheck {
     // hp scales with the amount of day passed/missions completed overall
     private final int healthScaling = 10;
 
+    /*
+    this function is used to create a new crew member. It takes a randomly generated number,
+    a name given by the user and the days on board to create a charcter. the days on board
+    are used to scale up new recruits to catch up to where you are in the game.
+     */
     public Character newCrewMember(int selection, String crewMemberName, int daysOnBoard) {
 
-        // using a number generated beforehand it selects a random spec to recruit
     switch (selection) {
         case 1:
             int startingHealthMedic = baseHealthMedic + (healthScaling * daysOnBoard);

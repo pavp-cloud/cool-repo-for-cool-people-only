@@ -10,14 +10,14 @@ public class Demon extends Threat {
     //CONSTANTS
 
     private final int baseAttack = 2;
-    private final double attackScaling = 0.5;
+    private final double attackScaling = 0.6;
 
     public Demon(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
     }
     @Override
     protected int calculateDamage() {
-        return (int) (baseAttack + (this.getExp() * attackScaling));
+        return (int) (baseAttack + ((this.getExp() * getBuffStackCounter()) * attackScaling));
     }
 
     @Override

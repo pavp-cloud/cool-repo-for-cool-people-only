@@ -8,9 +8,6 @@ import com.example.project.entities.threatObjects.Threat;
 import java.util.Random;
 
 public class Gundam extends Threat {
-    private boolean missileUsed = false;
-
-    //CONSTANTS
 
     private final int baseAttack = 2;
     private final double attackScaling = 0.5;
@@ -32,27 +29,15 @@ public class Gundam extends Threat {
         Random random = new Random();
         int target = random.nextInt(2); //returns int from 0 to 1 (higher bound is exclusive, so a bound of 2 gives a 1)
         int damage = (int)(baseAttack + (this.getExp() * specialScaling)); //The Big Damage
-
-        if (missileUsed) { //if used, reload
-            reloadMissile();
-        } else {          //if not, do the Big Damage
+        int recoilDamage = (int) (damage * 0.7);
             if (target == 0) {
                 character1.takeDamage(damage);
             } else {
                 character2.takeDamage(damage);
             }
-            missileUsed();
-        }
+            takeDamage(recoilDamage);
 
         return damage;
-    }
-
-    public void reloadMissile() {
-        this.missileUsed = false;
-    }
-
-    public void missileUsed() {
-        this.missileUsed = true;
     }
 
     @Override
