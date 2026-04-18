@@ -29,26 +29,28 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // initializes the spaceship
         SpaceShip.getInstance();
 
+        // initializes the start game button
         Button newGameButton = findViewById(R.id.new_game_button);
 
         newGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 1. Hide the start menu UI (buttons and text)
+                // hides all the buttons and text views
                 findViewById(R.id.new_game_button).setVisibility(View.GONE);
                 findViewById(R.id.load_save_button).setVisibility(View.GONE);
                 findViewById(R.id.game_name_text).setVisibility(View.GONE);
                 findViewById(R.id.imageView).setVisibility(View.GONE);
 
 
-                // 2. Make the fragment container visible
+                // makes the main menu visible
                 View container = findViewById(R.id.fragment_container);
                 if (container != null) {
                     container.setVisibility(View.VISIBLE);
 
-                    // 3. Load the MainMenuFragment into the container
+                    // adds the main menu fragment into the container
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, new MainMenuFragment())
                             .commit();

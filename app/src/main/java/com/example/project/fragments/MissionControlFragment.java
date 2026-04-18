@@ -25,16 +25,16 @@ import java.util.ArrayList;
 public class MissionControlFragment extends Fragment {
 
     public MissionControlFragment() {
-        // Required empty public constructor
+
     }
-    private ArrayList<com.example.project.entities.characterObjects.Character> selectedMissionCrew = new ArrayList<>();
+    private ArrayList<Character> selectedMissionCrew = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.mission_control, container, false);
 
-
+        // initializes all the buttons and text views
         Button startMissionButton = view.findViewById(R.id.start_mission_button);
         Button scanForThreatsButton = view.findViewById(R.id.scan_for_threats_button);
         Button chooseCrewButton = view.findViewById(R.id.choose_crew_button);
@@ -47,32 +47,31 @@ public class MissionControlFragment extends Fragment {
 
         RecyclerView selectionRecycler = view.findViewById(R.id.recycler_view_crew_select);
 
+        // begins crew member selection
         chooseCrewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* Rule: Choosing again returns currently "pulled" characters back to CrewQuarters
-                   so the pool remains accurate. */
-                for (com.example.project.entities.characterObjects.Character c : selectedMissionCrew) {
+                for (Character c : selectedMissionCrew) {
                     SpaceShip.getInstance().getCrewQuarters().addCrewMember(c);
                 }
                 selectedMissionCrew.clear();
                 updateMissionUI(selectedCrewLabel, startMissionButton);
 
-                // Open selection overlay
+                // opens selection overlay
                 selectionRecycler.setVisibility(View.VISIBLE);
                 selectionRecycler.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-                // Get people sitting in CrewQuarters
-                ArrayList<com.example.project.entities.characterObjects.Character> available = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
+                // gets the list of available crew members
+                ArrayList<Character> available = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
 
-                // Build adapter with custom listener for the selection logic
+                // build adapter for containing the logic for selecting crew members
                 CharacterAdapter adapter = new CharacterAdapter(available, new CharacterAdapter.OnCharacterClickListener() {
                     @Override
                     public void onCharacterClick(Character character) {
-                        // 1. Add to the pending mission list
+                        // adds the selected crew member to the mission crew
                         selectedMissionCrew.add(character);
 
-                        // 2. Remove from the global ship pool so they can't be picked again
+                        // removes the selected crew member from the CrewQuarters for the duration fo the mission
                         SpaceShip.getInstance().getCrewQuarters().removeCrewMember(character);
 
                         // 3. Logic: If we need more characters, refresh; otherwise, close list
@@ -89,15 +88,16 @@ public class MissionControlFragment extends Fragment {
             }
         });
 
+        // starts the mission
         startMissionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Mission mission = SpaceShip.getInstance().getMissionRoom().getActiveMission();
                 if (mission != null && selectedMissionCrew.size() == 2) {
-                    // LINK: Pass our 2 characters into the Mission object
+                    // passes 2 characters into the Mission object
                     mission.addCrewMembers(selectedMissionCrew.get(0), selectedMissionCrew.get(1));
 
-                    // Clear the selection list (they are now active in the Mission class)
+                    // clears the selection list (they are now active in the Mission class)
                     selectedMissionCrew.clear();
 
                     // sets the view to the combat view
@@ -112,6 +112,7 @@ public class MissionControlFragment extends Fragment {
             }
         });
 
+        // scans for threats and creates a mission
         scanForThreatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +127,7 @@ public class MissionControlFragment extends Fragment {
                         xpText.setText(String.valueOf(missionThreat.getExp()));
                     }
                 } else {
+                    // tells the player that they are already on standby
                     String message = "Active mission on standby";
                     Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
                 }
@@ -142,6 +144,10 @@ public class MissionControlFragment extends Fragment {
 
         return view;
     }
+
+    /*
+    this function updates the UI for the mission control view
+     */
     private void updateMissionUI(TextView label, Button startBtn) {
         if (selectedMissionCrew.isEmpty()) {
             label.setText("Selected Crew: None");
@@ -153,7 +159,7 @@ public class MissionControlFragment extends Fragment {
                 if (i < selectedMissionCrew.size() - 1) names.append(", ");
             }
             label.setText(names.toString());
-            // Only allow starting if exactly 2 people are ready
+            // only allows starting of the mission if exactly 2 people are ready
             startBtn.setEnabled(selectedMissionCrew.size() == 2);
         }
     }

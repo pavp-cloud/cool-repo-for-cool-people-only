@@ -30,6 +30,10 @@ public class TrainingRoom {
         dailyUsages--;
     }
 
+    /*
+    this method contains the logic for how much exp a crew member will gain
+    after a successful training session or if the training succeeded in the first place
+     */
     public int trainCrewMember(int selection) {
         if (dailyUsages > 0) {
             decrementDailyUsages();
@@ -38,15 +42,15 @@ public class TrainingRoom {
 
                 case 1:
                     // level 1 training cannot fail
-                    trainee.gainExp(5);
-                    trainee.increaseMaxHealth(5);
+                    trainee.gainExp(10);
+                    trainee.increaseMaxHealth(10);
                     return 0;
 
 
                 case 2:
-                    if (Math.random() < 0.6) {
-                        trainee.gainExp(10);
-                        trainee.increaseMaxHealth(10);
+                    if (Math.random() < 0.7) {
+                        trainee.gainExp(20);
+                        trainee.increaseMaxHealth(20);
                         return 0;
                     } else {
                         // training fails
@@ -54,9 +58,9 @@ public class TrainingRoom {
                     }
 
                 case 3:
-                    if (Math.random() < 0.3) {
-                        trainee.gainExp(15);
-                        trainee.increaseMaxHealth(15);
+                    if (Math.random() < 0.4) {
+                        trainee.gainExp(30);
+                        trainee.increaseMaxHealth(30);
                         return 0;
                     } else {
                         // training fails
@@ -64,7 +68,7 @@ public class TrainingRoom {
                     }
 
                 default:
-                    // training fails for whatever reason(out of bounds int, no crew memeber as trainee, ect...)
+                    // if training fails for whatever reason
                     return 1;
             }
         } else {

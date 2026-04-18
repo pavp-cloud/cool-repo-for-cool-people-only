@@ -26,10 +26,10 @@ public class MainMenuFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // 1. Inflate the EXISTING main_menu.xml layout
+        // inflates the main menu layout for this fragment
         View view = inflater.inflate(R.layout.main_menu, container, false);
 
-        // 2. Find the buttons within this specific Fragment's view
+        // initializes the buttons and text views
         Button missionControlButton = view.findViewById(R.id.mission_control_button);
         Button onboardCrewButton = view.findViewById(R.id.onboard_crew_button);
         Button trainingRoomButton = view.findViewById(R.id.training_room_button);
@@ -39,6 +39,10 @@ public class MainMenuFragment extends Fragment {
         currentCrewCountNumber = view.findViewById(R.id.current_crew_count_number_text);
         shipHealthNumber = view.findViewById(R.id.ship_health_number_text);
 
+        /*
+        updates the stats on the main menu and
+        checks if the game is over and needs to reset the game
+        */
         updateStats();
         checkGameOver();
 
@@ -92,7 +96,7 @@ public class MainMenuFragment extends Fragment {
     }
 
     private void showOnboardPopup() {
-        // We use 'requireActivity()' because the Dialog needs a Context (the MainActivity)
+        // Creates a custom dialog layout for naming the onboarded crew member
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_onboard_crew, null);
         EditText nameInput = dialogView.findViewById(R.id.edit_text_crew_name);
@@ -113,6 +117,9 @@ public class MainMenuFragment extends Fragment {
                 .show();
     }
 
+    /*
+    updates the stats on the main menu
+     */
     private void updateStats() {
         if (daysAdriftNumber != null && currentCrewCountNumber != null) {
             daysAdriftNumber.setText(String.valueOf(SpaceShip.getInstance().getDaysOnBoard()));

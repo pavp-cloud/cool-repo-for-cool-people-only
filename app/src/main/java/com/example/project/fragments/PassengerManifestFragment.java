@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class PassengerManifestFragment extends Fragment {
 
     public PassengerManifestFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -33,14 +33,14 @@ public class PassengerManifestFragment extends Fragment {
         if (recyclerView != null) {
             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-            // Get data from your existing SpaceShip singleton
+            // gets data from the manifest
             ArrayList<Character> crew = SpaceShip.getInstance().getManifest().getCrewManifest();
 
             CharacterAdapter adapter = new CharacterAdapter(crew, null);
             recyclerView.setAdapter(adapter);
         }
 
-        // Return to main menu
+        // returns to the main menu
         Button backButton = view.findViewById(R.id.back_to_menu_button);
         if (backButton != null) {
             backButton.setOnClickListener(v -> {

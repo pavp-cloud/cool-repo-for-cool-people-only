@@ -50,16 +50,10 @@ public class Mission {
             }
         }).start();
     }
-
-    /**
-     * Handles a specific crew member's action.
-     * @param crewIndex 1 for crewMember1, 2 for crewMember2
-     * @param type 0 for basic attack, 1 for special attack
-     */
     public void playerTurn(int crewIndex, int type) {
         if (!isPlayerTurn) return;
 
-        // Prevent acting twice or acting if dead
+        // Prevents acting twice or acting if dead
         if (crewIndex == 1 && (crew1Moved || crewMember1 == null || crewMember1.getCurrentHealth() <= 0)) return;
         if (crewIndex == 2 && (crew2Moved || crewMember2 == null || crewMember2.getCurrentHealth() <= 0)) return;
 
@@ -76,7 +70,7 @@ public class Mission {
         if (crewIndex == 1) crew1Moved = true;
         else crew2Moved = true;
 
-        // Check if all available crew members have acted
+        // Checks if all available crew members have acted
         if (allCrewMoved()) {
             isPlayerTurn = false;
         }
@@ -118,10 +112,10 @@ public class Mission {
      */
     public void endMission() {
         
-        // Always increment days when a mission ends
+        // increments the day counter at the end of a mission
         SpaceShip.getInstance().incrementDaysOnBoard();
         
-        // If all crew members are dead (GameOver), damage the ship
+        // If all crew members are dead it damages the ship
         boolean crewDead = (crewMember1 == null || crewMember1.getCurrentHealth() <= 0) &&
                           (crewMember2 == null || crewMember2.getCurrentHealth() <= 0);
         if (crewDead) {

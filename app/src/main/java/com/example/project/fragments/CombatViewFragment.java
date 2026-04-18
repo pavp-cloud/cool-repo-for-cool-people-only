@@ -48,13 +48,13 @@ public class CombatViewFragment extends Fragment {
                 // Return to main thread to perform UI changes
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
-                        // 1. Run the mission cleanup logic (survivors return, XP gain, etc.)
+                        // run the mission cleanup logic
                         mission.endMission();
 
                         //Reset the mission room for new threat
                         SpaceShip.getInstance().getMissionRoom().updateMissionStatus();
 
-                        //Reset the training room back to 3
+                        //Reset the training room back to 3 uses
                         SpaceShip.getInstance().getTrainingRoom().resetDailyUsages();
 
 

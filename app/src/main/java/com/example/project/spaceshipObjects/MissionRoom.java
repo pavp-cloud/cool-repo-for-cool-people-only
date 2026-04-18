@@ -18,6 +18,7 @@ public class MissionRoom {
     private ThreatAnalysis radar = new ThreatAnalysis();
     private Mission activeMission = null;
     private ArrayList<Mission> pastMission = new ArrayList<>();
+    // currently pastMissions isn't used anywhere in the code. we plan to add a mission history later.
     private ArrayList<String> threatNames = new ArrayList<>(Arrays.asList(
             "Bob", "Karen", "Terry", "Becky", "RxR 808", "Anvaron the Exhalted",
             "Fungus", "Worm", "Matthew Money Bags", "Pavel Pavlov's Dog", "Heikki got a Heinikeen",
@@ -26,6 +27,9 @@ public class MissionRoom {
     ));
 
 
+    /*
+    this function scans for threats creates the threat object
+     */
     public Threat scanForThreats(int selection){
         Collections.shuffle(threatNames);
         String name = threatNames.get(0);
@@ -33,31 +37,35 @@ public class MissionRoom {
         return radar.generateThreat(selection, name);
     }
 
+    /*
+    this function creates a mission object with the designated threat.
+    the crew members are added later.
+     */
     public Mission createMission(Threat threat){
          Mission mission = new Mission(threat);
          activeMission = mission;
          return mission;
     }
-    
-    public void selectCrewMembers(Mission mission){
-        ArrayList<com.example.project.entities.characterObjects.Character> activeCharacters = SpaceShip.getInstance().getCrewQuarters().getCrewMembers();
 
-        if (activeCharacters.size() >= 2) {
-            com.example.project.entities.characterObjects.Character character1 = activeCharacters.get(0);
-            Character character2 = activeCharacters.get(1);
-            mission.addCrewMembers(character1, character2);
-        }
-    }
-
+    /*
+    this function starts the mission logic
+     */
     public void runMission (Mission mission){
 
         mission.executeMission();
     }
 
+    /*
+    this function returns the active mission
+     */
     public Mission getActiveMission(){
         return activeMission;
     }
 
+    /*
+    this function adds the mission to the past mission list
+    and sets the active mission to null.
+     */
     public void updateMissionStatus(){
         pastMission.add(activeMission);
         activeMission = null;
