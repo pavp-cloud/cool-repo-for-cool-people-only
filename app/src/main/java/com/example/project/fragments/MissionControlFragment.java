@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project.mission.Mission;
 import com.example.project.R;
@@ -114,14 +115,19 @@ public class MissionControlFragment extends Fragment {
         scanForThreatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int randomSelection = (int) (Math.random() * 5) + 1;
-                Threat missionThreat = SpaceShip.getInstance().getMissionRoom().scanForThreats(randomSelection);
-                SpaceShip.getInstance().getMissionRoom().createMission(missionThreat);
+                if (SpaceShip.getInstance().getMissionRoom().getActiveMission() == null) {
+                    int randomSelection = (int) (Math.random() * 5) + 1;
+                    Threat missionThreat = SpaceShip.getInstance().getMissionRoom().scanForThreats(randomSelection);
+                    SpaceShip.getInstance().getMissionRoom().createMission(missionThreat);
 
-                if (missionThreat != null) {
-                    nameText.setText(missionThreat.getName());
-                    hpText.setText(String.valueOf(missionThreat.getCurrentHealth()));
-                    xpText.setText(String.valueOf(missionThreat.getExp()));
+                    if (missionThreat != null) {
+                        nameText.setText(missionThreat.getName());
+                        hpText.setText(String.valueOf(missionThreat.getCurrentHealth()));
+                        xpText.setText(String.valueOf(missionThreat.getExp()));
+                    }
+                } else {
+                    String message = "Active mission on standby";
+                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
                 }
             }
         });
