@@ -19,19 +19,13 @@ public class Pirate extends Threat implements CombatActor, CombatThreatSpecial {
         super(maxHealth, currentHealth, name, exp);
     }
 
+
+    protected int calculateDamage() {
+        return (int) (baseAttack + (this.getExp() * attackScaling));
+    }
+
     @Override
     public int special(Character character1, Character character2) {
-        /*how i envision it is it'll steal exp from the character with higher exp
-        with a safeguard in place in a case where stolen exp would be higher than
-        the character's current exp
-         */
-        /*how i would do it is just make a copy of the character with higher exp,
-        make changes to it and then it'll reflect onto that character
-        i dunno how to actually implement that or if thats even good but there's a way to copy an object
-        with all of its references*/
-        /*if we don't care enough we could just randomize targeting normally and avoid this entirely
-        in which case this should function:
-        */
         int stolenExp = baseExpSteal + (exp/10);
         Random random = new Random();
         int target = random.nextInt(2);
@@ -51,22 +45,6 @@ public class Pirate extends Threat implements CombatActor, CombatThreatSpecial {
             setExp(getExp()+stolenExp);
         }
         return 0;
-        //but it'd be cool if we could figure out selective targeting, i'm blanking on it it's probably easier than i think
-    }
-    @Override
-    public int attack(Character character1, Character character2) {
-        //basic base attack logic, can be copied everywhere but with different scaling
-        Random random = new Random();
-        int target = random.nextInt(2); //returns int from 0 to 1 (higher bound is exclusive, so a bound of 2 gives a 1)
-        int damage = (int)(baseAttack + (this.getExp() * attackScaling));
-
-        if (target == 0) {
-            character1.takeDamage(damage);
-        }
-        else {
-            character2.takeDamage(damage);
-        }
-        return damage; //also returning ints feels like a remnant, we're already interacting with character HP through a takeDamage method within attack method
     }
 
     public void setExp(int value) {

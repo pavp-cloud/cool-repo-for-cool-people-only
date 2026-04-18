@@ -17,28 +17,11 @@ public class Demon extends Threat implements CombatActor, CombatThreatSpecial {
 
     public Demon(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
-        this.buffStackCounter = buffStackCounter;
-
     }
     @Override
-    public int attack(Character character1, Character character2) {
-
-        //basic base attack logic, can be copied everywhere but with different scaling
-        //this guy gets extra buff scaling
-        Random random = new Random();
-        int target = random.nextInt(2); //returns int from 0 to 1 (higher bound is exclusive, so a bound of 2 gives a 1)
-        int damage = (int)(baseAttack*getBuffStackCounter() + (this.getExp() * attackScaling));
-
-        if (target == 0) {
-            character1.takeDamage(damage);
-        }
-        else {
-            character2.takeDamage(damage);
-        }
-        return damage;
+    protected int calculateDamage() {
+        return (int) (baseAttack + (this.getExp() * attackScaling));
     }
-
-
 
     @Override
     public int special(Character character1, Character character2) {
