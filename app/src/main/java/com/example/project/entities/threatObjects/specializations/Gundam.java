@@ -28,16 +28,14 @@ public class Gundam extends Threat {
     @Override
     public int special(Character character1, Character character2) {
         // Deals a large amount of damage both to one character and to itself
-        Random random = new Random();
-        int target = random.nextInt(2);
+        Character target = pickTarget(character1, character2);
         int damage = (int)(baseAttack + (this.getExp() * specialScaling));
         int recoilDamage = (int) (damage * 0.7);
-            if (target == 0) {
-                character1.takeDamage(damage);
-            } else {
-                character2.takeDamage(damage);
-            }
-            takeDamage(recoilDamage);
+
+        if (target != null) {
+            target.takeDamage(damage);
+        }
+        takeDamage(recoilDamage);
 
         return damage;
     }

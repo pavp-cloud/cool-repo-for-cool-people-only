@@ -27,23 +27,18 @@ public class Pirate extends Threat {
     @Override // Special move, stealing character experience to buff itself
     public int special(Character character1, Character character2) {
         int stolenExp = baseExpSteal + (exp/10);
-        Random random = new Random();
-        int target = random.nextInt(2);
-        // Accounting for possibly stealing more XP than a character would have
-        if (target == 0) {
-            if (character1.getExp() < baseExpSteal) {
-                stolenExp = character1.getExp();
+
+        Character target = pickTarget(character1, character2);
+
+        if (target != null) {
+            // Accounting for possibly stealing more XP than a character would have
+            if (target.getExp() < baseExpSteal) {
+                stolenExp = target.getExp();
             }
-            character1.gainExp(-stolenExp);
-            setExp(getExp()+stolenExp);
+            target.gainExp(-stolenExp);
+            setExp(getExp() + stolenExp);
         }
-        else {
-            if (character2.getExp() < baseExpSteal) {
-                stolenExp = character2.getExp();
-            }
-            character2.gainExp(-stolenExp);
-            setExp(getExp()+stolenExp);
-        }
+
         return 0;
     }
 
@@ -51,4 +46,3 @@ public class Pirate extends Threat {
         this.exp = value;
     }
 }
-

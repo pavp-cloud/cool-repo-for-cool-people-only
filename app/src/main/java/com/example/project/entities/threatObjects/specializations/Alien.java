@@ -26,8 +26,12 @@ public class Alien extends Threat {
     public int special(Character character1, Character character2) {
         int damage = (int)(baseAttack + (this.getExp() * specialScaling));
 
-        character2.takeDamage(damage);
-        character1.takeDamage(damage);
+        if (character1 != null) {
+            character1.takeDamage(damage);
+        }
+        if (character2 != null) {
+            character2.takeDamage(damage);
+        }
         return damage;
     }
 }
