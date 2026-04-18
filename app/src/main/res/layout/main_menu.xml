@@ -39,6 +39,7 @@
         android:layout_marginBottom="200dp"
         android:backgroundTint="#77000000"
         android:text="Onboard New Crew Member"
+        android:textColor="#F8F7F7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.347"
@@ -52,6 +53,7 @@
         android:layout_marginBottom="200dp"
         android:backgroundTint="#78000000"
         android:text="Training Room"
+        android:textColor="#F8F4F4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.652"
@@ -64,6 +66,7 @@
         android:layout_marginBottom="85dp"
         android:backgroundTint="#77000000"
         android:text="View Manifest"
+        android:textColor="#F6F3F3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -75,11 +78,13 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="#78000000"
         android:text="Mission Control"
+        android:textColor="#F4F0F0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.598" />
+        app:layout_constraintVertical_bias="0.598"
+        app:rippleColor="#F6F3F3" />
 
     <TextView
         android:id="@+id/days_on_board_text"

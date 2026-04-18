@@ -36,6 +36,7 @@
         android:layout_marginBottom="30dp"
         android:backgroundTint="#B74E4848"
         android:text="Select Trainee"
+        android:textColor="#FDFBFB"
         app:layout_constraintBottom_toTopOf="@+id/select_difficulty_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -47,6 +48,7 @@
         android:layout_marginBottom="40dp"
         android:backgroundTint="#B74E4848"
         android:text="Select Difficulty"
+        android:textColor="#F8F6F6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

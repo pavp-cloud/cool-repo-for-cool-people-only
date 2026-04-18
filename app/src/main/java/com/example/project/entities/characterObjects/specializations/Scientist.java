@@ -11,7 +11,7 @@ public class Scientist extends Character implements CombatActor, CombatCharacter
     private boolean usedExpPotion = false;
 
     //CONSTANTS
-    private final int baseAttack = 2;
+    private final int baseAttack = 3;
     private final int expPotionValue = 5;
     private final double attackScaling = 0.3;
     private final double damageVulnerability = 1.5;

@@ -12,8 +12,8 @@ public class Pilot extends Character implements CombatActor, CombatCharacterSpec
 
     //CONSTANTS
 
-    private final int baseAttack = 2;
-    private final int droneAttack = 5;
+    private final int baseAttack = 4;
+    private int droneAttack = 5;
     private final double attackScaling = 0.6;
     private final double damageVulnerability = 1.0;
     /*not too sure about the "etiquette" of using final,
@@ -41,8 +41,13 @@ public class Pilot extends Character implements CombatActor, CombatCharacterSpec
     }
 
     public int special(){
-        setDroneDeployed(true);
-        return 0;
+        if(!getDroneDeployed()) {
+            setDroneDeployed(true);
+            return 0;
+        } else {
+            droneAttack += 3;
+            return 0;
+        }
     }
     //deploys drone
 
@@ -51,6 +56,7 @@ public class Pilot extends Character implements CombatActor, CombatCharacterSpec
         missionsCompleted++;
         increaseMaxHealth(threat.getExp());
         setDroneDeployed(false);
+        droneAttack = 5;
     }
 
     public void takeDamage(int attackIntensity) {

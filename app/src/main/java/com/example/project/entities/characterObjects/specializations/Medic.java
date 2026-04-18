@@ -11,7 +11,7 @@ import com.example.project.entities.threatObjects.Threat;
 public class Medic extends Character implements CombatActor, CombatCharacterSpecial {
 
     //CONSTANTS
-    private final int baseAttack = 4;
+    private final int baseAttack = 6;
     private final int healingPower = 15;
     private final double attackScaling = 0.5;
     private final double specialScaling = 0.2;
