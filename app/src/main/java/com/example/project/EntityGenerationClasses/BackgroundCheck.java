@@ -13,11 +13,11 @@ public class BackgroundCheck {
     private final int globalExpMultiplier = 4;
 
     // base heath values for all available specs
-    private final int baseHealthMedic = 40;
-    private final int baseHealthSoldier = 60;
+    private final int baseHealthMedic = 45;
+    private final int baseHealthSoldier = 65;
     private final int baseHealthScientist = 25;
     private final int baseHealthPilot = 55;
-    private final int baseHealthEngineer = 90;
+    private final int baseHealthEngineer = 95;
 
     // hp scales with the amount of day passed/missions completed overall
     private final int healthScaling = 10;

@@ -10,7 +10,7 @@ public class Alien extends Threat {
 
     //CONSTANTS
 
-    private final int baseAttack = 2;
+    private final int baseAttack = 3;
     private final double attackScaling = 0.5;
     private final double specialScaling = 0.25;
     public Alien(int maxHealth, int currentHealth, String name, int exp) {

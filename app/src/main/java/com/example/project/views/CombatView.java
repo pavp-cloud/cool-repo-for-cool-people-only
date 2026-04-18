@@ -281,9 +281,9 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
                 int c2Color = (activeMission.isCrew2Moved() || crewMember2 == null || crewMember2.getCurrentHealth() <= 0) ? Color.GRAY : Color.DKGRAY;
 
                 drawButton(canvas, c1AttackBtn, "C1 ATK", c1Color);
-                drawButton(canvas, c1SpecialBtn, "C1 SPEC", c1Color);
+                drawButton(canvas, c1SpecialBtn, getSpecialName(crewMember1), c1Color);
                 drawButton(canvas, c2AttackBtn, "C2 ATK", c2Color);
-                drawButton(canvas, c2SpecialBtn, "C2 SPEC", c2Color);
+                drawButton(canvas, c2SpecialBtn, getSpecialName(crewMember2), c2Color);
             }
 
             if (activeCombat == combatState.Animating) {
@@ -463,5 +463,23 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+
+    }
+
+    /*
+    this method will return the special name of the character that is in
+    that slot for combat
+     */
+    private String getSpecialName(Character character) {
+        if (character == null) return "SPEC";
+
+        if (character instanceof Medic) return "HEAL";
+        if (character instanceof Soldier) return "GRENADE";
+        if (character instanceof Engineer) return "ARMOR";
+        if (character instanceof Scientist) return "EXP POT";
+        if (character instanceof Pilot) return "DRONE";
+
+        return "SPEC";
     }
 }

@@ -47,6 +47,15 @@ public class MissionControlFragment extends Fragment {
 
         RecyclerView selectionRecycler = view.findViewById(R.id.recycler_view_crew_select);
 
+        /*
+        checks to see if there is already an active mission. If there is it will update the information again.
+         */
+        if (SpaceShip.getInstance().getMissionRoom().getActiveMission() != null) {
+            nameText.setText(SpaceShip.getInstance().getMissionRoom().getActiveMission().getMissionTarget().getName());
+            hpText.setText(String.valueOf(SpaceShip.getInstance().getMissionRoom().getActiveMission().getMissionTarget().getCurrentHealth()));
+            xpText.setText(String.valueOf(SpaceShip.getInstance().getMissionRoom().getActiveMission().getMissionTarget().getExp()));
+        }
+
         // begins crew member selection
         chooseCrewButton.setOnClickListener(new View.OnClickListener() {
             @Override

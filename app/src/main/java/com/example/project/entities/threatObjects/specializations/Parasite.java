@@ -12,7 +12,7 @@ public class Parasite extends Threat {
 
     //CONSTANTS
 
-    private final int baseAttack = 2;
+    private final int baseAttack = 3;
     private final double attackScaling = 0.5;
     private final double specialScaling = 0.2;
 
