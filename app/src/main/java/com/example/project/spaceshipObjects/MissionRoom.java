@@ -30,19 +30,24 @@ public class MissionRoom {
 
         switch (selection) {
             case 1:
-                Pirate pirate = new Pirate(100, 100, name , 200 * SpaceShip.getInstance().getDaysOnBoard());
+                int startingHealthPirate = 60 + (6 * SpaceShip.getInstance().getDaysOnBoard());
+                Pirate pirate = new Pirate(startingHealthPirate, startingHealthPirate, name , 4 + (2 * SpaceShip.getInstance().getDaysOnBoard()));
                 return pirate;
             case 2:
-                Parasite parasite = new Parasite(100, 100, name , 500 * SpaceShip.getInstance().getDaysOnBoard());
+                int startingHealthParasite = 70 + (3 * SpaceShip.getInstance().getDaysOnBoard());
+                Parasite parasite = new Parasite(startingHealthParasite, startingHealthParasite, name , 6 + (5 * SpaceShip.getInstance().getDaysOnBoard()));
                 return parasite;
             case 3:
-                Gundam gundam = new Gundam(100, 100, name , 1000 * SpaceShip.getInstance().getDaysOnBoard());
+                int startingHealthGundam = 100 + (10 * SpaceShip.getInstance().getDaysOnBoard());
+                Gundam gundam = new Gundam(startingHealthGundam, startingHealthGundam, name , 12 + (10 * SpaceShip.getInstance().getDaysOnBoard()));
                 return gundam;
             case 4:
-                Alien alien = new Alien(100, 100, name , 300 * SpaceShip.getInstance().getDaysOnBoard());
+                int startingHealthAlien = 51 + (8 * SpaceShip.getInstance().getDaysOnBoard());
+                Alien alien = new Alien(startingHealthAlien, startingHealthAlien, name , 5 + (4 * SpaceShip.getInstance().getDaysOnBoard()));
                 return alien;
             case 5:
-                Demon demon = new Demon(100, 100, name , 800 * SpaceShip.getInstance().getDaysOnBoard());
+                int startingHealthDemon = 120 + (12 * SpaceShip.getInstance().getDaysOnBoard());
+                Demon demon = new Demon(startingHealthDemon, startingHealthDemon, name , 15 + (12 * SpaceShip.getInstance().getDaysOnBoard()));
                 return demon;
             default:
                 return null;
