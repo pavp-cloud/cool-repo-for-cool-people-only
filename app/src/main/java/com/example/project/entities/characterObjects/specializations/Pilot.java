@@ -14,7 +14,7 @@ public class Pilot extends Character implements CombatActor, CombatCharacterSpec
 
     private final int baseAttack = 2;
     private final int droneAttack = 5;
-    private final double attackScaling = 0.5;
+    private final double attackScaling = 0.6;
     private final double damageVulnerability = 1.0;
     /*not too sure about the "etiquette" of using final,
     i think one of the presentations said "don't use them too much" but
@@ -34,7 +34,7 @@ public class Pilot extends Character implements CombatActor, CombatCharacterSpec
 
     public int attack(){
         if (getDroneDeployed()) {
-            return (int) (baseAttack + droneAttack + (this.getExp() * attackScaling));
+            return (int) (baseAttack + droneAttack + (int) (this.getExp() * 0.2) + (this.getExp() * attackScaling));
         } else {
             return (int) (baseAttack + (this.getExp() * attackScaling));
         }

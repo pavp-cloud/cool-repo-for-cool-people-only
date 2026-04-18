@@ -13,8 +13,8 @@ public class Scientist extends Character implements CombatActor, CombatCharacter
     //CONSTANTS
     private final int baseAttack = 2;
     private final int expPotionValue = 5;
-    private final double attackScaling = 0.5;
-    private final double damageVulnerability = 1.2;
+    private final double attackScaling = 0.3;
+    private final double damageVulnerability = 1.5;
 
     public Scientist(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);

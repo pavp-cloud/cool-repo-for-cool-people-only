@@ -11,10 +11,10 @@ public class Soldier extends Character implements CombatActor, CombatCharacterSp
     private boolean usedGrenade = false;
 
     //CONSTANTS
-    private final int baseAttack = 2;
+    private final int baseAttack = 5;
     private final int grenadeAttack = 10;
     private final double attackScaling = 0.5;
-    private final double specialScaling = 0.5;
+    private final double specialScaling = 0.8;
     private final double damageVulnerability = 1.0;
 
     public Soldier(int maxHealth, int currentHealth, String name, int exp){

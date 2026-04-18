@@ -12,7 +12,7 @@ public class Engineer extends Character implements CombatActor, CombatCharacterS
 
     //CONSTANTS
     private final int baseAttack = 2;
-    private final double attackScaling = 0.5;
+    private final double attackScaling = 0.6;
     private final double damageVulnerability = 0.8;
     private final double damageVulnerabilityArmored = 0.5;
 
@@ -43,10 +43,6 @@ public class Engineer extends Character implements CombatActor, CombatCharacterS
         return this.combatArmorEquipped;
     }
 
-    /*wondering if we even need a setter or a getter if we only interact with
-    the boolean from inside the class;
-    I mean methods instead of direct access might be more appreciated but this just
-    feels like clutter honestly*/
     public void setCombatArmor(boolean state) {
         this.combatArmorEquipped = state;
     }

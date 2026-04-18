@@ -11,11 +11,11 @@ import com.example.project.entities.threatObjects.Threat;
 public class Medic extends Character implements CombatActor, CombatCharacterSpecial {
 
     //CONSTANTS
-    private final int baseAttack = 2;
-    private final int healingPower = 10;
+    private final int baseAttack = 4;
+    private final int healingPower = 15;
     private final double attackScaling = 0.5;
     private final double specialScaling = 0.2;
-    private final double damageVulnerability = 1.5;
+    private final double damageVulnerability = 1.2;
 
     public Medic(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);

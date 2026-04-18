@@ -10,25 +10,23 @@ import com.example.project.spaceshipObjects.SpaceShip;
 
 public class BackgroundCheck {
     //CONSTANTS
-    //EXP MULTIPLIER
-    private final int globalExpMultiplier = 2;
-    //BASE HEALTH
-    private final int baseHealthMedic = 80;
-    private final int baseHealthSoldier = 100;
-    private final int baseHealthScientist = 40;
-    private final int baseHealthPilot = 75;
-    private final int baseHealthEngineer = 110;
-    //HP SCALING PER DAY ON BOARD
-    private final int healthScaling = 10;
-    //HP FORMULA: BASE HEALTH + (HEALTH SCALING * DAYS ON BOARD)
-    //keep in mind since base days on board is 1 creating characters on day 1 creates them already scaled instead of with baseHP
+    // global exp multiplier
+    private final int globalExpMultiplier = 4;
 
+    // base heath values for all available specs
+    private final int baseHealthMedic = 40;
+    private final int baseHealthSoldier = 60;
+    private final int baseHealthScientist = 25;
+    private final int baseHealthPilot = 55;
+    private final int baseHealthEngineer = 90;
+
+    // hp scales with the amount of day passed/missions completed overall
+    private final int healthScaling = 10;
 
     public Character newCrewMember(int selection, String crewMemberName, int daysOnBoard) {
 
+        // using a number generated beforehand it selects a random spec to recruit
     switch (selection) {
-        // crew member stats are subject to changes and addition of scaling
-        // with scaling in mind, the base hp values have been cut by 20-30
         case 1:
             int startingHealthMedic = baseHealthMedic + (healthScaling * daysOnBoard);
             Medic medic = new Medic(startingHealthMedic, startingHealthMedic, crewMemberName, daysOnBoard * globalExpMultiplier);
