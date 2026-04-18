@@ -28,7 +28,7 @@ public class SpaceShip {
         }
         return instance;
     }
-
+    //
     public void resetGame() {
         shipHealth = 100;
         daysOnBoard = 0;

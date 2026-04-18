@@ -26,12 +26,13 @@ public class Mission {
     public Character getCrewMember1(){return crewMember1;}
     public Character getCrewMember2(){return crewMember2;}
     public Threat getMissionTarget(){return missionTarget;}
-
+    //bring the chosen crew members to the combat
     public void addCrewMembers (Character crewMember1, Character crewMember2) {
         this.crewMember1 = crewMember1;
         this.crewMember2 = crewMember2;
     }
-
+    /*begins the combat and helps runs the combat, thread acts as pause before the enemy turn goes
+     */
     public void executeMission() {
         new Thread(() -> {
             while (!isGameOver()){
@@ -47,7 +48,6 @@ public class Mission {
                 }
                 try{ Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
             }
-            //endMission();
         }).start();
     }
 
@@ -81,13 +81,13 @@ public class Mission {
             isPlayerTurn = false;
         }
     }
-
+    //flags to see if characters have taken their turn
     public boolean allCrewMoved() {
         boolean c1Done = (crewMember1 == null || crewMember1.getCurrentHealth() <= 0 || crew1Moved);
         boolean c2Done = (crewMember2 == null || crewMember2.getCurrentHealth() <= 0 || crew2Moved);
         return c1Done && c2Done;
     }
-
+    //enemy logic
     public int enemyTurn() {
         if (isPlayerTurn) return -1;
 
@@ -113,7 +113,9 @@ public class Mission {
         return action;
 
     }
-
+    /*once mission ends, checks the crew members, if dead, damage the ship, if not, put them back
+    to crew quarters
+     */
     public void endMission() {
         
         // Always increment days when a mission ends
@@ -129,7 +131,10 @@ public class Mission {
         CrewQuarters crewQuarters = SpaceShip.getInstance().getCrewQuarters();
         PassengerManifest manifest = SpaceShip.getInstance().getManifest();
 
-        //checking for if member is dead to add back to crew quarters
+        /*checking for if member is dead, if they are not dead run endofcombatprep
+        if they are dead, they wil then be sent to passenger mainifest as dead and removing
+        from crew quarters
+         */
         if (crewMember1 != null){
             if (crewMember1.getCurrentHealth() > 0){
                 crewMember1.endOfCombatPrep(missionTarget);
@@ -147,6 +152,7 @@ public class Mission {
             }
         }
     }
+    //checks to see if the game is over if both crew members are dead.
     public boolean isGameOver() {
         boolean crewDead = (crewMember1 == null || crewMember1.getCurrentHealth() <= 0) &&
                 (crewMember2 == null || crewMember2.getCurrentHealth() <= 0);

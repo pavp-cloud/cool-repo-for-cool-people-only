@@ -22,7 +22,7 @@ public class CrewQuarters {
     public ArrayList<Character> getCrewMembers() {
         return crewMembers;
     }
-
+    //resets health when returned to crew quarters
     public void restoreHealth(Character crewMember) {
         crewMember.resetCurrentHealth(crewMember.getMaxHealth());
     }

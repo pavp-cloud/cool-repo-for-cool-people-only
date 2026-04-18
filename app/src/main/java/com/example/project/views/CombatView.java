@@ -35,7 +35,6 @@ import java.util.Map;
 import java.util.Random;
 
 public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.Callback {
-
     public enum combatState {
         Players_Turn,
         Enemys_Turn,
@@ -94,11 +93,15 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         this.paint = new Paint();
         loadSprites(context);
     }
-    //checking for end of combat to then be linked to the continue button to initate endofcombat prep.
+    /*
+    checking for end of combat to then be linked to the continue button to initate endofcombat prep.
+     */
     public void setOnCombatEndedListener(OnCombatEndedListener listener) {
         this.combatEndedListener = listener;
     }
-    // all the sprites from the spirte map being called and loaded
+    /*
+    all the sprites from the spirte map being called and loaded
+     */
     private void loadSprites(Context context) {
         spriteMap.put(Medic.class, BitmapFactory.decodeResource(getResources(), R.drawable.medic_sprite));
         spriteMap.put(Soldier.class, BitmapFactory.decodeResource(getResources(), R.drawable.solider_sprite));
@@ -110,7 +113,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         spriteMap.put(Gundam.class, BitmapFactory.decodeResource(getResources(), R.drawable.gundam_sprite));
         spriteMap.put(Alien.class, BitmapFactory.decodeResource(getResources(), R.drawable.alien_sprite));
         spriteMap.put(Demon.class, BitmapFactory.decodeResource(getResources(), R.drawable.demon_sprite));
-        
+        //default sprite for template for the sprites to launch on
         defaultSprite = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         backgroundSprite = BitmapFactory.decodeResource(getResources(), R.drawable.combat_background2);
     }
@@ -168,7 +171,9 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         }
         selectAttack = null;
     }
-
+    /*
+    this will allow the player to initalize thier attacks and display the toast for the attacks
+     */
     public void playerAttack(int crewIndex, attackState type) {
         if (activeCombat == combatState.Players_Turn) {
             Character member = (crewIndex == 1) ? crewMember1 : crewMember2;
@@ -181,7 +186,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             selectAttack = type;
             targetX = enemyX;
             targetY = enemyY;
-
+            //toast display for characters
             int damage = (type == attackState.Attack ? member.attack() : member.special());
             String attackName = (type == attackState.Attack ? "Attacked" : "used a Special Attack");
             showCombatToast(member.getName() + " " + attackName + " for " + damage + " damage!");
@@ -191,7 +196,10 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             activeCombat = combatState.Animating;
         }
     }
-
+    /*
+    enemy logic and toast for what they chose based on the logic in missions.
+    only attacks living crew members, checks to see if they are dead.
+     */
     private void performEnemyActions() {
         if (activeCombat != combatState.Enemys_Turn || activeMission == null) return;
 
@@ -199,7 +207,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         if (actionIndex == -1) return;
         
         selectAttack = (actionIndex == 0) ? attackState.Attack : attackState.Special_Attack;
-
+        //toast for enemy attacks
         String actionName = (actionIndex == 0) ? "Attacked" : "used a Special Attack";
         showCombatToast(missionThreat.getName() + " " + actionName + "!");
 
@@ -219,10 +227,14 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     }
 
 
-
+    //toast method
     private void showCombatToast(final String message) {
         post(() -> Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show());
     }
+    /* positioning of all buttons, characters, and threats
+    links animations for clicking the special and basic attacks
+    displays victory and game over checking based on threat health and character health
+     */
     private void draw() {
         if (surfaceHolder.getSurface().isValid()) {
             canvas = surfaceHolder.lockCanvas();
@@ -277,7 +289,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             if (activeCombat == combatState.Animating) {
                 drawAnimation();
             }
-
+            //game over display with continue button displayed after combat
             if (activeCombat == combatState.GameOver) {
                 paint.setColor(Color.YELLOW);
                 paint.setTextSize(width * 0.12f);
@@ -300,7 +312,10 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         float textWidth = paint.measureText(text);
         canvas.drawText(text, bounds.centerX() - textWidth / 2, bounds.centerY() + paint.getTextSize()/3, paint);
     }
-
+    /* draws all the detials around the sprites
+    this includes helath bar, name, displaying amount of health and lowering health bar when they
+    take damage for both characters and threat
+     */
     private void drawEntity(Canvas canvas, Object entity, float x, float y) {
         if (entity == null) return;
         
@@ -308,7 +323,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         String name = "";
         int hp = 0, maxHp = 0;
         Bitmap sprite = defaultSprite;
-
+        //getting the direct instances to display hp, name, and sprite
         if (entity instanceof Character) {
             Character c = (Character) entity;
             name = c.getName();
@@ -362,7 +377,11 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             canvas.drawText(hpText, x - textWidth/2, barTop + barHeight + paint.getTextSize() + 5, paint);
         }
     }
-
+    /*this will display all the animation
+    the basic attack is red dot representing a laser
+    special is to like an explosion having a yellow sphere grow
+    uses positioning of the characters and threats so that the animations go to the correct spots
+     */
     private void drawAnimation() {
         float startX, startY;
         if (targetX == enemyX) {
@@ -372,13 +391,14 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             startX = enemyX;
             startY = enemyY;
         }
-
+        //laser basic animation
         if (selectAttack == attackState.Attack) {
             paint.setColor(Color.RED);
             float progress = (float) animationTimer / 30;
             float currentX = startX + (targetX - startX) * progress;
             float currentY = startY + (targetY - startY) * progress;
             canvas.drawCircle(currentX, currentY, 15, paint);
+            // special explosion animation
         } else if (selectAttack == attackState.Special_Attack) {
             paint.setColor(Color.YELLOW);
             paint.setStyle(Paint.Style.STROKE);
@@ -387,7 +407,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             paint.setStyle(Paint.Style.FILL);
         }
     }
-
+    //allows button clicks until game is over
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -401,6 +421,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
                 else if (c2AttackBtn.contains(x, y)) playerAttack(2, attackState.Attack);
                 else if (c2SpecialBtn.contains(x, y)) playerAttack(2, attackState.Special_Attack);
             } else if (activeCombat == combatState.GameOver) {
+                //continue button triggered when combatEndedListener is not null
                 if (continueBtn.contains(x, y)) {
                     if (combatEndedListener != null) {
                         combatEndedListener.onCombatEnded();
@@ -415,7 +436,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     public boolean performClick() {
         return super.performClick();
     }
-
+    //allowing interuptions to slow animations down
     private void control() {
         try {
             Thread.sleep(17);
@@ -433,7 +454,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {}
-
+    //reset the surface after combat is over.
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
         isPlaying = false;

@@ -36,9 +36,13 @@ public class CombatViewFragment extends Fragment {
             }
         };
         
-        // Return the SurfaceView as the Fragment's view
-        // Set the listener for when the Continue button is clicked
+        /* Return the SurfaceView as the Fragment's view
+         Set the listener for when the Continue button is clicked
+         */
         combatView.setOnCombatEndedListener(new CombatView.OnCombatEndedListener() {
+            /*sends the screen back to the main menu once combat is over, updates stats of ship
+            crew, etc.
+             */
             @Override
             public void onCombatEnded() {
                 // Return to main thread to perform UI changes
