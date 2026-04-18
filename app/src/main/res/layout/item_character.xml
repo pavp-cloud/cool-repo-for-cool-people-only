@@ -11,26 +11,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/text_character_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Character Name"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_character_stats"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Stats"
-            android:textColor="#BBBBBB"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/text_character_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Character Name"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_character_stats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Stats"
+                android:textColor="#BBBBBB"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/image_character_sprite"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerInside"
+            android:contentDescription="Character Sprite" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

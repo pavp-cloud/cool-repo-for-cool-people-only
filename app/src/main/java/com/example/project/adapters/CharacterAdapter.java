@@ -3,12 +3,18 @@ package com.example.project.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.R;
 import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.characterObjects.specializations.Engineer;
+import com.example.project.entities.characterObjects.specializations.Medic;
+import com.example.project.entities.characterObjects.specializations.Pilot;
+import com.example.project.entities.characterObjects.specializations.Scientist;
+import com.example.project.entities.characterObjects.specializations.Soldier;
 
 import java.util.List;
 
@@ -16,7 +22,6 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     private List<Character> characterList;
     private OnCharacterClickListener listener;
 
-    // Interface to handle character selection clicks
     public interface OnCharacterClickListener {
         void onCharacterClick(Character character);
     }
@@ -42,11 +47,25 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
         com.example.project.entities.characterObjects.Character character = characterList.get(position);
-        
         // Display character info
         holder.nameText.setText(String.format("%s \nStatus: %s", character.getName(), character.getStatus()));
         holder.statsText.setText(String.format("Health: %d | Class: %s | Exp: %d \nMissions Completed: %d",
                 character.getMaxHealth(), character.getClass().getSimpleName(), character.getExp(), character.getMissionsCompleted()));
+
+        // Set the sprite image based on the character's specialization
+        int spriteResId = R.mipmap.ic_launcher; // Default
+        if (character instanceof Medic) {
+            spriteResId = R.drawable.medic_sprite;
+        } else if (character instanceof Soldier) {
+            spriteResId = R.drawable.solider_sprite;
+        } else if (character instanceof Scientist) {
+            spriteResId = R.drawable.scientist_sprite;
+        } else if (character instanceof Pilot) {
+            spriteResId = R.drawable.pilot_sprite;
+        } else if (character instanceof Engineer) {
+            spriteResId = R.drawable.engineer_sprite;
+        }
+        holder.characterSprite.setImageResource(spriteResId);
 
         // Trigger the listener when the item is clicked
         holder.itemView.setOnClickListener(v -> {
@@ -56,8 +75,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         });
     }
 
-    // Gets the number of characters
-    @Override
+    @Override // Gets number of characters
     public int getItemCount() { return characterList.size(); }
 
     // Refreshes list of characters when needed
@@ -65,14 +83,15 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         this.characterList = newList;
         notifyDataSetChanged();
     }
-
-    // Finds the view fields and saves them onto the nameText and statsText fields
+    // Finds the view fields and saves them onto the variables
     static class CharacterViewHolder extends RecyclerView.ViewHolder {
         TextView nameText, statsText;
+        ImageView characterSprite;
         public CharacterViewHolder(@NonNull View itemView) {
             super(itemView);
             nameText = itemView.findViewById(R.id.text_character_name);
             statsText = itemView.findViewById(R.id.text_character_stats);
+            characterSprite = itemView.findViewById(R.id.image_character_sprite);
         }
     }
 }
