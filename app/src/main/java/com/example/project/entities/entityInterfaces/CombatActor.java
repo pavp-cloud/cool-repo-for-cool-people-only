@@ -5,5 +5,6 @@ public interface CombatActor {
     int getCurrentHealth();
     String getName();
     int getExp();
+    void healHealth(int heal);
     void takeDamage(int damage);
 }
