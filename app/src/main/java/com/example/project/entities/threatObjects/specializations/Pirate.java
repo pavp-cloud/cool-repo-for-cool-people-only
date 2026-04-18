@@ -11,7 +11,6 @@ import java.util.Random;
 public class Pirate extends Threat {
 
     //CONSTANTS
-
     private final int baseAttack = 2;
     private final int baseExpSteal = 5;
     private final double attackScaling = 0.5;
@@ -20,17 +19,17 @@ public class Pirate extends Threat {
         super(maxHealth, currentHealth, name, exp);
     }
 
-
+    @Override
     protected int calculateDamage() {
         return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 
-    @Override
+    @Override // Special move, stealing character experience to buff itself
     public int special(Character character1, Character character2) {
         int stolenExp = baseExpSteal + (exp/10);
         Random random = new Random();
         int target = random.nextInt(2);
-
+        // Accounting for possibly stealing more XP than a character would have
         if (target == 0) {
             if (character1.getExp() < baseExpSteal) {
                 stolenExp = character1.getExp();
@@ -50,11 +49,6 @@ public class Pirate extends Threat {
 
     public void setExp(int value) {
         this.exp = value;
-    }
-
-    @Override
-    public void takeDamage(int damage) {
-        this.currentHealth -= damage;
     }
 }
 

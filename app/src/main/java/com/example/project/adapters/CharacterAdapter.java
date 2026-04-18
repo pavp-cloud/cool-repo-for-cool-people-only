@@ -33,7 +33,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     }
 
     @NonNull
-    @Override
+    @Override // Wraps the view in a holder so it can be reused later
     public CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_character, parent, false);
         return new CharacterViewHolder(view);
@@ -56,14 +56,17 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
         });
     }
 
+    // Gets the number of characters
     @Override
     public int getItemCount() { return characterList.size(); }
 
+    // Refreshes list of characters when needed
     public void refreshData(List<Character> newList) {
         this.characterList = newList;
         notifyDataSetChanged();
     }
 
+    // Finds the view fields and saves them onto the nameText and statsText fields
     static class CharacterViewHolder extends RecyclerView.ViewHolder {
         TextView nameText, statsText;
         public CharacterViewHolder(@NonNull View itemView) {

@@ -17,12 +17,12 @@ public class Demon extends Threat {
     public Demon(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
     }
-    @Override
+    @Override // Damage additionally scales with the amount of buff stacks
     protected int calculateDamage() {
         return (int) (baseAttack + ((this.getExp() * getBuffStackCounter()) * attackScaling));
     }
 
-    @Override
+    @Override // Increments it's number of buff stacks and then feeds it into the damage calculation
     public int special(Character character1, Character character2) {
         incrementBuffStackCounter();
         return 0;
@@ -35,10 +35,4 @@ public class Demon extends Threat {
     public void incrementBuffStackCounter() {
         buffStackCounter++;
     }
-
-    @Override
-    public void takeDamage(int damage) {
-        this.currentHealth -= damage;
-    }
 }
-//hello daddy

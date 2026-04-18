@@ -27,10 +27,10 @@ public class Gundam extends Threat {
 
     @Override
     public int special(Character character1, Character character2) {
-        //shoots a missile for big damage
+        // Deals a large amount of damage both to one character and to itself
         Random random = new Random();
-        int target = random.nextInt(2); //returns int from 0 to 1 (higher bound is exclusive, so a bound of 2 gives a 1)
-        int damage = (int)(baseAttack + (this.getExp() * specialScaling)); //The Big Damage
+        int target = random.nextInt(2);
+        int damage = (int)(baseAttack + (this.getExp() * specialScaling));
         int recoilDamage = (int) (damage * 0.7);
             if (target == 0) {
                 character1.takeDamage(damage);
@@ -42,8 +42,4 @@ public class Gundam extends Threat {
         return damage;
     }
 
-    @Override
-    public void takeDamage(int damage) {
-        this.currentHealth -= damage;
-    }
 }

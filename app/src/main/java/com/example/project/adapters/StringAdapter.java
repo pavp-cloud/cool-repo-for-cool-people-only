@@ -11,17 +11,19 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.ViewHolder
     private List<String> items;
     private OnItemClickListener listener;
 
+    // Interface to handle item clicks
     public interface OnItemClickListener {
         void onItemClick(String item, int position);
     }
 
+    // Constructor with listener
     public StringAdapter(List<String> items, OnItemClickListener listener) {
         this.items = items;
         this.listener = listener;
     }
 
     @NonNull
-    @Override
+    @Override // Wraps the view in a holder so it can be reused later
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         TextView textView = new TextView(parent.getContext());
         textView.setLayoutParams(new ViewGroup.LayoutParams(
@@ -45,9 +47,11 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.ViewHolder
         });
     }
 
+    // Returns number of items
     @Override
     public int getItemCount() { return items.size(); }
 
+    // Finds the view field and saves it into the textView
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         ViewHolder(TextView itemView) {

@@ -27,24 +27,19 @@ public class Parasite extends Threat {
     }
 
     @Override
-    public int special(Character character1, Character character2) { //lifesteal
+    public int special(Character character1, Character character2) { // Heals based on damage dealt
         Random random = new Random();
-        int target = random.nextInt(2); //returns int from 0 to 1 (higher bound is exclusive, so a bound of 2 gives a 1)
-        int damage = (int)(baseAttack + (this.getExp() * specialScaling)); //lower scaling to compensate for healing
+        int target = random.nextInt(2);
+        int damage = (int)(baseAttack + (this.getExp() * specialScaling)); // Lower scaling to compensate for healing
 
-        if (target == 0) { //basic targeting
+        if (target == 0) { // Basic targeting
             character1.takeDamage(damage);
         }
         else {
             character2.takeDamage(damage);
         }
 
-        healHealth(damage); //heals hp equal to the attack's damage (not accounting for resistances)
+        healHealth(damage); // Heals hp equal to the attack's damage (not accounting for resistances)
         return damage;
-    }
-
-    @Override
-    public void takeDamage(int damage) {
-        this.currentHealth -= damage;
     }
 }

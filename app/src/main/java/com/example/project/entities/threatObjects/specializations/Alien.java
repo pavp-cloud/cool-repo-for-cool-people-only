@@ -22,18 +22,12 @@ public class Alien extends Threat {
         return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 
-    @Override
+    @Override // Does damage to both characters
     public int special(Character character1, Character character2) {
         int damage = (int)(baseAttack + (this.getExp() * specialScaling));
 
         character2.takeDamage(damage);
         character1.takeDamage(damage);
-        //shoots laser that does AOE
         return damage;
-    }
-
-    @Override
-    public void takeDamage(int damage) {
-        this.currentHealth -= damage;
     }
 }
