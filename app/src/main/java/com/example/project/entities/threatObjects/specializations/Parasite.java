@@ -1,12 +1,7 @@
 package com.example.project.entities.threatObjects.specializations;
 
 import com.example.project.entities.characterObjects.Character;
-import com.example.project.entities.entityInterfaces.CombatActor;
-import com.example.project.entities.entityInterfaces.TargetedAttacker;
-import com.example.project.entities.entityInterfaces.TargetedSpecial;
 import com.example.project.entities.threatObjects.Threat;
-
-import java.util.Random;
 
 public class Parasite extends Threat {
 
