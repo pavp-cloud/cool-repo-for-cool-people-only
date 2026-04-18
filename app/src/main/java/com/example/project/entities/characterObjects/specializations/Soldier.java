@@ -3,6 +3,8 @@ package com.example.project.entities.characterObjects.specializations;
 import static java.lang.Math.round;
 
 import com.example.project.entities.characterObjects.Character;
+import com.example.project.entities.entityInterfaces.BasicAttacker;
+import com.example.project.entities.entityInterfaces.BasicSpecial;
 import com.example.project.entities.entityInterfaces.CombatActor;
 import com.example.project.entities.threatObjects.Threat;
 

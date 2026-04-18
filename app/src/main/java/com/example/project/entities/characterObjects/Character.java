@@ -2,10 +2,14 @@ package com.example.project.entities.characterObjects;
 
 import static java.lang.Math.round;
 
+import com.example.project.entities.entityInterfaces.BasicAttacker;
+import com.example.project.entities.entityInterfaces.BasicSpecial;
 import com.example.project.entities.entityInterfaces.CombatActor;
+import com.example.project.entities.entityInterfaces.TargetedAttacker;
+import com.example.project.entities.entityInterfaces.TargetedSpecial;
 import com.example.project.entities.threatObjects.Threat;
 
-public abstract class Character implements CombatActor {
+public abstract class Character implements CombatActor, BasicAttacker, BasicSpecial {
     protected int maxHealth;
     protected int currentHealth;
     protected String name;

@@ -2,10 +2,12 @@ package com.example.project.entities.threatObjects;
 
 import com.example.project.entities.characterObjects.Character;
 import com.example.project.entities.entityInterfaces.CombatActor;
+import com.example.project.entities.entityInterfaces.TargetedAttacker;
+import com.example.project.entities.entityInterfaces.TargetedSpecial;
 
 import java.util.Random;
 
-public abstract class Threat implements CombatActor {
+public abstract class Threat implements CombatActor, TargetedAttacker, TargetedSpecial {
     protected int maxHealth;
     protected int currentHealth;
     protected String name;
