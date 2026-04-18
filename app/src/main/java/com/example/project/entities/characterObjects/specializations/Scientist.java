@@ -12,9 +12,9 @@ public class Scientist extends Character {
 
     //CONSTANTS
     private final int baseAttack = 4;
-    private final int expPotionValue = 4;
-    private final double attackScaling = 0.3;
-    private final double damageVulnerability = 1.5;
+    private final int expPotionValue = 6;
+    private final double attackScaling = 0.4;
+    private final double damageVulnerability = 1.3;
 
     /*
     constructor for the Scientist class
@@ -37,6 +37,7 @@ public class Scientist extends Character {
     public int special(){
         gainExp(expPotionValue);
         increaseMaxHealth(expPotionValue);
+        adjustHealth(expPotionValue);
         return  0;
     }
 

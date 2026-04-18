@@ -140,6 +140,13 @@ public abstract class Character implements CombatActor, BasicAttacker, BasicSpec
     public abstract int special();
 
     /*
+    adjusts the health of the character
+     */
+    public void adjustHealth(int healthChange) {
+        this.currentHealth += (int) (healthChange * maxHealthScaling);
+    }
+
+    /*
     abstract method for things needed to be executed at the end of combat
      */
     public void endOfCombatPrep(Threat threat) {
