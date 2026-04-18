@@ -4,10 +4,9 @@ import static java.lang.Math.round;
 
 import com.example.project.entities.characterObjects.Character;
 import com.example.project.entities.entityInterfaces.CombatActor;
-import com.example.project.entities.entityInterfaces.CombatCharacterSpecial;
 import com.example.project.entities.threatObjects.Threat;
 
-public class Pilot extends Character implements CombatActor, CombatCharacterSpecial {
+public class Pilot extends Character {
     private boolean droneDeployed = false;
 
     //CONSTANTS

@@ -4,10 +4,9 @@ import static java.lang.Math.round;
 
 import com.example.project.entities.characterObjects.Character;
 import com.example.project.entities.entityInterfaces.CombatActor;
-import com.example.project.entities.entityInterfaces.CombatCharacterSpecial;
 import com.example.project.entities.threatObjects.Threat;
 
-public class Scientist extends Character implements CombatActor, CombatCharacterSpecial {
+public class Scientist extends Character {
     private boolean usedExpPotion = false;
 
     //CONSTANTS

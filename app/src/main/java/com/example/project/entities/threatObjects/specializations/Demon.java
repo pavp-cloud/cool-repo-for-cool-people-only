@@ -2,12 +2,9 @@ package com.example.project.entities.threatObjects.specializations;
 
 import com.example.project.entities.characterObjects.Character;
 import com.example.project.entities.entityInterfaces.CombatActor;
-import com.example.project.entities.entityInterfaces.CombatThreatSpecial;
 import com.example.project.entities.threatObjects.Threat;
 
-import java.util.Random;
-
-public class Demon extends Threat implements CombatActor, CombatThreatSpecial {
+public class Demon extends Threat {
     private int buffStackCounter = 1;
 
     //CONSTANTS
