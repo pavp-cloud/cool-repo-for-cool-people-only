@@ -17,22 +17,32 @@ public class Pilot extends Character {
     private int droneAttack = 5;
     private final double attackScaling = 0.6;
     private final double damageVulnerability = 1.0;
-    /*not too sure about the "etiquette" of using final,
-    i think one of the presentations said "don't use them too much" but
-    that's how you would define a constant*/
 
+    /*
+    constructor for the Pilot class
+     */
     public Pilot(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
     }
 
+    /*
+    getter for the drone deployed flag
+     */
     public boolean getDroneDeployed() {
         return this.droneDeployed;
     }
 
+    /*
+    setter for the drone deployed flag
+     */
     public void setDroneDeployed(boolean state) {
         this.droneDeployed = state;
     }
 
+    /*
+    attack method for the Pilot class. it has 2 versions, one with the drone and one without.
+    the drone adds a bonus flat damage to the attacks of the pilot
+     */
     public int attack(){
         if (getDroneDeployed()) {
             return (int) (baseAttack + droneAttack + (int) (this.getExp() * 0.2) + (this.getExp() * attackScaling));
@@ -41,6 +51,10 @@ public class Pilot extends Character {
         }
     }
 
+    /*
+    special method for the pilot class. It deploys a drone to do coordinated strikes with its attacks.
+    if the drone is already deployed it increases the damage done by the drone by 3.
+     */
     public int special(){
         if(!getDroneDeployed()) {
             setDroneDeployed(true);
@@ -50,16 +64,19 @@ public class Pilot extends Character {
             return 0;
         }
     }
-    //deploys drone
 
+    /*
+    method for things needed to be executed at the end of combat specific to the pilot
+     */
     public void endOfCombatPrep(Threat threat) {
-        gainExp(threat.getExp());
-        missionsCompleted++;
-        increaseMaxHealth(threat.getExp());
+        super.endOfCombatPrep(threat);
         setDroneDeployed(false);
         droneAttack = 5;
     }
 
+    /*
+    method for taking damage with the pilots custom damage resistance formula
+     */
     public void takeDamage(int attackIntensity) {
         int damageTaken = (int) round(attackIntensity * damageVulnerability);
         this.currentHealth = currentHealth - damageTaken;

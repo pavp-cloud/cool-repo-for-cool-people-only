@@ -17,12 +17,11 @@ public abstract class Character implements CombatActor, BasicAttacker, BasicSpec
     protected int missionsCompleted = 0;
     protected boolean isDead = false;
     private final double maxHealthScaling = 1.5;
-    /*
-    private int finalBlows;
-    private int trainingCompleted;
-    //statistics variables, implementation to be done
-     */
+    // used to scale the health increase based on exp gained
 
+    /*
+    constructor for the character class
+     */
     public Character(int maxHealth, int currentHealth, String name, int exp) {
         this.maxHealth = maxHealth;
         this.currentHealth = currentHealth;
@@ -30,67 +29,122 @@ public abstract class Character implements CombatActor, BasicAttacker, BasicSpec
         this.exp = exp;
     }
 
+    /*
+    getter for the max health
+     */
     public int getMaxHealth() {
         return this.maxHealth;
     }
 
+    /*
+    getter for the current health
+     */
     public boolean isDead() {
         return isDead;
     }
 
+    /*
+    setter for the dead flag
+     */
     public void setDead(boolean dead) {
         isDead = dead;
     }
-    public void setHealth(int health) { this.currentHealth = health; }
 
+    /*
+    setter for the current health
+     */
+    public void setHealth(int health) {
+        this.currentHealth = health;
+    }
+
+    /*
+    increases the max health by a certain amount
+     */
     public void increaseMaxHealth(int healthIncrease) {
         this.maxHealth += (int) round(healthIncrease * maxHealthScaling);
     }
 
+    /*
+    getter for the current health
+     */
     public int getCurrentHealth() {
         return this.currentHealth;
     }
 
+    /*
+    resets the current health to the max health
+     */
     public void resetCurrentHealth(int maxHealth) {
         this.currentHealth = maxHealth;
     }
 
-    public void changeCurrentHealth(int healthChange) {
-        this.currentHealth += healthChange;
-        if (this.currentHealth <= 0) {
-            this.currentHealth = 0;
-            this.isDead = true;
-        }
-    }
-
+    /*
+    getter for the name
+     */
     public String getName() {
         return this.name;
     }
 
+    /*
+    getter for the exp
+     */
     public int getExp() {
         return this.exp;
     }
 
+    /*
+    getter for if a character is alive or dead
+     */
     public String getStatus() {
-        if(isDead) {
+        if (isDead) {
             return "Dead";
         } else {
             return "Alive";
         }
     }
 
-    public int getMissionsCompleted() { return this.missionsCompleted; }
+    /*
+    getter for the missions completed by a character
+     */
+    public int getMissionsCompleted() {
+        return this.missionsCompleted;
+    }
 
+    /*
+    adds exp to the character
+     */
     public void gainExp(int expChange) {
         this.exp += expChange;
     }
 
+    /*
+    heals the character
+     */
     public void healHealth(int heal) {
         this.currentHealth += heal;
     }
 
-    public abstract void takeDamage (int attackIntensity);
+    /*
+    abstract method for taking damage
+     */
+    public abstract void takeDamage(int attackIntensity);
+
+    /*
+    abstract method for attacking
+     */
     public abstract int attack();
+
+    /*
+    abstract method for using a characters special
+     */
     public abstract int special();
-    public abstract void endOfCombatPrep(Threat threat);
+
+    /*
+    abstract method for things needed to be executed at the end of combat
+     */
+    public void endOfCombatPrep(Threat threat) {
+        gainExp(threat.getExp());
+        missionsCompleted++;
+        increaseMaxHealth(threat.getExp());
+    }
 }

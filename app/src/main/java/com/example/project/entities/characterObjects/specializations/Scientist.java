@@ -9,50 +9,40 @@ import com.example.project.entities.entityInterfaces.CombatActor;
 import com.example.project.entities.threatObjects.Threat;
 
 public class Scientist extends Character {
-    private boolean usedExpPotion = false;
 
     //CONSTANTS
-    private final int baseAttack = 3;
-    private final int expPotionValue = 5;
+    private final int baseAttack = 4;
+    private final int expPotionValue = 7;
     private final double attackScaling = 0.3;
     private final double damageVulnerability = 1.5;
 
+    /*
+    constructor for the Scientist class
+     */
     public Scientist(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
     }
 
-    public boolean getExpPotion() {
-        return this.usedExpPotion;
-    }
-
-    public void setExpPotion(boolean state) {
-        this.usedExpPotion = state;
-    }
-
+    /*
+    attack method for the Scientist class
+     */
     public int attack(){
         return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 
-    //exp potion
-    //todo: if we're going for the "reusing a one-time use action reloads it" thing we're gonna have to communicate that on the ui just fyi
+    /*
+    special method for the Scientist class. The scientist is able to brew an exp potion and drink it
+    mid-combat for permanent effects.
+     */
     public int special(){
-        if(usedExpPotion) {
-            setExpPotion(false);
-            return 0;
-        } else { //gonna have to figure out how we want this to function, exp to itself? the ally? everyone? to the enemy so killing them gives more?
-            setExpPotion(true);
-            exp += expPotionValue;
-            return 0;
-        }
+        gainExp(expPotionValue);
+        increaseMaxHealth(expPotionValue);
+        return  0;
     }
 
-    public void endOfCombatPrep(Threat threat) {
-        gainExp(threat.getExp());
-        missionsCompleted++;
-        increaseMaxHealth(threat.getExp());
-        setExpPotion(false);
-    }
-
+    /*
+    method for taking damage with the scientists custom damage resistance formula
+     */
     public void takeDamage(int attackIntensity) {
         int damageTaken = (int) round(attackIntensity * damageVulnerability);
         this.currentHealth = currentHealth - damageTaken;

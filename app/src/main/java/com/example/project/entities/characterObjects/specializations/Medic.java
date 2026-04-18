@@ -18,16 +18,23 @@ public class Medic extends Character {
     private final double specialScaling = 0.2;
     private final double damageVulnerability = 1.2;
 
+    /*
+    constructor for the Medic class
+     */
     public Medic(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
     }
 
-
+    /*
+    attack method for the Medic class using its damage modifiers
+     */
     public int attack(){
         return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 
-    //Medic will be able to heal itself
+    /*
+    special method for the medic allowing it to heal itself in combat
+     */
     public int special(){
         int healing = (int) (healingPower + (this.getExp() * specialScaling));
 
@@ -35,12 +42,9 @@ public class Medic extends Character {
         return 0;
     }
 
-    public void endOfCombatPrep(Threat threat) {
-        gainExp(threat.getExp());
-        missionsCompleted++;
-        increaseMaxHealth(threat.getExp());
-    }
-
+    /*
+    method for taking damage with the medics custom damage resistance formula
+     */
     public void takeDamage(int attackIntensity) {
         int damageTaken = (int) round(attackIntensity * damageVulnerability);
         this.currentHealth = currentHealth - damageTaken;

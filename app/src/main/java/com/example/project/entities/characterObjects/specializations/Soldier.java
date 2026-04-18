@@ -17,17 +17,24 @@ public class Soldier extends Character {
     private final double specialScaling = 1.5;
     private final double damageVulnerability = 0.8;
 
+    /*
+    constructor for the Soldier class
+     */
     public Soldier(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
     }
 
+    /*
+    attack method for the soldier using its damage modifiers
+     */
     public int attack(){
         return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 
-    //"throws" the grenade
-    //its like attack, but with a higher base value
-    // The attack hits himself as well because he is in the blast radius
+    /*
+    special method for the soldier to throw a grenade at the enemy for big damage. it also
+    deals damage to itself for being in the blast radius of the grenade.
+     */
     public int special(){
         int damage = (int) (grenadeAttack + (this.getExp() * specialScaling));
         int selfDamage = (int) (damage * 0.4);
@@ -35,12 +42,9 @@ public class Soldier extends Character {
         return damage;
     }
 
-    public void endOfCombatPrep(Threat threat) {
-        gainExp(threat.getExp());
-        missionsCompleted++;
-        increaseMaxHealth(threat.getExp());
-    }
-
+    /*
+    method for taking damage with the soldiers custom damage resistance formula
+     */
     public void takeDamage(int attackIntensity) {
         int damageTaken = (int) round(attackIntensity * damageVulnerability);
         this.currentHealth = currentHealth - damageTaken;
