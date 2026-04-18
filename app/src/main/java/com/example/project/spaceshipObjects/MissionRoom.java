@@ -1,5 +1,6 @@
 package com.example.project.spaceshipObjects;
 
+import com.example.project.EntityGenerationClasses.ThreatAnalysis;
 import com.example.project.entities.characterObjects.Character;
 import com.example.project.entities.threatObjects.Threat;
 import com.example.project.entities.threatObjects.specializations.Alien;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class MissionRoom {
+    private ThreatAnalysis radar = new ThreatAnalysis();
     private Mission activeMission = null;
     private ArrayList<Mission> pastMission = new ArrayList<>();
     private ArrayList<String> threatNames = new ArrayList<>(Arrays.asList(
@@ -28,30 +30,7 @@ public class MissionRoom {
         Collections.shuffle(threatNames);
         String name = threatNames.get(0);
 
-        switch (selection) {
-            case 1:
-                int startingHealthPirate = 60 + (6 * SpaceShip.getInstance().getDaysOnBoard());
-                Pirate pirate = new Pirate(startingHealthPirate, startingHealthPirate, name , 4 + (2 * SpaceShip.getInstance().getDaysOnBoard()));
-                return pirate;
-            case 2:
-                int startingHealthParasite = 70 + (3 * SpaceShip.getInstance().getDaysOnBoard());
-                Parasite parasite = new Parasite(startingHealthParasite, startingHealthParasite, name , 6 + (5 * SpaceShip.getInstance().getDaysOnBoard()));
-                return parasite;
-            case 3:
-                int startingHealthGundam = 100 + (10 * SpaceShip.getInstance().getDaysOnBoard());
-                Gundam gundam = new Gundam(startingHealthGundam, startingHealthGundam, name , 12 + (10 * SpaceShip.getInstance().getDaysOnBoard()));
-                return gundam;
-            case 4:
-                int startingHealthAlien = 51 + (8 * SpaceShip.getInstance().getDaysOnBoard());
-                Alien alien = new Alien(startingHealthAlien, startingHealthAlien, name , 5 + (4 * SpaceShip.getInstance().getDaysOnBoard()));
-                return alien;
-            case 5:
-                int startingHealthDemon = 120 + (12 * SpaceShip.getInstance().getDaysOnBoard());
-                Demon demon = new Demon(startingHealthDemon, startingHealthDemon, name , 15 + (12 * SpaceShip.getInstance().getDaysOnBoard()));
-                return demon;
-            default:
-                return null;
-        }
+        return radar.generateThreat(selection, name);
     }
 
     public Mission createMission(Threat threat){

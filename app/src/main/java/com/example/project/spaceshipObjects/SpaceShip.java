@@ -1,6 +1,6 @@
 package com.example.project.spaceshipObjects;
 
-import com.example.project.backgroundChecks.BackgroundCheck;
+import com.example.project.EntityGenerationClasses.BackgroundCheck;
 import com.example.project.entities.characterObjects.Character;
 
 import java.util.Random;
