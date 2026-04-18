@@ -12,9 +12,9 @@ public class Parasite extends Threat {
 
     //CONSTANTS
 
-    private final int baseAttack = 3;
-    private final double attackScaling = 0.5;
-    private final double specialScaling = 0.2;
+    private final int baseAttack = 7;
+    private final double attackScaling = 0.6;
+    private final double specialScaling = 0.8;
 
     public Parasite(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
