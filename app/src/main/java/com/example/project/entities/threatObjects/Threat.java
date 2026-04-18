@@ -44,12 +44,18 @@ public abstract class Threat implements CombatActor, TargetedAttacker, TargetedS
 
     // Every threat will have a universal basic attack with their own scaling
     public int attack(Character character1, Character character2) {
-        int target = random.nextInt(2); // Res
         int damage = calculateDamage();
 
-        if (target == 0) {
+        if (character1 != null && character2 != null) {
+            int target = random.nextInt(2);
+            if (target == 0) {
+                character1.takeDamage(damage);
+            } else {
+                character2.takeDamage(damage);
+            }
+        } else if (character1 != null) {
             character1.takeDamage(damage);
-        } else {
+        } else if (character2 != null) {
             character2.takeDamage(damage);
         }
         return 0;
