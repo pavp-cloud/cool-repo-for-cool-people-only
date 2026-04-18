@@ -47,6 +47,9 @@ public class MissionControlFragment extends Fragment {
 
         RecyclerView selectionRecycler = view.findViewById(R.id.recycler_view_crew_select);
 
+        // Block out the select crew button initially
+        chooseCrewButton.setEnabled(false);
+
         /*
         checks to see if there is already an active mission. If there is it will update the information again.
          */
@@ -54,6 +57,8 @@ public class MissionControlFragment extends Fragment {
             nameText.setText(SpaceShip.getInstance().getMissionRoom().getActiveMission().getMissionTarget().getName());
             hpText.setText(String.valueOf(SpaceShip.getInstance().getMissionRoom().getActiveMission().getMissionTarget().getCurrentHealth()));
             xpText.setText(String.valueOf(SpaceShip.getInstance().getMissionRoom().getActiveMission().getMissionTarget().getExp()));
+            // Enable if mission already exists
+            chooseCrewButton.setEnabled(true);
         }
 
         // begins crew member selection
@@ -134,6 +139,8 @@ public class MissionControlFragment extends Fragment {
                         nameText.setText(missionThreat.getName());
                         hpText.setText(String.valueOf(missionThreat.getCurrentHealth()));
                         xpText.setText(String.valueOf(missionThreat.getExp()));
+                        // Enable the select crew button now that a threat exists
+                        chooseCrewButton.setEnabled(true);
                     }
                 } else {
                     // tells the player that they are already on standby
@@ -152,6 +159,19 @@ public class MissionControlFragment extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // If the fragment is being destroyed (e.g. user goes back to main menu),
+        // we must return any selected-but-not-started crew members to the global pool.
+        if (!selectedMissionCrew.isEmpty()) {
+            for (Character c : selectedMissionCrew) {
+                SpaceShip.getInstance().getCrewQuarters().addCrewMember(c);
+            }
+            selectedMissionCrew.clear();
+        }
     }
 
     /*
