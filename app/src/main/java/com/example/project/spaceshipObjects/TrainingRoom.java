@@ -42,27 +42,27 @@ public class TrainingRoom {
 
                 case 1:
                     // level 1 training cannot fail
-                    trainee.gainExp(8);
-                    trainee.increaseMaxHealth(8);
+                    trainee.gainExp(6);
+                    trainee.increaseMaxHealth(6);
                     return 0;
 
 
                 case 2:
                     if (Math.random() < 0.7) {
-                        trainee.gainExp(14);
-                        trainee.increaseMaxHealth(14);
+                        trainee.gainExp(9);
+                        trainee.increaseMaxHealth(9);
                         return 0;
                     } else {
-                        trainee.gainExp(5);
-                        trainee.increaseMaxHealth(5);
+                        trainee.gainExp(3);
+                        trainee.increaseMaxHealth(3);
                         // training fails
                         return 1;
                     }
 
                 case 3:
                     if (Math.random() < 0.4) {
-                        trainee.gainExp(17);
-                        trainee.increaseMaxHealth(17);
+                        trainee.gainExp(13);
+                        trainee.increaseMaxHealth(13);
                         return 0;
                     } else {
                         trainee.gainExp(4);

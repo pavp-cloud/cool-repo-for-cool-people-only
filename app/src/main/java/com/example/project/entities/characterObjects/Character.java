@@ -143,7 +143,7 @@ public abstract class Character implements CombatActor, BasicAttacker, BasicSpec
     abstract method for things needed to be executed at the end of combat
      */
     public void endOfCombatPrep(Threat threat) {
-        int expChange = (int) (threat.getExp() * 0.5);
+        int expChange = (int) (threat.getExp() * 0.3);
         gainExp(threat.getExp());
         missionsCompleted++;
         increaseMaxHealth(threat.getExp());
