@@ -39,25 +39,9 @@ Pilot: Expert maneuvers to navigate and influence combat flow.
 
 Threat Analysis (Bestiary)
 
-Enemies in Deep Space Command aren't just stat-blocks; they feature unique AI behaviors:
-Threat
-Behavior
-Special Ability
-Pirate
-Opportunistic
-EXP Siphon: Steals experience points from your crew to buff itself.
-Alien
-Swarm Tactics
-Multi-Strike: Attacks both deployed crew members simultaneously.
-Demon
-Escalating
-Soul Stack: Gains permanent damage buffs every turn.
-Parasite
-Vampiric
-Life Drain: Heals itself for a portion of damage dealt to your crew.
-Gundam
-Juggernaut
-Overload: Massive damage output at the cost of its own internal systems.
+<img width="517" height="164" alt="image" src="https://github.com/user-attachments/assets/3cdd4f03-2c1b-47db-b9ba-86bc4e5a8013" />
+
+
 ---
 
 ## 🛠 Implemented Features
