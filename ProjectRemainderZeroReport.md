@@ -87,7 +87,7 @@ Threats feature unique AI behaviors and scaling logic. Enemies grow stronger as 
 - **Recyler Viewer** - TrainingRoomFragment, PassengerManifestFragement, etc. 
 - **Crew Images as Sprites** -CombatView 
 - **Mission Visualization** - CombatView 
-- **Tatical Combat** - Mission 
+- **Tactical Combat** - Mission 
 - **Statistics** - PassengerManifest 
 - **Randomness in Mission** - Mission, MissionControl, Threats, CrewQuarters
 -  **Specialization Bonuses** - Threat and Characters
