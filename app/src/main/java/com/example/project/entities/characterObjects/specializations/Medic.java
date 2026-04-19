@@ -12,10 +12,10 @@ import com.example.project.entities.threatObjects.Threat;
 public class Medic extends Character {
 
     //CONSTANTS
-    private final int baseAttack = 7;
+    private final int baseAttack = 8;
     private final int healingPower = 15;
-    private final double attackScaling = 0.5;
-    private final double specialScaling = 0.2;
+    private final double attackScaling = 0.75;
+    private final double specialScaling = 0.4;
     private final double damageVulnerability = 1.2;
 
     /*

@@ -13,7 +13,7 @@ public class Engineer extends Character {
 
     //CONSTANTS
     private final int baseAttack = 14;
-    private final double attackScaling = 0.7;
+    private final double attackScaling = 0.8;
     private final double damageVulnerability = 0.66;
     private final double damageVulnerabilityArmored = 0.35;
 

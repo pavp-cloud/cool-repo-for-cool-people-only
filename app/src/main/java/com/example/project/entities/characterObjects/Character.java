@@ -16,7 +16,7 @@ public abstract class Character implements CombatActor, BasicAttacker, BasicSpec
     protected int exp;
     protected int missionsCompleted = 0;
     protected boolean isDead = false;
-    private final double maxHealthScaling = 1.5;
+    private final double maxHealthScaling = 1.6;
     // used to scale the health increase based on exp gained
 
     /*
