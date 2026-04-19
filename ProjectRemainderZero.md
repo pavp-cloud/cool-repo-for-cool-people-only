@@ -11,27 +11,65 @@
 
 ---
 
+# 🚀 Deep Space Command (Project Remainder Zero)
+
+**Deep Space Command** is a tactical, turn-based Android RPG where you command a spaceship and its crew through the dangers of deep space. Balance resource management, crew deployment, and strategic combat as you survive against an ever-growing list of extraterrestrial threats.
+
+## 🎮 Gameplay Overview
+
+### **The Core Loop**
+1.  **Scan for Threats:** Utilize the **Mission Room** radar to identify nearby enemies. Encounter unique entities like *Anvaron the Exhalted*, *Vargmoth*, and *RxR 808*.
+2.  **Crew Selection:** Assign up to two crew members from your **Passenger Manifest** to deploy.
+3.  **Tactical Combat:** Engage in turn-based battles where choosing between basic attacks and class-specific "Special" moves determines survival.
+4.  **Progression:** Earn EXP to scale your crew's power. Be warned—the difficulty scales based on your **Days On Board**.
+
+---
+
+## 👨‍🚀 Crew Specializations
+Each crew member belongs to a class with distinct attributes and scaling:
+
+*   **Soldier:** Heavy frontline combatant.
+    *   *Special Ability:* **Frag Grenade** – Deals massive damage to the enemy at the cost of self-inflicted recoil.
+*   **Medic:** Essential for long-term survival, focusing on sustainability.
+*   **Engineer & Scientist:** Utility specialists that provide technical support and unique combat modifiers.
+*   **Pilot:** Expert navigators who influence the flow of combat.
+
+---
+
+## 👾 Threat Analysis (Bestiary)
+Threats feature unique AI behaviors and scaling logic. Enemies grow stronger as your voyage progresses.
+
+| Threat | Combat Style | Signature Move |
+| :--- | :--- | :--- |
+| **Pirate** | Opportunistic | **EXP Siphon:** Steals experience points from your crew to buff its own stats. |
+| **Alien** | Swarm | **Multi-Attack:** Deals damage to both deployed crew members in a single turn. |
+| **Demon** | Escalating | **Soul Stack:** Gains permanent damage buffs every turn the battle continues. |
+| **Parasite** | Vampiric | **Life Drain:** Heals itself for a portion of the damage dealt to your crew. |
+| **Gundam** | Juggernaut | **Overload:** Massive output damage but sustains internal system damage (recoil). |
+
+---
+
 ## 🛠 Implemented Features
 
 ### 1. Crew Management & Progression
 - **Onboarding:** Recruit unique characters through a security background check system.
 - **Experience (XP):** Characters gain XP from successful missions and training, increasing their max health and damage.
-- **Class Specials:** Unique combat logic for each class (e.g., Engineer's Combat Armor, Medic's Healing).
+- **Class Specials:** Unique combat logic for each class (e.g., Soldier's recoil damage, Medic's sustain).
 
 ### 2. Strategic Turn-Based Combat
 - **2v1 Battles:** Deploy two crew members against a single high-tier threat.
 - **SurfaceView Rendering:** High-performance combat rendering at 60 FPS.
-- **Smart AI:** Threats intelligently target living crew members and utilize special moves based on logic states.
+- **Null-Safe Targeting:** Advanced logic ensures enemies intelligently target living crew members, preventing application crashes.
 
 ### 3. Ship Systems
-- **Persistent State:** Uses the Singleton pattern to maintain ship health, days on board, and manifest across fragments.
+- **Persistent State:** Uses the Singleton pattern (`SpaceShip`) to maintain ship health, days on board, and manifest across fragments.
 - **Training Room:** A limited-use facility to safely boost crew stats between missions.
-- **Passenger Manifest:** A permanent record tracking every crew member's service and status (Alive/Dead).
+- **Passenger Manifest:** A permanent record tracking every crew member's service and status (Alive/Dead) using a `RecyclerView`.
 
 ### 4. Game Mechanics
-- **Dynamic Difficulty:** Threats scale in difficulty based on the number of days the ship has been adrift.
+- **Dynamic Difficulty:** Threats scale (Health/EXP) based on the number of days the ship has been adrift (`SpaceShip.getDaysOnBoard()`).
 - **Survival Penalties:** Ship health is damaged if a mission ends in total crew defeat.
-- **Soft Reset:** Full game reset functionality upon ship destruction.
+- **Reset Logic:** Full game state reset functionality integrated upon ship destruction.
 
 ### 5. Mandatory Requirements Implemented - Descriptions: 
 - ** Object Oriented Code** - this has been implemented, see code and class diagram.
@@ -53,23 +91,17 @@
 
 ---
 
-## Class Diagram 
-Below is the architectural overview of the project, highlighting the inheritance hierarchies for Crew Members and Threats, and the Singleton pattern used for ship management.
+## 📐 Architecture overview
+Below is the architectural overview of the project, highlighting the inheritance hierarchies for Crew Members and Threats.
 
 classDiagram
     class SpaceShip {
         -static SpaceShip instance
-        -MissionRoom missionRoom
-        -CrewQuarters crewQuarters
-        -PassengerManifest manifest
-        -TrainingRoom trainingRoom
-        -BackgroundCheck securityCheck
         -int daysOnBoard
         -int shipHealth
         +static getInstance() SpaceShip
         +resetGame()
         +onboardCrewMember(int, String)
-        +damageShip()
     }
 
     class Character {
@@ -78,11 +110,8 @@ classDiagram
         #int currentHealth
         #String name
         #int exp
-        #boolean isDead
         +attack()* int
         +special()* int
-        +takeDamage(int)*
-        +endOfCombatPrep(Threat)*
     }
 
     class Threat {
@@ -93,33 +122,14 @@ classDiagram
         #int exp
         +attack(Character, Character)* int
         +special(Character, Character)* int
-        +takeDamage(int)*
     }
 
     class Mission {
         -Character crewMember1
         -Character crewMember2
         -Threat missionTarget
-        -boolean isPlayerTurn
         +executeMission()
-        +playerTurn(int, int)
         +enemyTurn() int
-        +endMission()
-        +isGameOver() boolean
-    }
-
-    class CombatView {
-        -Mission activeMission
-        -OnCombatEndedListener listener
-        +setupCombat(Mission)
-        +draw()
-        +onTouchEvent(MotionEvent)
-    }
-
-    class MissionRoom {
-        -Mission activeMission
-        +scanForThreats(int) Threat
-        +createMission(Threat) Mission
     }
 
     %% Inheritance Hierarchies
@@ -135,19 +145,7 @@ classDiagram
     Threat <|-- Pirate
     Threat <|-- Parasite
 
-    %% Composition and Associations
-    SpaceShip *-- MissionRoom
-    SpaceShip *-- CrewQuarters
-    SpaceShip *-- PassengerManifest
-    SpaceShip *-- TrainingRoom
-    
-    MissionRoom o-- Mission
-    Mission "1" -- "2" Character : involves
-    Mission "1" -- "1" Threat : targets
-    
-    CombatViewFragment ..> CombatView : creates
-    CombatViewFragment ..> Mission : uses
-    CombatView --|> SurfaceView
+---
 
 ## 🤝 Division of Work
 - Designing, Scaling, and Logic was done as a group effort, with all members meeting accordingly
@@ -158,9 +156,9 @@ classDiagram
 - I also worked on minor details inside of SpaceShip, Threat, and Mission Room. This included helping with Threat logic on the targeting of the two crew members with basic and special attacks, resetGame, and creating the array list for the Threat names.
 
 ### [Student Name 2]
-- Engineered the **`Mission` logic** and turn-sequencing (Player 1 -> Player 2 -> Enemy).
+- Engineered the **`Mission` logic** and turn-sequencing (Player -> Enemy).
 - Created the **`SpaceShip` Singleton** and the global state management.
-- Developed the **Threat AI logic** and damage scaling systems.
+- Developed the **Threat AI logic**, null-safe targeting, and damage scaling systems.
 
 ### [Student Name 3]
 - Designed and integrated **Sprite Assets** for all entities and backgrounds.
