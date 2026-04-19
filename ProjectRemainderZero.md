@@ -8,6 +8,56 @@
 | [Student Name 2] | [e.g. Backend / Logic] | [@username] |
 | [Student Name 3] | [e.g. Assets / Testing] | [@username] |
 
+Space RPG: Project Remainder Zero 
+Deep Space Command is a tactical, turn-based Android RPG where you manage a spaceship crew navigating a hostile galaxy. Balance risk and reward as you scan for threats, manage crew health, and engage in strategic combat against evolving extraterrestrial enemies.
+Gameplay Overview
+The Core Loop
+1.
+Scan: Use the Mission Room radar to identify nearby threats.
+2.
+Deploy: Assign up to two crew members to a mission based on the threat profile.
+3.
+Engage: Fight through turn-based combat where positioning and ability timing are key.
+4.
+Advance: Earn EXP to scale your crew's power. Be careful—enemies scale in difficulty the longer you survive (Days On Board).
+5. 
+Survival: How long can you survive it the deep troves of space? (See how many days you can survive.)
+
+
+Crew Specializations
+Every crew member has unique scaling and distinct special abilities:
+•
+Soldier: The frontline powerhouse.
+◦
+Special: Frag Grenade – Deals massive area damage but causes self-recoil.
+•
+Medic: Essential for sustainability. Keeps the crew alive during long deployments.
+•
+Engineer & Scientist: Specialists providing technical utility and unique combat modifiers.
+•
+Pilot: Expert maneuvers to navigate and influence combat flow.
+
+Threat Analysis (Bestiary)
+
+Enemies in Deep Space Command aren't just stat-blocks; they feature unique AI behaviors:
+Threat
+Behavior
+Special Ability
+Pirate
+Opportunistic
+EXP Siphon: Steals experience points from your crew to buff itself.
+Alien
+Swarm Tactics
+Multi-Strike: Attacks both deployed crew members simultaneously.
+Demon
+Escalating
+Soul Stack: Gains permanent damage buffs every turn.
+Parasite
+Vampiric
+Life Drain: Heals itself for a portion of damage dealt to your crew.
+Gundam
+Juggernaut
+Overload: Massive damage output at the cost of its own internal systems.
 ---
 
 ## 🛠 Implemented Features
