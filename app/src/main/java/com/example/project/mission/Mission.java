@@ -16,16 +16,30 @@ public class Mission {
     private boolean crew1Moved = false;
     private boolean crew2Moved = false;
 
-    public boolean isPlayerTurn() {return isPlayerTurn;}
-    public boolean isCrew1Moved() {return crew1Moved;}
-    public boolean isCrew2Moved() {return crew2Moved;}
+    public boolean isPlayerTurn() {
+        return isPlayerTurn;
+    }
+
+    public boolean isCrew1Moved() {
+        return crew1Moved;
+    }
+    public boolean isCrew2Moved() {
+        return crew2Moved;
+    }
 
     public Mission(Threat missionTarget) {
+
         this.missionTarget = missionTarget;
     }
-    public Character getCrewMember1(){return crewMember1;}
-    public Character getCrewMember2(){return crewMember2;}
-    public Threat getMissionTarget(){return missionTarget;}
+    public Character getCrewMember1(){
+        return crewMember1;
+    }
+    public Character getCrewMember2(){
+        return crewMember2;
+    }
+    public Threat getMissionTarget(){
+        return missionTarget;
+    }
     //bring the chosen crew members to the combat
     public void addCrewMembers (Character crewMember1, Character crewMember2) {
         this.crewMember1 = crewMember1;

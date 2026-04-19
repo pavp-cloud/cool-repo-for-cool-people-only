@@ -17,6 +17,7 @@ public class TrainingRoom {
     }
 
     public Character getTrainees() {
+
         return trainee;
     }
 
