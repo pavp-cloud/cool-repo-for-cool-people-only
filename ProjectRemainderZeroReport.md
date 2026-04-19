@@ -20,7 +20,7 @@
 ## 🎮 Gameplay Overview
 
 ### **The Core Loop**
-1.  **Scan for Threats:** Utilize the **Mission Room** radar to identify nearby enemies. Encounter unique entities like *Anvaron the Exhalted*, *Vargmoth*, and *RxR 808*.
+1.  **Scan for Threats:** Utilize the **Mission Room** radar to identify nearby enemies. Encounter unique entities like *Anvaron the Exhalted*, *Bob*, and *RxR 808*.
 2.  **Crew Selection:** Assign a crew member from the crew quarters to train or up to two crew members for a mission.
 3.  **Tactical Combat:** Engage in turn-based battles where choosing between basic attacks and class-specific "Special" moves determines survival.
 4.  **Progression:** Earn exp to scale your crew's power level. Be warned however, the difficulty scales based on your **Days On Board** so keeping up
