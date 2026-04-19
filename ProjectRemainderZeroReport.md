@@ -42,7 +42,7 @@ Each crew member belongs to a class with distinct attributes and scaling:
 
 ---
 
-## 👾 Threat Analysis (Bestiary)
+## 👾 Threat Analysis
 Threats feature unique AI behaviors and scaling logic. Enemies grow stronger as your voyage progresses.
 
 | Threat | Combat Style | Signature Move |
