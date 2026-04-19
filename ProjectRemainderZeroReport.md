@@ -98,7 +98,7 @@ Threats feature unique AI behaviors and scaling logic. Enemies grow stronger as 
 ---
 
 ## 📐 Architecture overview
-Below is the architectural overview of the project, highlighting the inheritance hierarchies for Crew Members and Threats.
+Below is the architectural overview of the project, highlighting the inheritance hierarchies for Crew Members, Missions, Threats, and more.
 
 <img width="1182" height="372" alt="image" src="https://github.com/user-attachments/assets/2486e3d2-6743-4915-ab6b-407efb2c201d" />
 
