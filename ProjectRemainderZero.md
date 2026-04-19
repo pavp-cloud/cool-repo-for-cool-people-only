@@ -6,7 +6,7 @@
 | Name | Role | GitHub |
 | Matthew Laughlin | Focus on Combat UI and Backend Combat Logic | fabled_03  |
 | Pavel Pavlov     | OOP Design, entity logic/structure, UI      | pavp-cloud |
-| [Student Name 3] | [e.g. Assets / Testing] | [@username] |
+| Heikki Kornmann | overall game design, UI, fragments, menu systems and logic | heikkikornmann-bit |
 
 
 ---
@@ -140,3 +140,13 @@ https://miro.com/welcomeonboard/Z3JvdmErRnczSk1wUExWYnBRbWNNUEZJZFhIN2o5Yk1qV1Bl
 - Designed and integrated **Sprite Assets** for all entities and backgrounds.
 - Implemented the **`PassengerManifest`** and `RecyclerView` adapters for crew tracking.
 - Created the **Training Room** mechanics and daily usage limitations.
+
+## AI usage declaration
+- No AI was used in designing the architecture of our game nor in creating the logic or design of how the gameplay would work
+- Our xml files were made by us as well.
+- We did however use gemini to learn and understand how to connect our UI elements together
+- Gemini was also used in the creation of the combatview to learn and understand how it might be done. It was still created by us only with some help.
+- Overall we feel our use of Gemini in the project was well within the guidelines. We used for learning and understanding and did not let it write our project for us.
+
+## Sources used
+- 
