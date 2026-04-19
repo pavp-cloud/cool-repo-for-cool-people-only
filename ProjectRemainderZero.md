@@ -4,8 +4,7 @@
 **University:** LUT
 
 | Name | Role | GitHub |
-| :--- | :--- | :--- |
-| [Student Name 1] | [e.g. Lead Developer / UI] | [@username] |
+| Matthew Laughlin | Focus on Combat UI and Backend Combat Logic | fabled_03 |
 | [Student Name 2] | [e.g. Backend / Logic] | [@username] |
 | [Student Name 3] | [e.g. Assets / Testing] | [@username] |
 
@@ -132,11 +131,12 @@ classDiagram
     CombatView --|> SurfaceView
 
 ## 🤝 Division of Work
+- Designing, Scaling, and Logic was done as a group effort, with all members meeting accordingly
 
-### [Student Name 1]
-- Implemented the **SurfaceView Combat Engine** and multithreaded game loop.
-- Developed the **Inheritance Hierarchy** for the `Character` base class and its specializations.
-- Integrated **Fragment Navigation** and the main menu UI.
+### Matthew Laughlin 
+- Designed and created the entire CombatView. This includes adding sprites, toasts, animations, and buttons. This was done in order to add a degree of customization and to practice with working with coding UI inside Java.
+- Worked on the Mission class, working on playerTurn, executeMission, isGameOver, endMission, enemyTurn, and allowedCrewMembers. My work included playerTurn logic and enemyTurn logic with focus on setting up combat to execute properly and triggering the correct events when conditions were met. I also ensured that crew members were returned to their proper places after combat had occured. Then worked to connect all of these to the UI elements of the CombatView. 
+- I also worked on minor details inside of SpaceShip, Threat, and Mission Room. This included helping with Threat logic on the targeting of the two crew members with basic and special attacks, resetGame, and creating the array list for the Threat names.
 
 ### [Student Name 2]
 - Engineered the **`Mission` logic** and turn-sequencing (Player 1 -> Player 2 -> Enemy).
