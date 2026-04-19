@@ -32,6 +32,24 @@
 - **Survival Penalties:** Ship health is damaged if a mission ends in total crew defeat.
 - **Soft Reset:** Full game reset functionality upon ship destruction.
 
+### 5. Mandatory Requirements Implemented - Descriptions: 
+- ** Object Oriented Code** - this has been implemented, see code and class diagram.
+- ** Code in English** - see code
+- ** Basic Functionality** - refer to video, above, or play test.
+- ** Documentation** - refer to this md and readme. 
+
+### 6. Bonus Features Implemented - Locations: 
+- ** Recyler Viewer - TrainingRoomFragment, PassengerManifestFragement, etc. 
+- ** Crew Images as Sprites -CombatView 
+- ** Mission Visualization - CombatView 
+- ** Tatical Combat - Mission 
+- ** Statistics - PassengerManifest 
+- ** Randomness in Mission - Mission, MissionControl, Threats, CrewQuarters
+-  ** Specialization Bonuses - Threat and Characters
+-  ** Fragments - CombatView Fragment, MissionControl Fragment, Tutorial Fragment, etc.
+-  ** Statics Visulaiztation - PassengerManifest
+-  ** Own Creation - Ship will take damage when failing a mission, and a lot more features. 
+
 ---
 
 ## Class Diagram 
