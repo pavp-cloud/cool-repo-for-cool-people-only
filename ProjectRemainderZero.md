@@ -8,50 +8,53 @@
 | [Student Name 2] | [e.g. Backend / Logic] | [@username] |
 | [Student Name 3] | [e.g. Assets / Testing] | [@username] |
 
-Space RPG: Deep Space Command
-Deep Space Command is a tactical, turn-based Android RPG where you manage a spaceship crew navigating a hostile galaxy. Balance risk and reward as you scan for threats, manage crew health, and engage in strategic combat against evolving extraterrestrial enemies.
-🚀 Gameplay Overview
-The Core Loop
-1.
-Scan: Use the Mission Room radar to identify nearby threats.
-2.
-Deploy: Assign up to two crew members to a mission based on the threat profile.
-3.
-Engage: Fight through turn-based combat where positioning and ability timing are key.
-4.
-Advance: Earn EXP to scale your crew's power. Be careful—enemies scale in difficulty the longer you survive (Days On Board).
-👨‍🚀 Crew Specializations
-Every crew member has unique scaling and distinct special abilities:
+Game Overview: Project Remainder Zero 
+Genre: Space-Themed Turn-Based Strategy RPG Platform: Android
+1. Core Concept
+Players manage a spaceship and its crew as they navigate through deep space, encountering various extraterrestrial and supernatural threats. The game focuses on tactical turn-based combat, crew management, and character progression through an experience-based leveling system.
+2. Gameplay Loop
 •
-Soldier: The frontline powerhouse.
-◦
-Special: Frag Grenade – Deals massive area damage but causes self-recoil.
+Scanning: Using the Mission Room, players use radar to scan for nearby threats.
 •
-Medic: Essential for sustainability. Keeps the crew alive during long deployments.
+Mission Setup: Players select a mission and assign crew members (up to two) to tackle the identified threat.
 •
-Engineer & Scientist: Specialists providing technical utility and unique combat modifiers.
+Combat: A turn-based battle system where players choose between standard attacks and specialized abilities.
 •
-Pilot: Expert maneuvers to navigate and influence combat flow.
-👾 Threat Analysis (Bestiary)
-Enemies in Deep Space Command aren't just stat-blocks; they feature unique AI behaviors:
-Threat
-Behavior
-Special Ability
-Pirate
-Opportunistic
-EXP Siphon: Steals experience points from your crew to buff itself.
-Alien
-Swarm Tactics
-Multi-Strike: Attacks both deployed crew members simultaneously.
-Demon
-Escalating
-Soul Stack: Gains permanent damage buffs every turn.
-Parasite
-Vampiric
-Life Drain: Heals itself for a portion of damage dealt to your crew.
-Gundam
-Juggernaut
-Overload: Massive damage output at the cost of its own internal systems.
+Resolution: Successful missions reward crew members with EXP, while failure can lead to crew injury or damage to the ship.
+3. Crew Classes (Character Specializations)
+Each crew member belongs to a specific class with unique scaling and abilities:
+•
+Soldier: High durability and damage. Uses a "Grenade" special for massive damage at the cost of self-inflicted recoil.
+•
+Medic: Focused on sustainability and healing (inferred from Medic.java).
+•
+Pilot/Engineer/Scientist: (Specializations found in the project, likely providing utility or ship-based bonuses).
+4. Enemy Types (Threat Specializations)
+Threats feature unique AI behaviors and "Special" moves:
+•
+Pirate: A cunning foe that steals EXP from your crew members to buff its own power.
+•
+Alien: Provides consistent pressurre by dealing damage to multiple crew members simultaneously.
+•
+Demon: Becomes more dangerous over time by stacking buffs that scale its damage.
+•
+Gundam: A heavy hitter that uses high-output special attacks but sustains recoil damage.
+•
+Parasite: Sustains itself by healing for a portion of the damage it deals to the crew.
+5. Technical Architecture
+•
+Entity System: Utilizes a robust inheritance hierarchy (CombatActor interface → Threat/Character abstract classes) to ensure consistent combat logic across all entities.
+•
+Mission Logic: Managed via a Mission controller that handles turn-order, target validation (null-safety), and win/loss conditions.
+•
+UI Framework: Built with Android-native components, utilizing RecyclerView for crew management and Fragments for different ship rooms.
+•
+Generation System: Features a ThreatAnalysis engine for procedural enemy generation based on difficulty selections.
+6. Key Mechanics
+•
+EXP Scaling: Unlike traditional RPGs where level is a static number, "EXP" is often used directly in damage formulas, making every point gained feel impactful in real-time.
+•
+Targeting Logic: The game uses a randomized targeting system for enemies, requiring players to keep both crew members healthy to avoid a single point of failure..
 ---
 
 ## 🛠 Implemented Features
