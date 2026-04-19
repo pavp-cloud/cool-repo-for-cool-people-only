@@ -18,7 +18,7 @@ public class Alien extends Threat {
     }
 
     @Override
-    protected int calculateDamage() {
+    public int calculateDamage() {
         return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 

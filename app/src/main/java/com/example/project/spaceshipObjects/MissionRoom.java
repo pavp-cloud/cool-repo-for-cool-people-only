@@ -17,7 +17,7 @@ import java.util.Collections;
 public class MissionRoom {
     private ThreatAnalysis radar = new ThreatAnalysis();
     private Mission activeMission = null;
-    private ArrayList<Mission> pastMission = new ArrayList<>();
+    private ArrayList<Mission> pastMissions = new ArrayList<>();
     // currently pastMissions isn't used anywhere in the code. we plan to add a mission history later.
     private ArrayList<String> threatNames = new ArrayList<>(Arrays.asList(
             "Bob", "Karen", "Terry", "Becky", "RxR 808", "Anvaron the Exhalted",
@@ -67,7 +67,7 @@ public class MissionRoom {
     and sets the active mission to null.
      */
     public void updateMissionStatus(){
-        pastMission.add(activeMission);
+        pastMissions.add(activeMission);
         activeMission = null;
     }
 }

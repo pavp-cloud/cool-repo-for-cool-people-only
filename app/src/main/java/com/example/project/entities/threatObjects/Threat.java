@@ -52,7 +52,7 @@ public abstract class Threat implements CombatActor, TargetedAttacker, TargetedS
         return 0;
     }
 
-    protected Character pickTarget(Character character1, Character character2) {
+    public Character pickTarget(Character character1, Character character2) {
         if (character1 != null && character2 != null) {
             int target = random.nextInt(2);
             if (target == 0) {
@@ -78,7 +78,7 @@ public abstract class Threat implements CombatActor, TargetedAttacker, TargetedS
     /* Every threat will implement their own damage calculations and feed them into
     the universal attack method
      */
-    protected abstract int calculateDamage();
+    public abstract int calculateDamage();
 
     public void healHealth(int heal) {
         adjustCurrentHealth(heal);

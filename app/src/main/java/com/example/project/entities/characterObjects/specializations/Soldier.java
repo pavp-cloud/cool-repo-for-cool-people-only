@@ -14,7 +14,7 @@ public class Soldier extends Character {
     private final int baseAttack = 8;
     private final int grenadeAttack = 10;
     private final double attackScaling = 0.5;
-    private final double specialScaling = 1.5;
+    private final double specialScaling = 1.8;
     private final double damageVulnerability = 0.8;
 
     /*

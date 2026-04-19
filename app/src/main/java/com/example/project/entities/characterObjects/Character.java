@@ -37,13 +37,6 @@ public abstract class Character implements CombatActor, BasicAttacker, BasicSpec
     }
 
     /*
-    getter for the current health
-     */
-    public boolean isDead() {
-        return isDead;
-    }
-
-    /*
     setter for the dead flag
      */
     public void setDead(boolean dead) {
@@ -150,7 +143,7 @@ public abstract class Character implements CombatActor, BasicAttacker, BasicSpec
     abstract method for things needed to be executed at the end of combat
      */
     public void endOfCombatPrep(Threat threat) {
-        int expChange = (int) (threat.getExp() * 0.3);
+        int expChange = (int) (threat.getExp() * 0.4);
         gainExp(expChange);
         missionsCompleted++;
         increaseMaxHealth(expChange);

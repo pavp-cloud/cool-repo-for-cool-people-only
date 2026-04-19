@@ -21,7 +21,7 @@ public class Gundam extends Threat {
     }
 
     @Override
-    protected int calculateDamage() {
+    public int calculateDamage() {
         return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 

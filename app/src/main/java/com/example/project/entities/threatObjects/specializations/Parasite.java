@@ -9,7 +9,7 @@ public class Parasite extends Threat {
 
     private final int baseAttack = 7;
     private final double attackScaling = 0.6;
-    private final double specialScaling = 0.8;
+    private final double specialScaling = 0.5;
 
     public Parasite(int maxHealth, int currentHealth, String name, int exp){
         super(maxHealth, currentHealth, name, exp);
@@ -17,7 +17,7 @@ public class Parasite extends Threat {
     }
 
     @Override
-    protected int calculateDamage() {
+    public int calculateDamage() {
         return (int) (baseAttack + (this.getExp() * attackScaling));
     }
 

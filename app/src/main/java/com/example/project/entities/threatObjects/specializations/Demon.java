@@ -18,7 +18,7 @@ public class Demon extends Threat {
         super(maxHealth, currentHealth, name, exp);
     }
     @Override // Damage additionally scales with the amount of buff stacks
-    protected int calculateDamage() {
+    public int calculateDamage() {
         return (int) (baseAttack + ((this.getExp() * getBuffStackCounter()) * attackScaling));
     }
 
