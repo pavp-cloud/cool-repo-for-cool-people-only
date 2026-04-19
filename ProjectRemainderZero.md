@@ -9,7 +9,10 @@
 | [Student Name 3] | [e.g. Assets / Testing] | [@username] |
 
 Space RPG: Project Remainder Zero 
+
 Deep Space Command is a tactical, turn-based Android RPG where you manage a spaceship crew navigating a hostile galaxy. Balance risk and reward as you scan for threats, manage crew health, and engage in strategic combat against evolving extraterrestrial enemies.
+
+
 Gameplay Overview
 The Core Loop
 1.
@@ -25,6 +28,7 @@ Survival: How long can you survive it the deep troves of space? (See how many da
 
 
 Crew Specializations
+
 Every crew member has unique scaling and distinct special abilities:
 •
 Soldier: The frontline powerhouse.
