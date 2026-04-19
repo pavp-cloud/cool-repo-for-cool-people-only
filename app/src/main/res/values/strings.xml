@@ -6,6 +6,31 @@
     <string name="onboard_new_crew">Onboard New Crew</string>
     <string name="onboard_button">Onboard</string>
     <string name="cancel_button">Cancel</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tutorial_content">"
+        Welcome to Project Remainder 0\n
+        The goal of this game is to survive as long as possible in the void of space. You will encounter a variety of threats that will impede your path to salvation. Can YOU survive? \n
+        The game has 4 main features:
+        1. Onboarding new crew members:
+        You will want to have a variety of crew members to help you survive each day.\n
+        2. The Ship Manifest:
+        Here you can inspect your crew members (alive and dead alike) and view their hard earned stats.\n
+        3. The training room:
+        Here you can train your crew members 3 times a day before starting a mission. Training is not guaranteed so choose wisely.\n
+        4. The mission control room:
+        Here is where the magic happens. You scan for threats to your ship and send your best duo to deal with them. But beware some threats are VERY dangerous.\n
+        Once a mission is started you engage in combat with the Threat. Each class has its own strengths and weaknesses so why don't we go over what each has in store for you.\n
+
+        CLASSES:\n
+        THE MEDIC: they are able to heal themselves along with dishing out damage.\n
+        THE SOLDIER: Comes equipped with grenades but beware he's a lil dumb so he gets hit by them too.\n
+        THE SCIENTIST: Using his maddening genius he can create exp potions in combat. Don't let greed be your undoing.\n
+        THE ENGINEER: An absolute tank. you can rely on him to tank all your enemies. (if they decide to hit him of course)\n
+        THE PILOT: Comes equipped with a deployable drone that gets stronger with each use in combat. Everyone needs a friend in combat.\n
+        As for what the threats have in store for you, you'll just have to find out for yourself.\n
+        Once you decide on your crew, you'll fly down to the planet and engage in combat. You'll first take actions with your crew members, after which the threat will strike back in glorious fashion!\n
+        After finishing combat, if your crew survives they gain experience, and you move on to the next day. In the event you fail to subjugate the threat, your ship will be damaged by the threat, and you'll lose your mission crew! Keep your ship health above 0 to keep surviving!\n
+        We hope you'll enjoy playing as much as we did making it! Now go conquer the far reaches of space.\n"
+    </string>
 </resources>

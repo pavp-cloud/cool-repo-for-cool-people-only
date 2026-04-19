@@ -34,6 +34,7 @@ public class MainMenuFragment extends Fragment {
         Button onboardCrewButton = view.findViewById(R.id.onboard_crew_button);
         Button trainingRoomButton = view.findViewById(R.id.training_room_button);
         Button passengerManifestButton = view.findViewById(R.id.passenger_manifest_button);
+        Button tutorialButton = view.findViewById(R.id.tutorial_button);
 
         daysAdriftNumber = view.findViewById(R.id.days_adrift_number);
         currentCrewCountNumber = view.findViewById(R.id.current_crew_count_number_text);
@@ -75,6 +76,14 @@ public class MainMenuFragment extends Fragment {
                     .commit();
         });
 
+        tutorialButton.setOnClickListener(v -> {
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new TutorialFragment())
+                    .addToBackStack(null)
+                    .commit();
+        });
+
+
         return view;
     }
     //Displays game over if ship health is 0.
@@ -101,6 +110,7 @@ public class MainMenuFragment extends Fragment {
         View dialogView = inflater.inflate(R.layout.dialog_onboard_crew, null);
         EditText nameInput = dialogView.findViewById(R.id.edit_text_crew_name);
 
+        // opens the popup menu for naming the crew member
         new AlertDialog.Builder(requireActivity(), R.style.CustomDialogTheme)
                 .setTitle("Onboard New Crew")
                 .setView(dialogView)

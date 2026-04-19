@@ -142,4 +142,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/big_pixel_rocket" />
 
+    <Button
+        android:id="@+id/tutorial_button"
+        android:layout_width="87dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:backgroundTint="#41000000"
+        android:text="About"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
