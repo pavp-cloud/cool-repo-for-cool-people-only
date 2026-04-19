@@ -10,21 +10,21 @@ import com.example.project.entities.characterObjects.Character;
 public class BackgroundCheck {
     //CONSTANTS
     // exp multiplier for new recruits to catch up slightly
-    private final int globalExpMultiplier = 15;
+    private final int globalExpMultiplier = 17;
 
     // base heath values for all available specs
-    private final int baseHealthMedic = 45;
-    private final int baseHealthSoldier = 65;
-    private final int baseHealthScientist = 30;
-    private final int baseHealthPilot = 55;
-    private final int baseHealthEngineer = 95;
+    private final int baseHealthMedic = 55;
+    private final int baseHealthSoldier = 85;
+    private final int baseHealthScientist = 40;
+    private final int baseHealthPilot = 65;
+    private final int baseHealthEngineer = 105;
 
     // hp scales slightly with the amount of day passed/missions completed overall
-    private final int healthScaling = 25;
+    private final int healthScaling = 27;
 
     /*
     this function is used to create a new crew member. It takes a randomly generated number,
-    a name given by the user and the days on board to create a charcter. the days on board
+    a name given by the user and the days on board to create a character. the days on board
     are used to scale up new recruits to catch up to where you are in the game.
      */
     public Character newCrewMember(int selection, String crewMemberName, int daysOnBoard) {

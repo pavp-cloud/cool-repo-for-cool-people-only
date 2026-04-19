@@ -2,9 +2,6 @@ package com.example.project.entities.threatObjects.specializations;
 
 
 import com.example.project.entities.characterObjects.Character;
-import com.example.project.entities.entityInterfaces.CombatActor;
-import com.example.project.entities.entityInterfaces.TargetedAttacker;
-import com.example.project.entities.entityInterfaces.TargetedSpecial;
 import com.example.project.entities.threatObjects.Threat;
 
 import java.util.Random;
@@ -13,7 +10,7 @@ public class Gundam extends Threat {
 
     private final int baseAttack = 7;
     private final double attackScaling = 0.5;
-    private final double specialScaling = 2;
+    private final double specialScaling = 2.2;
 
 
     public Gundam(int maxHealth, int currentHealth, String name, int exp) {

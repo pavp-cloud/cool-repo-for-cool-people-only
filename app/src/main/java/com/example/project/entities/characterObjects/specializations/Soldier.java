@@ -12,8 +12,8 @@ public class Soldier extends Character {
 
     //CONSTANTS
     private final int baseAttack = 9;
-    private final int grenadeAttack = 12;
-    private final double attackScaling = 0.5;
+    private final int grenadeAttack = 15;
+    private final double attackScaling = 0.6;
     private final double specialScaling = 1.8;
     private final double damageVulnerability = 0.7;
 
@@ -37,7 +37,7 @@ public class Soldier extends Character {
      */
     public int special(){
         int damage = (int) (grenadeAttack + (this.getExp() * specialScaling));
-        int selfDamage = (int) (damage * 0.45);
+        int selfDamage = (int) (damage * 0.35);
         takeDamage(selfDamage);
         return damage;
     }

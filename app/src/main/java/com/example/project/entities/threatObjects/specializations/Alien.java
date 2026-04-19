@@ -1,16 +1,13 @@
 package com.example.project.entities.threatObjects.specializations;
 
 import com.example.project.entities.characterObjects.Character;
-import com.example.project.entities.entityInterfaces.CombatActor;
-import com.example.project.entities.entityInterfaces.TargetedAttacker;
-import com.example.project.entities.entityInterfaces.TargetedSpecial;
 import com.example.project.entities.threatObjects.Threat;
 
 public class Alien extends Threat {
 
     //CONSTANTS
 
-    private final int baseAttack = 5;
+    private final int baseAttack = 6;
     private final double attackScaling = 0.65;
     private final double specialScaling = 0.55;
     public Alien(int maxHealth, int currentHealth, String name, int exp) {

@@ -1,9 +1,6 @@
 package com.example.project.entities.threatObjects.specializations;
 
 import com.example.project.entities.characterObjects.Character;
-import com.example.project.entities.entityInterfaces.CombatActor;
-import com.example.project.entities.entityInterfaces.TargetedAttacker;
-import com.example.project.entities.entityInterfaces.TargetedSpecial;
 import com.example.project.entities.threatObjects.Threat;
 
 public class Demon extends Threat {
@@ -11,7 +8,7 @@ public class Demon extends Threat {
 
     //CONSTANTS
 
-    private final int baseAttack = 8;
+    private final int baseAttack = 9;
     private final double attackScaling = 0.56;
 
     public Demon(int maxHealth, int currentHealth, String name, int exp) {
