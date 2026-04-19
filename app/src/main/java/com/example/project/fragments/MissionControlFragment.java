@@ -88,7 +88,7 @@ public class MissionControlFragment extends Fragment {
                         // removes the selected crew member from the CrewQuarters for the duration fo the mission
                         SpaceShip.getInstance().getCrewQuarters().removeCrewMember(character);
 
-                        // 3. Logic: If we need more characters, refresh; otherwise, close list
+                        // if only one character is selected it will do the selection again
                         if (selectedMissionCrew.size() < 2 && SpaceShip.getInstance().getCrewQuarters().getCrewMembers().size() > 0) {
                             ((CharacterAdapter)selectionRecycler.getAdapter()).refreshData(
                                     SpaceShip.getInstance().getCrewQuarters().getCrewMembers());
