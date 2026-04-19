@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PROJECT</string>
+    <string name="app_name">Remainder Zero</string>
     <string name="enter_crew_name">Enter Crew Member Name:</string>
     <string name="crew_name_hint">Name</string>
     <string name="onboard_new_crew">Onboard New Crew</string>
