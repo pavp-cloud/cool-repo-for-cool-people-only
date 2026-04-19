@@ -15,6 +15,8 @@
 
 **Project Remainder Zero** is a tactical, turn-based Android RPG where you command a spaceship and its crew through the dangers of deep space. Balance resource management, crew deployment, and strategic combat as you survive against an ever-growing list of extraterrestrial threats.
 
+**Project Remainder Zero Lore** in the year 2133 an event known as the Collision seperated humanity from itself. In years before 2133, humanity had grown complacent in its place in the Universe. No longer is there fear of what space has in store for humanity, and space travel had become a rutine event. Then, as though lightning striking in a storm, a worm hole opened up right next to Earth, and behind that worm hole, a black hole that engulfed the entire Sol system in matter of seconds. Once being an advance race, now the pieces of humanity that survived in space ships scattered through the rest of the galaxy begin a fight for survival, trying to find the truth behind the Collision, or dying out till none remain. Humanity thought it was alone in the Universe, till it become evident that space isn't just a void, but an ecosystem ready to slaughter the weak like cattle. Can you survive long enough to ensure that humanity survives?
+
 ## 🎮 Gameplay Overview
 
 ### **The Core Loop**
