@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Gundam extends Threat {
 
-    private final int baseAttack = 4;
+    private final int baseAttack = 7;
     private final double attackScaling = 0.5;
     private final double specialScaling = 2;
 
