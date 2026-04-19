@@ -4,8 +4,8 @@
 **University:** LUT
 
 | Name | Role | GitHub |
-| Matthew Laughlin | Focus on Combat UI and Backend Combat Logic | fabled_03 |
-| [Student Name 2] | [e.g. Backend / Logic] | [@username] |
+| Matthew Laughlin | Focus on Combat UI and Backend Combat Logic | fabled_03  |
+| Pavel Pavlov     | OOP Design, entity logic/structure, UI      | pavp-cloud |
 | [Student Name 3] | [e.g. Assets / Testing] | [@username] |
 
 
@@ -161,10 +161,11 @@ classDiagram
 - Worked on the Mission class, working on playerTurn, executeMission, isGameOver, endMission, enemyTurn, and allowedCrewMembers. My work included playerTurn logic and enemyTurn logic with focus on setting up combat to execute properly and triggering the correct events when conditions were met. I also ensured that crew members were returned to their proper places after combat had occured. Then worked to connect all of these to the UI elements of the CombatView. 
 - I also worked on minor details inside of SpaceShip, Threat, and Mission Room. This included helping with Threat logic on the targeting of the two crew members with basic and special attacks, resetGame, and creating the array list for the Threat names.
 
-### [Student Name 2]
-- Engineered the **`Mission` logic** and turn-sequencing (Player -> Enemy).
-- Created the **`SpaceShip` Singleton** and the global state management.
-- Developed the **Threat AI logic**, null-safe targeting, and damage scaling systems.
+### Pavel Pavlov
+- Designed and worked on the entity classes, including the abstract classes, interfaces, individual specialization classes and their methods.
+- Managed RecyclerView implementation as well as certain other UI functionality.
+- Managed the project organization, set up the package structure and helped ensure the project follows proper Object Oriented principles (encapsulation, inheritance, polymorphism, abstraction...) where necessary.
+- Worked on implementation details inside classes to help eliminate basic coding issues (such as but not limited to avoidable code reuse and magic numbers)
 
 ### [Student Name 3]
 - Designed and integrated **Sprite Assets** for all entities and backgrounds.
