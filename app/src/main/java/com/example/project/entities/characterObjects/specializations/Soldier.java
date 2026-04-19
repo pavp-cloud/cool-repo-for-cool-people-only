@@ -11,8 +11,8 @@ import com.example.project.entities.threatObjects.Threat;
 public class Soldier extends Character {
 
     //CONSTANTS
-    private final int baseAttack = 9;
-    private final int grenadeAttack = 15;
+    private final int baseAttack = 10;
+    private final int grenadeAttack = 17;
     private final double attackScaling = 0.6;
     private final double specialScaling = 1.8;
     private final double damageVulnerability = 0.7;

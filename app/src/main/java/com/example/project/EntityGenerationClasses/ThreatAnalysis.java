@@ -26,24 +26,24 @@ public class ThreatAnalysis {
             switch(selection)
         {
             case 1:
-                int startingHealthPirate = baseHealthPirate + (88 * SpaceShip.getInstance().getDaysOnBoard());
-                Pirate pirate = new Pirate(startingHealthPirate, startingHealthPirate, name, 24 + (18 * SpaceShip.getInstance().getDaysOnBoard()));
+                int startingHealthPirate = baseHealthPirate + (118 * SpaceShip.getInstance().getDaysOnBoard());
+                Pirate pirate = new Pirate(startingHealthPirate, startingHealthPirate, name, 24 + (24 * SpaceShip.getInstance().getDaysOnBoard()));
                 return pirate;
             case 2:
-                int startingHealthParasite = baseHealthParasite + (83 * SpaceShip.getInstance().getDaysOnBoard());
-                Parasite parasite = new Parasite(startingHealthParasite, startingHealthParasite, name, 23 + (20 * SpaceShip.getInstance().getDaysOnBoard()));
+                int startingHealthParasite = baseHealthParasite + (103 * SpaceShip.getInstance().getDaysOnBoard());
+                Parasite parasite = new Parasite(startingHealthParasite, startingHealthParasite, name, 23 + (26 * SpaceShip.getInstance().getDaysOnBoard()));
                 return parasite;
             case 3:
-                int startingHealthGundam = baseHealthGundam + (92 * SpaceShip.getInstance().getDaysOnBoard());
-                Gundam gundam = new Gundam(startingHealthGundam, startingHealthGundam, name, 28 + (22 * SpaceShip.getInstance().getDaysOnBoard()));
+                int startingHealthGundam = baseHealthGundam + (122 * SpaceShip.getInstance().getDaysOnBoard());
+                Gundam gundam = new Gundam(startingHealthGundam, startingHealthGundam, name, 28 + (34 * SpaceShip.getInstance().getDaysOnBoard()));
                 return gundam;
             case 4:
-                int startingHealthAlien = baseHealthAlien + (128 * SpaceShip.getInstance().getDaysOnBoard());
-                Alien alien = new Alien(startingHealthAlien, startingHealthAlien, name, 21 + (24 * SpaceShip.getInstance().getDaysOnBoard()));
+                int startingHealthAlien = baseHealthAlien + (168 * SpaceShip.getInstance().getDaysOnBoard());
+                Alien alien = new Alien(startingHealthAlien, startingHealthAlien, name, 21 + (32 * SpaceShip.getInstance().getDaysOnBoard()));
                 return alien;
             case 5:
-                int startingHealthDemon = baseHealthDemon + (106 * SpaceShip.getInstance().getDaysOnBoard());
-                Demon demon = new Demon(startingHealthDemon, startingHealthDemon, name, 36 + (30 * SpaceShip.getInstance().getDaysOnBoard()));
+                int startingHealthDemon = baseHealthDemon + (146 * SpaceShip.getInstance().getDaysOnBoard());
+                Demon demon = new Demon(startingHealthDemon, startingHealthDemon, name, 36 + (36 * SpaceShip.getInstance().getDaysOnBoard()));
                 return demon;
             default:
                 return null;
