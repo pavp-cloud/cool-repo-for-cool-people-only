@@ -10,7 +10,7 @@ import com.example.project.entities.characterObjects.Character;
 public class BackgroundCheck {
     //CONSTANTS
     // exp multiplier for new recruits to catch up slightly
-    private final int globalExpMultiplier = 24;
+    private final int globalExpMultiplier = 14;
 
     // base heath values for all available specs
     private final int baseHealthMedic = 65;
