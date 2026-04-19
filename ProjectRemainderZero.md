@@ -109,7 +109,8 @@ Below is the architectural overview of the project, highlighting the inheritance
 <img width="1045" height="415" alt="image" src="https://github.com/user-attachments/assets/e71ff2bb-8ace-4f36-a1f0-1b15e5c7f26e" />
 
 
-<img width="1091" height="554" alt="image" src="https://github.com/user-attachments/assets/f907d21c-704c-4823-9300-338b8769f817" />
+<img width="1001" height="515" alt="image" src="https://github.com/user-attachments/assets/e8d48d52-507b-43dc-ab92-ec50d53272ad" />
+
 
 
 
