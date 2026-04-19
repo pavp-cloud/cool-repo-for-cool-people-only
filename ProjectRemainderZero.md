@@ -8,53 +8,7 @@
 | [Student Name 2] | [e.g. Backend / Logic] | [@username] |
 | [Student Name 3] | [e.g. Assets / Testing] | [@username] |
 
-Game Overview: Project Remainder Zero 
-Genre: Space-Themed Turn-Based Strategy RPG Platform: Android
-1. Core Concept
-Players manage a spaceship and its crew as they navigate through deep space, encountering various extraterrestrial and supernatural threats. The game focuses on tactical turn-based combat, crew management, and character progression through an experience-based leveling system.
-2. Gameplay Loop
-•
-Scanning: Using the Mission Room, players use radar to scan for nearby threats.
-•
-Mission Setup: Players select a mission and assign crew members (up to two) to tackle the identified threat.
-•
-Combat: A turn-based battle system where players choose between standard attacks and specialized abilities.
-•
-Resolution: Successful missions reward crew members with EXP, while failure can lead to crew injury or damage to the ship.
-3. Crew Classes (Character Specializations)
-Each crew member belongs to a specific class with unique scaling and abilities:
-•
-Soldier: High durability and damage. Uses a "Grenade" special for massive damage at the cost of self-inflicted recoil.
-•
-Medic: Focused on sustainability and healing (inferred from Medic.java).
-•
-Pilot/Engineer/Scientist: (Specializations found in the project, likely providing utility or ship-based bonuses).
-4. Enemy Types (Threat Specializations)
-Threats feature unique AI behaviors and "Special" moves:
-•
-Pirate: A cunning foe that steals EXP from your crew members to buff its own power.
-•
-Alien: Provides consistent pressurre by dealing damage to multiple crew members simultaneously.
-•
-Demon: Becomes more dangerous over time by stacking buffs that scale its damage.
-•
-Gundam: A heavy hitter that uses high-output special attacks but sustains recoil damage.
-•
-Parasite: Sustains itself by healing for a portion of the damage it deals to the crew.
-5. Technical Architecture
-•
-Entity System: Utilizes a robust inheritance hierarchy (CombatActor interface → Threat/Character abstract classes) to ensure consistent combat logic across all entities.
-•
-Mission Logic: Managed via a Mission controller that handles turn-order, target validation (null-safety), and win/loss conditions.
-•
-UI Framework: Built with Android-native components, utilizing RecyclerView for crew management and Fragments for different ship rooms.
-•
-Generation System: Features a ThreatAnalysis engine for procedural enemy generation based on difficulty selections.
-6. Key Mechanics
-•
-EXP Scaling: Unlike traditional RPGs where level is a static number, "EXP" is often used directly in damage formulas, making every point gained feel impactful in real-time.
-•
-Targeting Logic: The game uses a randomized targeting system for enemies, requiring players to keep both crew members healthy to avoid a single point of failure..
+
 ---
 
 ## 🛠 Implemented Features
