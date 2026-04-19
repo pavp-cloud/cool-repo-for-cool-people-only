@@ -10,7 +10,7 @@ public class Gundam extends Threat {
 
     private final int baseAttack = 7;
     private final double attackScaling = 0.5;
-    private final double specialScaling = 2;
+    private final double specialScaling = 1.7;
 
 
     public Gundam(int maxHealth, int currentHealth, String name, int exp) {
@@ -27,7 +27,7 @@ public class Gundam extends Threat {
         // Deals a large amount of damage both to one character and to itself
         Character target = pickTarget(character1, character2);
         int damage = (int)(baseAttack + (this.getExp() * specialScaling));
-        int recoilDamage = (int) (damage * 0.7);
+        int recoilDamage = (int) (damage * 0.75);
 
         if (target != null) {
             target.takeDamage(damage);
