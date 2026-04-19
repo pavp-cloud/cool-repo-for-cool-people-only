@@ -123,7 +123,7 @@ https://miro.com/welcomeonboard/Z3JvdmErRnczSk1wUExWYnBRbWNNUEZJZFhIN2o5Yk1qV1Bl
 ---
 
 ## 🤝 Division of Work
-- Designing, Scaling, and Logic was done as a group effort, with all members meeting accordingly
+- Designing, Scaling, and Logic was done as a group effort, with all members meeting in person regularly to work on and discuss the project.
 
 ### Matthew Laughlin 
 - Designed and created the entire CombatView. This includes adding sprites, toasts, animations, and buttons. This was done in order to add a degree of customization and to practice with working with coding UI inside Java.
@@ -136,10 +136,12 @@ https://miro.com/welcomeonboard/Z3JvdmErRnczSk1wUExWYnBRbWNNUEZJZFhIN2o5Yk1qV1Bl
 - Managed the project organization, set up the package structure and helped ensure the project follows proper Object Oriented principles (encapsulation, inheritance, polymorphism, abstraction...) where necessary.
 - Worked on implementation details inside classes to help eliminate basic coding issues (such as but not limited to avoidable code reuse and magic numbers)
 
-### [Student Name 3]
-- Designed and integrated **Sprite Assets** for all entities and backgrounds.
-- Implemented the **`PassengerManifest`** and `RecyclerView` adapters for crew tracking.
-- Created the **Training Room** mechanics and daily usage limitations.
+### Heikki Kornmann
+- Served as the project lead coordinating regular meeting to discuss and work on the project together.
+- Had a hand in most game design and logic decisions within classes but my primary focus was on the logic used within the main menu, crew quarters, onboarding crew members and mission room logic.
+- Created the BackgroudCheck and ThreatAnalysis classes to separate the creation from the classes themselves.
+- Created and worked to move all our initial menu logic into fragments halfway through the project to clean up our main activity and for easier UI implementation later on.
+- I need to clarify if whoever is reading this decides to look at our commits, my commits will look lacking. This is because most of the project i was not aware that my git environment was not set up correctly which lead to my commits not being under my git username but "Your Name" for a large majority of the project time. I want to specify these are my commits, I just wasnt able to fix it retroactively.
 
 ## AI usage declaration
 - No AI was used in designing the architecture of our game nor in creating the logic or design of how the gameplay would work
