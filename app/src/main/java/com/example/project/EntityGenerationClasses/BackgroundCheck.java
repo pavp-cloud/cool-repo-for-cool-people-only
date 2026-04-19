@@ -15,12 +15,12 @@ public class BackgroundCheck {
     // base heath values for all available specs
     private final int baseHealthMedic = 45;
     private final int baseHealthSoldier = 65;
-    private final int baseHealthScientist = 25;
+    private final int baseHealthScientist = 30;
     private final int baseHealthPilot = 55;
     private final int baseHealthEngineer = 95;
 
     // hp scales slightly with the amount of day passed/missions completed overall
-    private final int healthScaling = 10;
+    private final int healthScaling = 25;
 
     /*
     this function is used to create a new crew member. It takes a randomly generated number,

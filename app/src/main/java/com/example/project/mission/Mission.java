@@ -45,8 +45,9 @@ public class Mission {
         this.crewMember1 = crewMember1;
         this.crewMember2 = crewMember2;
     }
-    /*begins the combat and helps runs the combat, thread acts as pause before the enemy turn goes
-     */
+    /*
+    begins the combat and helps runs the combat, thread acts as pause before the enemy turn goes
+    */
     public void executeMission() {
         new Thread(() -> {
             while (!isGameOver()){
@@ -121,9 +122,10 @@ public class Mission {
         return action;
 
     }
-    /*once mission ends, checks the crew members, if dead, damage the ship, if not, put them back
+    /*
+    once mission ends, checks the crew members, if dead, damage the ship, if not, put them back
     to crew quarters
-     */
+    */
     public void endMission() {
         
         // increments the day counter at the end of a mission
@@ -139,10 +141,11 @@ public class Mission {
         CrewQuarters crewQuarters = SpaceShip.getInstance().getCrewQuarters();
         PassengerManifest manifest = SpaceShip.getInstance().getManifest();
 
-        /*checking for if member is dead, if they are not dead run endofcombatprep
-        if they are dead, they wil then be sent to passenger mainifest as dead and removing
-        from crew quarters
-         */
+        /*
+        checking for if member is dead, if they are not dead, it runs endofcombatprep and puts them
+        back in the crew quarters. if they are dead, they will be recorded in the manifest as dead
+        and won't be added back to the crew quarters. they will still be viewable in the ship manifest.
+        */
         if (crewMember1 != null){
             if (crewMember1.getCurrentHealth() > 0){
                 crewMember1.endOfCombatPrep(missionTarget);

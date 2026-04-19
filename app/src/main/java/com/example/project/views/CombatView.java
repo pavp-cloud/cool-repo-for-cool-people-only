@@ -94,13 +94,13 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         loadSprites(context);
     }
     /*
-    checking for end of combat to then be linked to the continue button to initate endofcombat prep.
+    checking for end of combat to then be linked to the continue button to initiate endofcombat prep.
      */
     public void setOnCombatEndedListener(OnCombatEndedListener listener) {
         this.combatEndedListener = listener;
     }
     /*
-    all the sprites from the spirte map being called and loaded
+    all the sprites from the sprite map being called and loaded
      */
     private void loadSprites(Context context) {
         spriteMap.put(Medic.class, BitmapFactory.decodeResource(getResources(), R.drawable.medic_sprite));
@@ -118,7 +118,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         backgroundSprite = BitmapFactory.decodeResource(getResources(), R.drawable.combat_background2);
     }
 
-    //Set up Mission with 2 charaters and 1 threat
+    //Set up Mission with 2 characters and 1 threat
     public void setupCombat(Mission mission) {
         this.activeMission = mission;
         this.crewMember1 = mission.getCrewMember1();
@@ -126,7 +126,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         this.missionThreat = mission.getMissionTarget();
     }
 
-    // update override, draw override, and control overrride
+    // update override, draw override, and control override
     @Override
     public void run() {
         while (isPlaying) {
@@ -149,7 +149,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
 
         checkGameOver();
     }
-    //check for game over and initate gameover if flagged
+    //check for game over and initiates game over if flagged
     private void checkGameOver() {
         if (activeMission != null && activeMission.isGameOver()) {
             activeCombat = combatState.GameOver;
@@ -172,7 +172,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         selectAttack = null;
     }
     /*
-    this will allow the player to initalize thier attacks and display the toast for the attacks
+    this will allow the player to initialize their attacks and display the toast for the attacks
      */
     public void playerAttack(int crewIndex, attackState type) {
         if (activeCombat == combatState.Players_Turn) {
@@ -231,7 +231,8 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     private void showCombatToast(final String message) {
         post(() -> Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show());
     }
-    /* positioning of all buttons, characters, and threats
+    /*
+    positioning of all buttons, characters, and threats
     links animations for clicking the special and basic attacks
     displays victory and game over checking based on threat health and character health
      */
@@ -312,8 +313,9 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
         float textWidth = paint.measureText(text);
         canvas.drawText(text, bounds.centerX() - textWidth / 2, bounds.centerY() + paint.getTextSize()/3, paint);
     }
-    /* draws all the detials around the sprites
-    this includes helath bar, name, displaying amount of health and lowering health bar when they
+    /*
+    draws all the details around the sprites
+    this includes health bar, name, displaying amount of health and lowering health bar when they
     take damage for both characters and threat
      */
     private void drawEntity(Canvas canvas, Object entity, float x, float y) {
@@ -377,9 +379,10 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
             canvas.drawText(hpText, x - textWidth/2, barTop + barHeight + paint.getTextSize() + 5, paint);
         }
     }
-    /*this will display all the animation
+    /*
+    this will display all the animations.
     the basic attack is red dot representing a laser
-    special is to like an explosion having a yellow sphere grow
+    special is like an explosion having a yellow sphere grow
     uses positioning of the characters and threats so that the animations go to the correct spots
      */
     private void drawAnimation() {
@@ -436,7 +439,7 @@ public class CombatView extends SurfaceView implements Runnable, SurfaceHolder.C
     public boolean performClick() {
         return super.performClick();
     }
-    //allowing interuptions to slow animations down
+    //allowing interruptions to slow animations down
     private void control() {
         try {
             Thread.sleep(17);

@@ -12,7 +12,7 @@ public class Demon extends Threat {
     //CONSTANTS
 
     private final int baseAttack = 6;
-    private final double attackScaling = 0.6;
+    private final double attackScaling = 0.53;
 
     public Demon(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);

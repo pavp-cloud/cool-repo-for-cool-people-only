@@ -11,11 +11,11 @@ import com.example.project.entities.threatObjects.Threat;
 public class Soldier extends Character {
 
     //CONSTANTS
-    private final int baseAttack = 8;
-    private final int grenadeAttack = 10;
+    private final int baseAttack = 9;
+    private final int grenadeAttack = 12;
     private final double attackScaling = 0.5;
     private final double specialScaling = 1.8;
-    private final double damageVulnerability = 0.8;
+    private final double damageVulnerability = 0.7;
 
     /*
     constructor for the Soldier class
@@ -37,7 +37,7 @@ public class Soldier extends Character {
      */
     public int special(){
         int damage = (int) (grenadeAttack + (this.getExp() * specialScaling));
-        int selfDamage = (int) (damage * 0.4);
+        int selfDamage = (int) (damage * 0.45);
         takeDamage(selfDamage);
         return damage;
     }

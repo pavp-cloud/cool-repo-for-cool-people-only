@@ -72,7 +72,7 @@ public abstract class Threat implements CombatActor, TargetedAttacker, TargetedS
         this.currentHealth -= damage;
     }
 
-    // Every threat will have it's own special method that will take both characters as input
+    // Every threat will have its own special method that will take both characters as input
     public abstract int special(Character character1, Character character2);
 
     /* Every threat will implement their own damage calculations and feed them into

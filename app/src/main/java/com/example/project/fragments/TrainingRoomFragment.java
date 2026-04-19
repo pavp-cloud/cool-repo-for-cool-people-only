@@ -32,7 +32,7 @@ public class TrainingRoomFragment extends Fragment {
     private int selectedTrainingDifficulty = -1;
 
     public TrainingRoomFragment() {
-        // Required empty public constructor
+
     }
 
     @Override

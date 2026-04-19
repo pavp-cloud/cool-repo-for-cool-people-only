@@ -12,10 +12,10 @@ public class Engineer extends Character {
     private boolean combatArmorEquipped = false;
 
     //CONSTANTS
-    private final int baseAttack = 5;
-    private final double attackScaling = 0.6;
-    private final double damageVulnerability = 0.7;
-    private final double damageVulnerabilityArmored = 0.4;
+    private final int baseAttack = 7;
+    private final double attackScaling = 0.7;
+    private final double damageVulnerability = 0.66;
+    private final double damageVulnerabilityArmored = 0.35;
 
     /*
     constructor for the Engineer class

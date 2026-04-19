@@ -17,6 +17,7 @@ import com.example.project.views.CombatView;
 public class CombatViewFragment extends Fragment {
 
     public CombatViewFragment() {
+
     }
 
     @Override
@@ -58,7 +59,7 @@ public class CombatViewFragment extends Fragment {
                         SpaceShip.getInstance().getTrainingRoom().resetDailyUsages();
 
 
-                        //Return to the Main Menu
+                        //Returns to the Main Menu
                         getParentFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_container, new MainMenuFragment())
                                 .commit();
@@ -68,7 +69,7 @@ public class CombatViewFragment extends Fragment {
         });
 
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
-        // Return the SurfaceView as the Fragment's view
+
         return combatView;
     }
 }

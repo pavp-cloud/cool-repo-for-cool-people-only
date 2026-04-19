@@ -20,15 +20,16 @@ public class MissionRoom {
     private ArrayList<Mission> pastMissions = new ArrayList<>();
     // currently pastMissions isn't used anywhere in the code. we plan to add a mission history later.
     private ArrayList<String> threatNames = new ArrayList<>(Arrays.asList(
-            "Bob", "Karen", "Terry", "Becky", "RxR 808", "Anvaron the Exhalted",
-            "Fungus", "Worm", "Matthew Money Bags", "Pavel Pavlov's Dog", "Heikki got a Heinikeen",
+            "Bob", "Karen", "Terry", "Becky", "RxR 808", "Anvaron the Exalted",
+            "Fungus", "Worm", "Matthew Money Bags", "Pavel Pavlov's Dog", "Heikki got a Heineken",
             "Vargmoth", "Kar the Blighted Sword", "Lil Reggie", "Monotone Noise",
-            "Hans", "Only says, I'll be your end"
+            "Hans", "Only says, I'll be your end", "Plague-bringer", "Area 52 escapee", "Theodore",
+            "The Baron", "Lisan al-Gaib", "Eladamri", "Rudolta", "Judgment", "Der Freischütz"
     ));
 
 
     /*
-    this function scans for threats creates the threat object
+    this function scans for threats returning the created threat object
      */
     public Threat scanForThreats(int selection){
         Collections.shuffle(threatNames);

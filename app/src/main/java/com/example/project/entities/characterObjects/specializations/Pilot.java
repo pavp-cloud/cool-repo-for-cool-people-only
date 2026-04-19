@@ -14,7 +14,7 @@ public class Pilot extends Character {
     //CONSTANTS
 
     private final int baseAttack = 4;
-    private int droneAttack = 5;
+    private int droneAttack = 6;
     private final double attackScaling = 0.6;
     private final double damageVulnerability = 1.0;
 

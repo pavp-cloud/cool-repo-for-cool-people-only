@@ -12,7 +12,7 @@ public class Alien extends Threat {
 
     private final int baseAttack = 3;
     private final double attackScaling = 0.5;
-    private final double specialScaling = 0.25;
+    private final double specialScaling = 0.35;
     public Alien(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);
     }

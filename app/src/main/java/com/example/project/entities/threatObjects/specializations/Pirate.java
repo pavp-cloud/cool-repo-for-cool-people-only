@@ -13,7 +13,7 @@ public class Pirate extends Threat {
     //CONSTANTS
     private final int baseAttack = 2;
     private final int baseExpSteal = 6;
-    private final double attackScaling = 0.5;
+    private final double attackScaling = 0.4;
 
     public Pirate(int maxHealth, int currentHealth, String name, int exp) {
         super(maxHealth, currentHealth, name, exp);

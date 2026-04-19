@@ -86,7 +86,7 @@ public class MainMenuFragment extends Fragment {
 
         return view;
     }
-    //Displays game over if ship health is 0.
+    //Displays game over if ship health is 0. after which it resets the game instance to the start.
     private void checkGameOver() {
         if (SpaceShip.getInstance().getShipHealth() <= 0) {
             new AlertDialog.Builder(requireActivity(), R.style.CustomDialogTheme)
