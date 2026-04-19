@@ -63,10 +63,19 @@ public class TrainingRoomFragment extends Fragment {
         // Set up navigation listener
         if (backBtn != null) {
             backBtn.setOnClickListener(v -> {
+                /*
+                checks if there is a trainee selected waiting for training and returns
+                them to the crew quarters if they are. in playtesting we frequently forgot
+                trainees inside of the training room and would find them not available for
+                combat and have to backtrack.
+                */
+                Character trainee = SpaceShip.getInstance().getTrainingRoom().getTrainees();
+                if (trainee != null) {
+                    SpaceShip.getInstance().getCrewQuarters().addCrewMember(SpaceShip.getInstance().getTrainingRoom().removeTrainee());
+                }
                 getParentFragmentManager().popBackStack();
             });
         }
-
         return view;
     }
 
