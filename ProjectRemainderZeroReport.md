@@ -151,4 +151,7 @@ https://miro.com/welcomeonboard/Z3JvdmErRnczSk1wUExWYnBRbWNNUEZJZFhIN2o5Yk1qV1Bl
 - Overall we feel our use of Gemini in the project was well within the guidelines. We used it for learning and understanding and did not let it write our project for us.
 
 ## Sources used
-- 
+- Android Studio was used for programming the application.
+- The pixel art assets were gotten from https://www.pixilart.com.
+- The Rocket pixel art on the main menu was created by Heikki Kornmann using tools in https://www.pixilart.com.
+- the remaining images (combat background, space background, training room background) were gotten from various reddit threads.
