@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // hides all the buttons and text views
                 findViewById(R.id.new_game_button).setVisibility(View.GONE);
-                findViewById(R.id.load_save_button).setVisibility(View.GONE);
                 findViewById(R.id.game_name_text).setVisibility(View.GONE);
                 findViewById(R.id.imageView).setVisibility(View.GONE);
 

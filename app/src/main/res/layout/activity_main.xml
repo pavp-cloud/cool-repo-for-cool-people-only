@@ -31,29 +31,15 @@
         android:id="@+id/new_game_button"
         android:layout_width="163dp"
         android:layout_height="91dp"
-        android:layout_marginBottom="260dp"
+        android:layout_marginBottom="200dp"
         android:backgroundTint="#77000000"
-        android:text="Start New Game"
+        android:text="Start Game"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#FAF7F7"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/load_save_button"
-        android:layout_width="162dp"
-        android:layout_height="94dp"
-        android:layout_marginBottom="80dp"
-        android:backgroundTint="#78000000"
-        android:text="Load Save"
-        android:textColor="#FBF7F7"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_game_button" />
 
     <ImageView
         android:id="@+id/imageView"
