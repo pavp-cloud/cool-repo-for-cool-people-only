@@ -21,19 +21,20 @@
 
 ### **The Core Loop**
 1.  **Scan for Threats:** Utilize the **Mission Room** radar to identify nearby enemies. Encounter unique entities like *Anvaron the Exhalted*, *Vargmoth*, and *RxR 808*.
-2.  **Crew Selection:** Assign up to two crew members from your **Passenger Manifest** to deploy.
+2.  **Crew Selection:** Assign a crew member from the crew quarters to train or up to two crew members for a mission.
 3.  **Tactical Combat:** Engage in turn-based battles where choosing between basic attacks and class-specific "Special" moves determines survival.
-4.  **Progression:** Earn EXP to scale your crew's power. Be warned—the difficulty scales based on your **Days On Board**.
+4.  **Progression:** Earn exp to scale your crew's power level. Be warned however, the difficulty scales based on your **Days On Board** so keeping up
+   with the threats and not letting your crew die is pivotal to long-term survival. 
 
 ---
 
 ## 👨‍🚀 Crew Specializations
-Each crew member belongs to a class with distinct attributes and scaling:
+Each crew member belongs to a class with distinct attributes, skills and scalings:
 
 *   **Soldier:** Heavy frontline combatant.
     *   *Special Ability:* **Frag Grenade** – Deals massive damage to the enemy at the cost of self-inflicted recoil.
 *   **Medic:** Essential for long-term survival, focusing on sustainability.
-    *    *Special Ability:* **Heal**- Can heal self to stay in combat longer than the advisary. 
+    *    *Special Ability:* **Heal**- Can heal self to stay in combat longer than youd expect. 
 *   **Engineer & Scientist:** Utility specialists that provide technical support and unique combat modifiers.
     *   *Special Abilities:* **Combat Armor** Take less damage so you can survive anything.
     *   *Special Abilities:* **Exp Potion** Grow more powerful, quicker, with a secret formula.
@@ -43,15 +44,15 @@ Each crew member belongs to a class with distinct attributes and scaling:
 ---
 
 ## 👾 Threat Analysis
-Threats feature unique AI behaviors and scaling logic. Enemies grow stronger as your voyage progresses.
+Threats feature unique AI behaviors and scaling logic. Enemies grow stronger the longer you survive.
 
 | Threat | Combat Style | Signature Move |
 | :--- | :--- | :--- |
-| **Pirate** | Opportunistic | **EXP Siphon:** Steals experience points from your crew to buff its own stats. |
-| **Alien** | Swarm | **Multi-Attack:** Deals damage to both deployed crew members in a single turn. |
-| **Demon** | Escalating | **Soul Stack:** Gains permanent damage buffs every turn the battle continues. |
-| **Parasite** | Vampiric | **Life Drain:** Heals itself for a portion of the damage dealt to your crew. |
-| **Gundam** | Juggernaut | **Overload:** Massive output damage but sustains internal system damage (recoil). |
+| **Pirate** | Opportunistic | **EXP Siphon:** Can steals experience points from your crew to buff its own damage. |
+| **Alien** | efficient | **AoE-Attack:** Deals damage to both deployed crew members in a single turn when using its special. |
+| **Demon** | Escalating | **Soul Stack:** Gains permanent damage buffs every turn it uses its special. |
+| **Parasite** | Vampiric | **Life Drain:** Heals itself for a portion of the damage dealt to a crew member in combat. |
+| **Gundam** | Juggernaut | **Overload:** Massive output damage but sustains internal system damage. |
 
 ---
 
@@ -59,23 +60,23 @@ Threats feature unique AI behaviors and scaling logic. Enemies grow stronger as 
 
 ### 1. Crew Management & Progression
 - **Onboarding:** Recruit unique characters through a security background check system.
-- **Experience (XP):** Characters gain XP from successful missions and training, increasing their max health and damage.
-- **Class Specials:** Unique combat logic for each class (e.g., Soldier's recoil damage, Medic's sustain).
+- **Experience:** Characters gain exp from successful missions and training, increasing their max health and damage.
+- **Class Specials:** A special secondary combat skill unique to each class like the solder having a grenade or the pilot having a deployable drone.
 
 ### 2. Strategic Turn-Based Combat
-- **2v1 Battles:** Deploy two crew members against a single high-tier threat.
+- **2v1 Battles:** Deploy two crew members against a single dangerous threat.
 - **SurfaceView Rendering:** High-performance combat rendering at 60 FPS.
-- **Null-Safe Targeting:** Advanced logic ensures enemies intelligently target living crew members, preventing application crashes.
+- **Null-Safe Targeting:** Advanced logic ensures enemies intelligently target living crew members, preventing application crashes(happened a lot).
 
 ### 3. Ship Systems
-- **Persistent State:** Uses the Singleton pattern (`SpaceShip`) to maintain ship health, days on board, and manifest across fragments.
-- **Training Room:** A limited-use facility to safely boost crew stats between missions.
-- **Passenger Manifest:** A permanent record tracking every crew member's service and status (Alive/Dead) using a `RecyclerView`.
+- **Persistent State:** Uses the Singleton pattern for the SpaceShip to maintain ship health, days on board, and manifest across the program.
+- **Training Room:** A facility with 3 daily uses to boost a crew members stats between missions.
+- **Passenger Manifest:** A permanent record tracking every crew member's service and status (Alive/Dead).
 
 ### 4. Game Mechanics
-- **Dynamic Difficulty:** Threats scale (Health/EXP) based on the number of days the ship has been adrift (`SpaceShip.getDaysOnBoard()`).
-- **Survival Penalties:** Ship health is damaged if a mission ends in total crew defeat.
-- **Reset Logic:** Full game state reset functionality integrated upon ship destruction.
+- **Dynamic Difficulty:** Threats scale (Health/EXP) based on the number of days the ship has been adrift.
+- **Survival Penalties:** Ship health is damaged if a mission ends with both crew members dead.
+- **Reset Logic:** Full game state resets if the ship reaches 0 health(is destroyed).
 
 ### 5. Mandatory Requirements Implemented - Descriptions: 
 - **Object Oriented Code:** - this has been implemented, see code and class diagram.
@@ -85,7 +86,7 @@ Threats feature unique AI behaviors and scaling logic. Enemies grow stronger as 
 
 ### 6. Bonus Features Implemented - Locations: 
 - **Recyler Viewer** - TrainingRoomFragment, PassengerManifestFragement, etc. 
-- **Crew Images as Sprites** -CombatView 
+- **Crew Images as Sprites** -CombatView and inside the recyclerviews
 - **Mission Visualization** - CombatView 
 - **Tactical Combat** - Mission 
 - **Statistics** - PassengerManifest 
@@ -93,13 +94,13 @@ Threats feature unique AI behaviors and scaling logic. Enemies grow stronger as 
 -  **Specialization Bonuses** - Threat and Characters
 -  **Fragments** - CombatView Fragment, MissionControl Fragment, Tutorial Fragment, etc.
 -  **Statics Visulaiztation** - PassengerManifest
--  **Own Creation** - Ship will take damage when failing a mission.
+-  **Own Creation** - We added the mechanic of ship health to the game to have the game end at some point of you keep losing. 
 -  **Own Creation** - We added an about button in the top right of the main menu to explain the game mechanics.
 
 ---
 
 ## 📐 Architecture overview
-Below is the architectural overview of the project, highlighting the inheritance hierarchies for Crew Members, Missions, Threats, and more.
+Below is our completed Class diagram showing all the connections between our classes. Along with images we have also attached the link to our miro board if you so wish to inspect it.
 
 <img width="1182" height="372" alt="image" src="https://github.com/user-attachments/assets/2486e3d2-6743-4915-ab6b-407efb2c201d" />
 
@@ -124,7 +125,7 @@ https://miro.com/welcomeonboard/Z3JvdmErRnczSk1wUExWYnBRbWNNUEZJZFhIN2o5Yk1qV1Bl
 ---
 
 ## Video explanations
-- We have created a 3 part video series for you to watch to maybe get some understanding of our though processes
+- We have created a 3 part video series for you to watch to maybe get some understanding of our thought processes.
 ### Part 1:
 - https://www.youtube.com/watch?v=PhnnXy6FqK8
 ### Part 2: (minor technical difficulties)
@@ -150,7 +151,7 @@ https://miro.com/welcomeonboard/Z3JvdmErRnczSk1wUExWYnBRbWNNUEZJZFhIN2o5Yk1qV1Bl
 
 ### Heikki Kornmann
 - Served as the project lead coordinating regular meeting to discuss and work on the project together.
-- Had a hand in most game design and logic decisions within classes but my primary focus was on the logic used within the main menu, crew quarters, onboarding crew members and mission room logic.
+- Had a hand in almost all game design and logic decisions within classes but my primary focus was on the logic used within the SpaceShip, main menu, crew quarters, onboarding crew members and mission room logic.
 - Created the BackgroudCheck and ThreatAnalysis classes to separate the creation from the classes themselves.
 - Created and worked to move all our initial menu logic into fragments halfway through the project to clean up our main activity and for easier UI implementation later on.
 - I need to clarify if whoever is reading this decides to look at our commits, my commits will look lacking. This is because most of the project i was not aware that my git environment was not set up correctly which lead to my commits not being under my git username but "Your Name" for a large majority of the project time. I want to specify these are my commits, I just wasnt able to fix it retroactively.
@@ -158,7 +159,7 @@ https://miro.com/welcomeonboard/Z3JvdmErRnczSk1wUExWYnBRbWNNUEZJZFhIN2o5Yk1qV1Bl
 ## AI usage declaration
 - No AI was used in designing the architecture of our game nor in creating the logic or design of how the gameplay would work
 - Our xml files were made by us as well.
-- We did however use gemini to learn and understand how to connect our UI elements together
+- We did however use gemini to learn and understand all the features within android studio and how to connect our UI elements together
 - Gemini was also used in the creation of the combatview to learn and understand how it might be done. It was still created by us only with some help.
 - Overall we feel our use of Gemini in the project was well within the guidelines. We used it for learning and understanding and did not let it write our project for us.
 
