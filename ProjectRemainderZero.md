@@ -33,12 +33,12 @@ Each crew member belongs to a class with distinct attributes and scaling:
 *   **Soldier:** Heavy frontline combatant.
     *   *Special Ability:* **Frag Grenade** – Deals massive damage to the enemy at the cost of self-inflicted recoil.
 *   **Medic:** Essential for long-term survival, focusing on sustainability.
-*   *Special Ability:* **Heal**- Can heal self to stay in combat longer than the advisary. 
+   *   *Special Ability:* **Heal**- Can heal self to stay in combat longer than the advisary. 
 *   **Engineer & Scientist:** Utility specialists that provide technical support and unique combat modifiers.
-*   *Special Abilities:* **Combat Armor** Take less damage so you can survive anything.
-*   *Special Abilities:* **Exp Potion** Grew more powerful, quicker, with a secret formula.
+   *   *Special Abilities:* **Combat Armor** Take less damage so you can survive anything.
+   *   *Special Abilities:* **Exp Potion** Grew more powerful, quicker, with a secret formula.
 *   **Pilot:** Expert navigators who influence the flow of combat.
-*   *Special Abilities:* **Drone** Have a helping hand in dealing more damamge to your opponent. 
+   *   *Special Abilities:* **Drone** Have a helping hand in dealing more damamge to your opponent. 
 
 ---
 
