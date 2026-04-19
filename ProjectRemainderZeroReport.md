@@ -93,7 +93,8 @@ Threats feature unique AI behaviors and scaling logic. Enemies grow stronger as 
 -  **Specialization Bonuses** - Threat and Characters
 -  **Fragments** - CombatView Fragment, MissionControl Fragment, Tutorial Fragment, etc.
 -  **Statics Visulaiztation** - PassengerManifest
--  **Own Creation** - Ship will take damage when failing a mission, and a lot more features. 
+-  **Own Creation** - Ship will take damage when failing a mission.
+-  **Own Creation** - We added an about button in the top right of the main menu to explain the game mechanics.
 
 ---
 
