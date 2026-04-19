@@ -10,7 +10,7 @@ public class Gundam extends Threat {
 
     private final int baseAttack = 7;
     private final double attackScaling = 0.5;
-    private final double specialScaling = 2.2;
+    private final double specialScaling = 2;
 
 
     public Gundam(int maxHealth, int currentHealth, String name, int exp) {

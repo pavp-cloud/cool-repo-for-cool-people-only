@@ -43,8 +43,8 @@ public class TrainingRoom {
 
                 case 1:
                     // level 1 training cannot fail
-                    trainee.gainExp(8);
-                    trainee.increaseMaxHealth(8);
+                    trainee.gainExp(9);
+                    trainee.increaseMaxHealth(9);
                     return 0;
 
 
@@ -54,8 +54,8 @@ public class TrainingRoom {
                         trainee.increaseMaxHealth(12);
                         return 0;
                     } else {
-                        trainee.gainExp(3);
-                        trainee.increaseMaxHealth(3);
+                        trainee.gainExp(5);
+                        trainee.increaseMaxHealth(5);
                         // training fails
                         return 1;
                     }
