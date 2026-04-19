@@ -80,7 +80,7 @@ Threats feature unique AI behaviors and scaling logic. Enemies grow stronger as 
 ### 5. Mandatory Requirements Implemented - Descriptions: 
 - **Object Oriented Code:** - this has been implemented, see code and class diagram.
 - **Code in English:** - see code
-- **Basic Functionality:** - refer to video, above, or play test.
+- **Basic Functionality:** - refer to video, code, above, or play test.
 - **Documentation:** - refer to this md and readme. 
 
 ### 6. Bonus Features Implemented - Locations: 
