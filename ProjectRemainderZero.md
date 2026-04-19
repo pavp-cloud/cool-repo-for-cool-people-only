@@ -6,7 +6,7 @@
 | Name | Role | GitHub |
 | Matthew Laughlin | Focus on Combat UI and Backend Combat Logic | fabled_03  |
 | Pavel Pavlov     | OOP Design, entity logic/structure, UI      | pavp-cloud |
-| Heikki Kornmann | overall game design, UI, fragments, menu systems and logic | heikkikornmann-bit |
+| Heikki Kornmann | Project lead, overall game design, UI, fragments, menu systems and logic | heikkikornmann-bit |
 
 
 ---
@@ -146,7 +146,7 @@ https://miro.com/welcomeonboard/Z3JvdmErRnczSk1wUExWYnBRbWNNUEZJZFhIN2o5Yk1qV1Bl
 - Our xml files were made by us as well.
 - We did however use gemini to learn and understand how to connect our UI elements together
 - Gemini was also used in the creation of the combatview to learn and understand how it might be done. It was still created by us only with some help.
-- Overall we feel our use of Gemini in the project was well within the guidelines. We used for learning and understanding and did not let it write our project for us.
+- Overall we feel our use of Gemini in the project was well within the guidelines. We used it for learning and understanding and did not let it write our project for us.
 
 ## Sources used
 - 
