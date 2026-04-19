@@ -123,6 +123,17 @@ https://miro.com/welcomeonboard/Z3JvdmErRnczSk1wUExWYnBRbWNNUEZJZFhIN2o5Yk1qV1Bl
 
 ---
 
+## Video explanations
+- We have created a 3 part video series for you to watch to maybe get some understanding of our though processes
+### Part 1:
+- https://www.youtube.com/watch?v=PhnnXy6FqK8
+### Part 2: (minor technical difficulties)
+- https://www.youtube.com/watch?v=BwmE29FNQ2w
+### Part 3:
+- https://www.youtube.com/watch?v=ZCyvkC__V8A
+
+  
+
 ## 🤝 Division of Work
 - Designing, Scaling, and Logic was done as a group effort, with all members meeting in person regularly to work on and discuss the project.
 
