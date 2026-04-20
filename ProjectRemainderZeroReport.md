@@ -6,7 +6,7 @@
 | Name | Role | GitHub |
 | Matthew Laughlin | Focus on Combat UI and Backend Combat Logic | fabled_03  |
 | Pavel Pavlov     | OOP Design, entity logic/structure, UI      | pavp-cloud |
-| Heikki Kornmann | Project lead, overall game design, UI, fragments, menu systems and logic | heikkikornmann-bit |
+| Heikki Kornmann | Project lead, overall game design, UI design, fragments, menu systems and logic | heikkikornmann-bit |
 
 
 ---
