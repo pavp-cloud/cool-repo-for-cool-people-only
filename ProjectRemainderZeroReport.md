@@ -44,7 +44,7 @@ Each crew member belongs to a class with distinct attributes, skills and scaling
 ---
 
 ## 👾 Threat Analysis
-Threats feature unique AI behaviors and scaling logic. Enemies grow stronger the longer you survive.
+Threats feature unique abilities and scaling logic. Enemies grow stronger the longer you survive.
 
 | Threat | Combat Style | Signature Move |
 | :--- | :--- | :--- |
